@@ -427,7 +427,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setName("fiximulatorFrame"); // NOI18N
-        setResizable(false);
+        setResizable(true);
 
         messagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Application Messages"));
 
@@ -710,7 +710,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(partialsNumber)
                     .addComponent(partialsLabel))
                 .addGap(11, 11, 11)
-                .addComponent(partialsSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(partialsSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stopExecutorButton)
@@ -1646,7 +1646,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(messageDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(messagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
