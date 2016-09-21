@@ -1,0 +1,87 @@
+#!/bin/bash
+#
+# Builds a docker container for the project.
+#
+# Prior to building, an 'sbt dist' must be run.
+#
+
+# The application we're building
+SOFI_APP=sofi-fiximulator
+
+# By default, assume the image is for the build server
+DOCKER='sudo docker'
+MKTEMP=mktemp
+SBT=/home/bamboo/bin/sbt-0.13.0
+
+# The container id used to identify this build.
+# Note the build.sofi.com:5000 which tells docker that this container should
+# be submitted to that repo on push.
+CONTAINER=build.sofi.com:5000/$SOFI_APP
+
+# Allow the user to run this on a local Mac by
+# providing a '-local' argument to the script
+LOCAL=0
+for arg in "$@"; do
+   [[ $arg  == "-local" ]] && LOCAL=1
+done
+if [ $LOCAL -eq 1 ]; then
+   DOCKER=docker
+   MKTEMP='mktemp -t sofi'
+   SBT=sbt
+   CONTAINER=$SOFI_APP
+fi
+
+# Verify that the diest was correctly built.
+JAR=dist/FIXimulator_0.41.jar
+if [ ! -f $JAR ]; then
+    echo "Dist $JAR was not found"
+    exit -1
+fi
+
+echo "creating temp docker directory"
+TEMP=$($MKTEMP -d)
+
+echo "copying dist to temp"
+cp $JAR $TEMP
+cp -r dist/lib $TEMP
+cp -r config $TEMP
+
+# Copy in all dependencies that need to be available for the Dockerfile.
+# We want to keep the size of these as small as possible for docker build
+# performance.
+echo "setting up docker build file"
+cp docker/Dockerfile $TEMP
+cp docker/docker-entrypoint.sh $TEMP
+cp docker/start $TEMP
+
+echo "switching to temp directory to generate the Docker image"
+pushd .
+cd $TEMP
+
+# This creates and grabs the hash for the latest build, which is (hopefully) the one we
+# just built, unless there are multiple agents building docker images.
+echo "docker build -t $CONTAINER ."
+$DOCKER build -t $CONTAINER .
+NEW=$($DOCKER images -q | head -n 1)
+
+# Create the version tag for this build
+#echo "docker tag $NEW $CONTAINER:$VERSION"
+#$DOCKER tag $NEW $CONTAINER:$VERSION
+
+# Make this the 'latest' version for the branch
+#echo "docker tag $NEW $CONTAINER:$BRANCH"
+#$DOCKER tag $NEW $CONTAINER:$BRANCH
+
+# Push to the build server and remove local
+# images for any non-local builds.
+if [ $LOCAL -eq 0 ]; then
+  echo "docker push $CONTAINER"
+  $DOCKER push $CONTAINER
+
+  # Remove the image from the build server's docker instance
+  $DOCKER rmi $NEW
+fi
+
+echo "cleaning up temp files"
+popd
+rm -rf $TEMP
