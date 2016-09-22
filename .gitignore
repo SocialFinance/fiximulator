@@ -1,6 +1,7 @@
 .classpath
 .project
 .settings/
+bin/
 build/
 data/
 dist/
