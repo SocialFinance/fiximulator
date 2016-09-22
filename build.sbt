@@ -21,6 +21,8 @@ libraryDependencies ++= Seq(
   "com.cloudhopper.proxool" % "proxool-cglib" % "0.9.1",
   "org.slf4j" % "slf4j-api"    % "1.6.3",
   "org.slf4j" % "slf4j-simple" % "1.6.3"
+//backport-util-concurrent-2.1.jar
+//sleepycat-je_2.1.30.jar
 )
 
 // Inform sbt-eclipse to not add Scala nature
@@ -47,12 +49,3 @@ mainClass in Compile := Some("edu.harvard.fas.zfeledy.fiximulator.ui.FIXimulator
 sources in (Compile,doc) := Seq.empty
 publishArtifact in (Compile, packageDoc) := false
 
-// backport-util-concurrent-2.1.jar
-//jcl-over-slf4j-1.6.3.jar
-// quickfixj-core.jar
-//quickfixj-msg-fix40.jar
-//quickfixj-msg-fix41.jar
-//quickfixj-msg-fix42.jar
-//quickfixj-msg-fix43.jar
-//quickfixj-msg-fix44.jar
-//sleepycat-je_2.1.30.jar
