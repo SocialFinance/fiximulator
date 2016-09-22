@@ -1,8 +1,8 @@
 #!/bin/sh
 
-JAVA_OPTS="-Xmx768m"
+JAVA_OPTS="-Xmx2048m"
 
 # Run the application
 export JAVA_OPTS
 cd /data/sofi/bin
-java -jar FIXimulator_0.41.jar 2>&1
+./fiximulator 2>&1
