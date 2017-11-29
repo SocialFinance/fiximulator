@@ -2,15 +2,18 @@
  * File     : OrderSet.java
  *
  * Author   : Zoltan Feledy
- * 
- * Contents : This class is a Set of Order objects with a utility 
+ *
+ * Contents : This class is a Set of Order objects with a utility
  *            methods to access the individual orders.
  */
 
 package edu.harvard.fas.zfeledy.fiximulator.core;
 
+import edu.harvard.fas.zfeledy.fiximulator.ui.FIXimulatorFrame;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import edu.harvard.fas.zfeledy.fiximulator.ui.OrderTableModel;
 
 public class OrderSet {
@@ -19,7 +22,7 @@ public class OrderSet {
     private OrderTableModel orderTableModel = null;
 
     public OrderSet() {}
-    
+
     public void add ( Order order, boolean toFill ) {
         orders.add( order );
         if ( toFill ) ordersToFill.add(order);
@@ -31,17 +34,19 @@ public class OrderSet {
         while ( orders.size() > limit ) {
             orders.remove(0);
         }
-        orderTableModel.update();
+        if (!FIXimulatorFrame.isHeadl1ess()) {
+            orderTableModel.update();
+        }
     }
-    
+
     public void update () {
         orderTableModel.update();
     }
-    
+
     public void addCallback(OrderTableModel orderTableModel){
         this.orderTableModel = orderTableModel;
     }
-        
+
     public int getCount() {
         return orders.size();
     }
@@ -59,12 +64,12 @@ public class OrderSet {
         }
         return null;
     }
-    
+
     public boolean haveOrdersToFill() {
         if ( ordersToFill.size() > 0 ) return true;
         return false;
     }
-    
+
     public Order getOrderToFill() {
         return ordersToFill.remove(0);
     }
