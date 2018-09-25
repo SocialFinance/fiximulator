@@ -70,12 +70,8 @@ public class FIXimulatorApplication extends MessageCracker
                                     implements Application {
     private boolean connected;
     private JLabel connectedStatus;
-    private JLabel ioiSenderStatus;
     private JLabel executorStatus;
-    private boolean ioiSenderStarted;
     private boolean executorStarted;
-    private IOIsender ioiSender;
-    private Thread ioiSenderThread;
     private Executor executor;
     private Thread executorThread;
     private LogMessageSet messages;
@@ -83,7 +79,6 @@ public class FIXimulatorApplication extends MessageCracker
     private SessionID currentSession;
     private DataDictionary dictionary;
     private Random random = new Random();
-    private IOIset iois = null;
     private OrderSet orders = null;
     private ExecutionSet executions = null;
 
@@ -91,7 +86,6 @@ public class FIXimulatorApplication extends MessageCracker
             LogMessageSet messages) {
             this.settings = settings;
             this.messages = messages;
-            iois = new IOIset();
             orders = new OrderSet();
             executions = new ExecutionSet();
     }
@@ -113,11 +107,6 @@ public class FIXimulatorApplication extends MessageCracker
         connectedStatus.setIcon(new javax.swing.ImageIcon(getClass()
             .getResource("/org/fiximulator/ui/red.gif")));
     }
-
-    // IndicationofInterest handling
-    public void onMessage(quickfix.fix42.IndicationofInterest message,
-            SessionID sessionID)
-        throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
 
     // NewOrderSingle handling
     public void onMessage(quickfix.fix42.NewOrderSingle message,
@@ -225,19 +214,13 @@ public class FIXimulatorApplication extends MessageCracker
 
     public void toAdmin(Message message, SessionID sessionID) {}
 
-    public void addStatusCallbacks(JLabel connectedStatus,
-            JLabel ioiSenderStatus, JLabel executorStatus) {
+    public void addStatusCallbacks(JLabel connectedStatus, JLabel executorStatus) {
         this.connectedStatus = connectedStatus;
-        this.ioiSenderStatus = ioiSenderStatus;
         this.executorStatus = executorStatus;
     }
 
     public boolean getConnectionStatus() {
         return connected;
-    }
-
-    public IOIset getIOIs() {
-        return iois;
     }
 
     public OrderSet getOrders() {
@@ -524,101 +507,6 @@ public class FIXimulatorApplication extends MessageCracker
         } catch (SessionNotFound e) { e.printStackTrace(); }
     }
 
-    public void sendIOI(IOI ioi) {
-        // *** Required fields ***
-        // IOIid
-        IOIid ioiID = new IOIid(ioi.getID());
-
-        // IOITransType
-        IOITransType ioiType = null;
-        if (ioi.getType().equals("NEW"))
-            ioiType = new IOITransType(IOITransType.NEW);
-        if (ioi.getType().equals("CANCEL"))
-            ioiType = new IOITransType(IOITransType.CANCEL);
-        if (ioi.getType().equals("REPLACE"))
-            ioiType = new IOITransType(IOITransType.REPLACE);
-
-        // Side
-        Side side = null;
-        if (ioi.getSide().equals("BUY")) side = new Side(Side.BUY);
-        if (ioi.getSide().equals("SELL")) side = new Side(Side.SELL);
-        if (ioi.getSide().equals("UNDISCLOSED"))
-            side = new Side(Side.UNDISCLOSED);
-
-        // IOIShares
-        IOIShares shares = new IOIShares(ioi.getQuantity().toString());
-
-        // Symbol
-        Symbol symbol = new Symbol(ioi.getSymbol());
-
-        // Construct IOI from required fields
-        quickfix.fix42.IndicationofInterest fixIOI =
-            new quickfix.fix42.IndicationofInterest(
-            ioiID, ioiType, symbol, side, shares);
-
-        // *** Conditionally required fields ***
-        // IOIRefID
-        IOIRefID ioiRefID = null;
-        if (ioi.getType().equals("CANCEL") || ioi.getType().equals("REPLACE")) {
-            ioiRefID = new IOIRefID(ioi.getRefID());
-            fixIOI.set(ioiRefID);
-        }
-
-        // *** Optional fields ***
-        // SecurityID
-        SecurityID securityID = new SecurityID(ioi.getSecurityID());
-        fixIOI.set(securityID);
-
-        // IDSource
-        IDSource idSource = null;
-        if (ioi.getIDSource().equals("TICKER"))
-            idSource = new IDSource(IDSource.EXCHANGE_SYMBOL);
-        if (ioi.getIDSource().equals("RIC"))
-            idSource = new IDSource(IDSource.RIC_CODE);
-        if (ioi.getIDSource().equals("SEDOL"))
-            idSource = new IDSource(IDSource.SEDOL);
-        if (ioi.getIDSource().equals("CUSIP"))
-            idSource = new IDSource(IDSource.CUSIP);
-        if (ioi.getIDSource().equals("UNKOWN"))
-            idSource = new IDSource("100");
-        fixIOI.set(idSource);
-
-        // Price
-        Price price = new Price(ioi.getPrice());
-        fixIOI.set(price);
-
-        // IOINaturalFlag
-        IOINaturalFlag ioiNaturalFlag = new IOINaturalFlag();
-        if (ioi.getNatural().equals("YES"))
-            ioiNaturalFlag.setValue(true);
-        if (ioi.getNatural().equals("NO"))
-            ioiNaturalFlag.setValue(false);
-        fixIOI.set(ioiNaturalFlag);
-
-        // SecurityDesc
-        Instrument instrument =
-                FIXimulator.getInstruments().getInstrument(ioi.getSymbol());
-        String name = "Unknown security";
-        if (instrument != null) name = instrument.getName();
-        SecurityDesc desc = new SecurityDesc(name);
-        fixIOI.set(desc);
-
-        // ValidUntilTime
-        int minutes = 30;
-        long expiry = new Date().getTime() + 1000 * 60 * minutes;
-        Date validUntil = new Date(expiry);
-        ValidUntilTime validTime = new ValidUntilTime(validUntil);
-        fixIOI.set(validTime);
-
-        //Currency
-        Currency currency = new Currency("USD");
-        fixIOI.set(currency);
-
-        // *** Send message ***
-        sendMessage(fixIOI);
-        iois.add(ioi);
-    }
-
     public void sendExecution(Execution execution) {
         Order order = execution.getOrder();
 
@@ -692,146 +580,6 @@ public class FIXimulatorApplication extends MessageCracker
         // *** Send message ***
         sendMessage(executionReport);
         executions.add(execution);
-    }
-
-    // IOI Sender methods
-    public void startIOIsender(Integer delay, String symbol, String securityID) {
-        try {
-            ioiSender = new IOIsender(delay, symbol, securityID);
-            ioiSenderThread = new Thread(ioiSender);
-            ioiSenderThread.start();
-        } catch (Exception e) {e.printStackTrace(); }
-        if (connected && ioiSenderStarted)
-            ioiSenderStatus.setIcon(new javax.swing.ImageIcon(getClass()
-            .getResource("/org/fiximulator/ui/green.gif")));
-    }
-
-    public void stopIOIsender() {
-        ioiSender.stopIOISender();
-        ioiSenderThread.interrupt();
-        try {
-            ioiSenderThread.join();
-        } catch (InterruptedException e) {e.printStackTrace(); }
-        ioiSenderStatus.setIcon(new javax.swing.ImageIcon(getClass()
-            .getResource("/org/fiximulator/ui/red.gif")));
-    }
-
-    public void setNewDelay(Integer delay) {
-        if (ioiSenderStarted) ioiSender.setDelay(delay);
-    }
-
-    public void setNewSymbol(String identifier) {
-        if (ioiSenderStarted) ioiSender.setSymbol(identifier);
-    }
-
-    public void setNewSecurityID(String identifier) {
-        if (ioiSenderStarted) ioiSender.setSecurityID(identifier);
-    }
-
-    public class IOIsender implements Runnable {
-        InstrumentSet instruments;
-        private Integer delay;
-        private String symbolValue = "";
-        private String securityIDvalue = "";
-
-        public IOIsender(Integer delay, String symbol, String securityID) {
-            instruments = FIXimulator.getInstruments();
-            ioiSenderStarted = true;
-            this.delay = delay;
-            symbolValue = symbol;
-            securityIDvalue = securityID;
-        }
-
-        public void stopIOISender() {
-            ioiSenderStarted = false;
-        }
-
-        public void setDelay(Integer delay) {
-            this.delay = delay;
-        }
-
-         public void setSymbol(String identifier) {
-            symbolValue = identifier;
-         }
-
-         public void setSecurityID(String identifier) {
-            securityIDvalue = identifier;
-         }
-
-        public void run() {
-            while (connected && ioiSenderStarted) {
-                sendRandomIOI();
-                try {
-                    Thread.sleep(delay.longValue());
-                } catch (InterruptedException e) {}
-            }
-            ioiSenderStatus.setIcon(new javax.swing.ImageIcon(getClass()
-            .getResource("/org/fiximulator/ui/red.gif")));
-        }
-
-        public void sendRandomIOI() {
-            Instrument instrument = instruments.randomInstrument();
-            IOI ioi = new IOI();
-            ioi.setType("NEW");
-
-            // Side
-            ioi.setSide("BUY");
-            if (random.nextBoolean()) ioi.setSide("SELL");
-
-            // IOIShares
-            Integer quantity = new Integer(random.nextInt(1000) * 100 + 100);
-            ioi.setQuantity(quantity);
-
-            // Symbol
-            String value = "";
-            if (symbolValue.equals("Ticker")) value = instrument.getTicker();
-            if (symbolValue.equals("RIC")) value = instrument.getRIC();
-            if (symbolValue.equals("Sedol")) value = instrument.getSedol();
-            if (symbolValue.equals("Cusip")) value = instrument.getCusip();
-            if (value.equals("")) value = "<MISSING>";
-            ioi.setSymbol(value);
-            Symbol symbol = new Symbol(ioi.getSymbol());
-
-            // *** Optional fields ***
-            // SecurityID
-            value = "";
-            if (securityIDvalue.equals("Ticker"))
-                value = instrument.getTicker();
-            if (securityIDvalue.equals("RIC"))
-                value = instrument.getRIC();
-            if (securityIDvalue.equals("Sedol"))
-                value = instrument.getSedol();
-            if (securityIDvalue.equals("Cusip"))
-                value = instrument.getCusip();
-            if (value.equals(""))
-                value = "<MISSING>";
-            ioi.setSecurityID(value);
-
-            // IDSource
-            if (securityIDvalue.equals("Ticker")) ioi.setIDSource("TICKER");
-            if (securityIDvalue.equals("RIC")) ioi.setIDSource("RIC");
-            if (securityIDvalue.equals("Sedol")) ioi.setIDSource("SEDOL");
-            if (securityIDvalue.equals("Cusip")) ioi.setIDSource("CUSIP");
-            if (ioi.getSecurityID().equals("<MISSING>"))
-                ioi.setIDSource("UNKNOWN");
-
-            // Price
-            int pricePrecision = 4;
-            try {
-                pricePrecision =
-                        (int)settings.getLong("FIXimulatorPricePrecision");
-            } catch (Exception e) {}
-            double factor = Math.pow(10, pricePrecision);
-            double price = Math.round(
-                    random.nextDouble() * 100 * factor) / factor;
-            ioi.setPrice(price);
-
-            // IOINaturalFlag
-            ioi.setNatural("No");
-            if (random.nextBoolean()) ioi.setNatural("Yes");
-
-            sendIOI(ioi);
-        }
     }
 
     // Executor methods
