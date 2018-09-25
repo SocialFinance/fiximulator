@@ -49,7 +49,6 @@ import javax.swing.JSeparator;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -140,17 +139,6 @@ public class FIXimulatorFrame extends JFrame {
         instrumentPanel = new JPanel();
         instrumentScrollPane = new JScrollPane();
         instrumentTable = new JTable();
-        reportPanel = new JPanel();
-        reportActionPanel = new JPanel();
-        customQueryRunButton = new JButton();
-        queryLabel = new JLabel();
-        queryText = new JTextField();
-        cannedQueryCombo = new JComboBox();
-        querySymbolLabel = new JLabel();
-        querySymbolText = new JTextField();
-        cannedQueryRunButton = new JButton();
-        reportScrollPane = new JScrollPane();
-        reportTable = new JTable();
         settingsPanel = new JPanel();
         autoResponsePanel = new JPanel();
         autoAcknowledge = new JCheckBox();
@@ -856,95 +844,7 @@ public class FIXimulatorFrame extends JFrame {
 
         mainTabbedPane.addTab("Instruments", instrumentPanel);
 
-        reportActionPanel.setBorder(BorderFactory.createTitledBorder("Reporting"));
-
-        customQueryRunButton.setText("Run");
-        customQueryRunButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                customQueryRunButtonActionPerformed(evt);
-            }
-        });
-
-        queryLabel.setText("Query:");
-
-        queryText.setText("select text from messages_log where text like '%35=6%';");
-
-        cannedQueryCombo.setModel(new DefaultComboBoxModel(new String[] { "Show last 10 IOIs...", "Show last 10 orders...", "Show last 10 executions...", "Show all IOIs where Symbol(55) is...", "Show all orders where Symbol(55) is...", "Show all executions where Symbol(55) is...", "Show all activity where Symbol(55) is..." }));
-
-        querySymbolLabel.setText("Symbol:");
-
-        cannedQueryRunButton.setText("Run");
-        cannedQueryRunButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cannedQueryRunButtonActionPerformed(evt);
-            }
-        });
-
-        GroupLayout reportActionPanelLayout = new GroupLayout(reportActionPanel);
-        reportActionPanel.setLayout(reportActionPanelLayout);
-        reportActionPanelLayout.setHorizontalGroup(
-            reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(reportActionPanelLayout.createSequentialGroup()
-                .addGroup(reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(reportActionPanelLayout.createSequentialGroup()
-                        .addComponent(cannedQueryCombo, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(querySymbolLabel)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(querySymbolText))
-                    .addGroup(GroupLayout.Alignment.TRAILING, reportActionPanelLayout.createSequentialGroup()
-                        .addComponent(queryLabel)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(queryText, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(cannedQueryRunButton)
-                    .addComponent(customQueryRunButton))
-                .addContainerGap())
-        );
-        reportActionPanelLayout.setVerticalGroup(
-            reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(reportActionPanelLayout.createSequentialGroup()
-                .addGroup(reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(queryLabel)
-                    .addComponent(customQueryRunButton)
-                    .addComponent(queryText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(cannedQueryRunButton)
-                    .addComponent(querySymbolText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(querySymbolLabel)
-                    .addComponent(cannedQueryCombo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
         executionTable.setDefaultRenderer(Object.class, new ExecutionCellRenderer());
-        reportTable.setAutoCreateRowSorter(true);
-        reportTable.setModel(new QueryTableModel());
-        reportTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        reportTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        reportScrollPane.setViewportView(reportTable);
-
-        GroupLayout reportPanelLayout = new GroupLayout(reportPanel);
-        reportPanel.setLayout(reportPanelLayout);
-        reportPanelLayout.setHorizontalGroup(
-            reportPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
-                .addGroup(reportPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(reportScrollPane, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                    .addComponent(reportActionPanel, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        reportPanelLayout.setVerticalGroup(
-            reportPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
-                .addComponent(reportActionPanel, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reportScrollPane, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        mainTabbedPane.addTab("Reports", reportPanel);
 
         autoResponsePanel.setBorder(BorderFactory.createTitledBorder("Automated Responses"));
 
@@ -1674,50 +1574,6 @@ private void logToDBActionPerformed(ActionEvent evt) { // GEN - FIRST:event_logT
         sendOnBehalfOfSubID.isSelected());
 } // GEN - LAST:event_logToDBActionPerformed
 
-private void customQueryRunButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_customQueryRunButtonActionPerformed
-    QueryTableModel qtm = (QueryTableModel) reportTable.getModel();
-    qtm.setQuery(queryText.getText().trim());
-} // GEN - LAST:event_customQueryRunButtonActionPerformed
-
-private void cannedQueryRunButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cannedQueryRunButtonActionPerformed
-    QueryTableModel qtm = (QueryTableModel) reportTable.getModel();
-    String can = cannedQueryCombo.getSelectedItem().toString();
-    String symbol = querySymbolText.getText().toString().trim().toLowerCase();
-    String query = "";
-
-    if (can.equals("Show last 10 IOIs..."))
-        query = "select id,text from messages_log "
-                + "where text like '%35=6%' order by id desc limit 10;";
-    if (can.equals("Show last 10 orders..."))
-        query = "select id,text from messages_log "
-                + "where text like '%35=D%' order by id desc limit 10;";
-    if (can.equals("Show last 10 executions..."))
-                query = "select id,text from messages_log "
-                + "where text like '%35=8%' order by id desc limit 10;";
-    if (can.equals("Show all IOIs where Symbol(55) is..."))
-        query = "select id,text from messages_log "
-                + "where text like '%35=6%' and lower(text) like '%55="
-                + symbol + "%';";
-    if (can.equals("Show all orders where Symbol(55) is..."))
-        query = "select id,text from messages_log "
-                + "where text like '%35=D%' and lower(text) like '%55="
-                + symbol + "%';";
-    if (can.equals("Show all executions where Symbol(55) is..."))
-            query = "select id,text from messages_log "
-                + "where text like '%35=8%' and lower(text) like '%55="
-                + symbol + "%';";
-    if (can.equals("Show all activity where Symbol(55) is..."))
-            query = "select id,text from messages_log "
-                + "where lower(text) like '%55=" + symbol + "%';";
-
-    qtm.setQuery(query);
-
-    if (reportTable.getColumnCount() > 1) {
-        reportTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-        reportTable.getColumnModel().getColumn(1).setPreferredWidth(1000);
-    }
-} // GEN - LAST:event_cannedQueryRunButtonActionPerformed
-
     public static void main(String args[]) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1749,10 +1605,7 @@ private void cannedQueryRunButtonActionPerformed(ActionEvent evt) { // GEN - FIR
     private JButton cancelPendingButton;
     private JButton cancelRejectButton;
     private JSeparator cancelSeparator;
-    private JComboBox cannedQueryCombo;
-    private JButton cannedQueryRunButton;
     private JLabel clientConnectedLabel;
-    private JButton customQueryRunButton;
     private JLabel delayLabel;
     private JButton dfdButton;
     private JButton executeButton;
@@ -1805,19 +1658,10 @@ private void cannedQueryRunButtonActionPerformed(ActionEvent evt) { // GEN - FIR
     private JSlider partialsSlider;
     private JComboBox pricePrecisionCombo;
     private JLabel pricePrecisionLabel;
-    private JLabel queryLabel;
-    private JLabel querySymbolLabel;
-    private JTextField querySymbolText;
-    private JTextField queryText;
-    private JSlider rateSlider;
     private JButton replaceAcceptButton;
     private JButton replacePendingButton;
     private JButton replaceRejectButton;
     private JSeparator replaceSeparator;
-    private JPanel reportActionPanel;
-    private JPanel reportPanel;
-    private JScrollPane reportScrollPane;
-    private JTable reportTable;
     private JButton saveSettingsButton;
     private JCheckBox sendOnBehalfOfCompID;
     private JCheckBox sendOnBehalfOfSubID;
