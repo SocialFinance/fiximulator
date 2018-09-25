@@ -645,7 +645,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         partialsSlider.setMaximum(50);
         partialsSlider.setPaintLabels(true);
         partialsSlider.setPaintTicks(true);
-        partialsSlider.setValue(10);
+        partialsSlider.setValue(0);
         partialsSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 partialsSliderChanged(evt);
