@@ -19,7 +19,7 @@ public class InstrumentTableModel extends AbstractTableModel {
     private static String[] columns =
         {"Ticker", "Name", "Sedol", "RIC", "Cusip", "Price"};
 
-    public InstrumentTableModel(){
+    public InstrumentTableModel() {
         FIXimulator.getInstruments().addCallback(this);
     }
 

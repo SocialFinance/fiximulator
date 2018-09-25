@@ -18,8 +18,8 @@ public class Instrument {
     private String ric;
     private String price;
 
-    public Instrument( String ticker, String sedol, String name,
-            String ric, String cusip, String price ) {
+    public Instrument(String ticker, String sedol, String name,
+            String ric, String cusip, String price) {
         this.ticker = ticker;
         this.cusip = cusip;
         this.sedol = sedol;

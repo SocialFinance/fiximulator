@@ -33,20 +33,20 @@ public class InstrumentSet extends DefaultHandler {
     private ArrayList<Instrument> oldInstruments = new ArrayList<Instrument>();
     private InstrumentTableModel instrumentModel = null;
 
-    public InstrumentSet( File file ) {
+    public InstrumentSet(File file) {
         try {
             InputStream input =
                     new BufferedInputStream(new FileInputStream(file));
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
-            saxParser.parse( input, this);
-        } catch ( Exception e ) {
-            System.out.println( "Error reading/parsing instrument file." );
+            saxParser.parse(input, this);
+        } catch (Exception e) {
+            System.out.println("Error reading/parsing instrument file.");
             e.printStackTrace();
         }
     }
 
-    public void reloadInstrumentSet( File file ) {
+    public void reloadInstrumentSet(File file) {
         try {
             oldInstruments.clear();
             oldInstruments.addAll(instruments);
@@ -55,10 +55,10 @@ public class InstrumentSet extends DefaultHandler {
                     new BufferedInputStream(new FileInputStream(file));
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
-            saxParser.parse( input, this);
+            saxParser.parse(input, this);
             instrumentModel.update();
-        } catch ( Exception e ) {
-            System.out.println( "Error reading/parsing instrument file." );
+        } catch (Exception e) {
+            System.out.println("Error reading/parsing instrument file.");
             e.printStackTrace();
             instruments.clear();
             instruments.addAll(oldInstruments);
@@ -66,18 +66,18 @@ public class InstrumentSet extends DefaultHandler {
     }
 
     @Override
-    public void startElement( String namespace, String localName,
-                    String qualifiedName, Attributes attributes ){
-        if ( qualifiedName.equals( "instrument" )) {
-            String ticker = attributes.getValue( "ticker" );
-            String cusip = attributes.getValue( "cusip" );
-            String sedol = attributes.getValue( "sedol" );
-            String name = attributes.getValue( "name" );
-            String ric = attributes.getValue( "ric" );
-            String price = attributes.getValue( "price" );
+    public void startElement(String namespace, String localName,
+                    String qualifiedName, Attributes attributes) {
+        if (qualifiedName.equals("instrument")) {
+            String ticker = attributes.getValue("ticker");
+            String cusip = attributes.getValue("cusip");
+            String sedol = attributes.getValue("sedol");
+            String name = attributes.getValue("name");
+            String ric = attributes.getValue("ric");
+            String price = attributes.getValue("price");
             Instrument instrument =
-                    new Instrument( ticker, sedol, name, ric, cusip, price );
-            instruments.add( instrument );
+                    new Instrument(ticker, sedol, name, ric, cusip, price);
+            instruments.add(instrument);
         }
     }
 
@@ -85,18 +85,18 @@ public class InstrumentSet extends DefaultHandler {
         return instruments.size();
     }
 
-    public Instrument getInstrument( int i ) {
-        return instruments.get( i );
+    public Instrument getInstrument(int i) {
+        return instruments.get(i);
     }
 
-    public Instrument getInstrument( String identifier ) {
+    public Instrument getInstrument(String identifier) {
         Iterator<Instrument> iterator = instruments.iterator();
-        while ( iterator.hasNext() ){
+        while (iterator.hasNext()) {
             Instrument instrument = iterator.next();
-            if ( instrument.getTicker().equals( identifier ) ||
-                 instrument.getSedol().equals( identifier ) ||
-                 instrument.getCusip().equals( identifier ) ||
-                 instrument.getName().equals( identifier ))
+            if (instrument.getTicker().equals(identifier) ||
+                 instrument.getSedol().equals(identifier) ||
+                 instrument.getCusip().equals(identifier) ||
+                 instrument.getName().equals(identifier))
                 return instrument;
         }
         return null;
@@ -106,8 +106,8 @@ public class InstrumentSet extends DefaultHandler {
         Instrument instrument = null;
         Random generator = new Random();
         int size = instruments.size();
-        int index = generator.nextInt( size );
-        instrument = instruments.get( index );
+        int index = generator.nextInt(size);
+        instrument = instruments.get(index);
         return instrument;
     }
 
@@ -128,14 +128,14 @@ public class InstrumentSet extends DefaultHandler {
                 output += " ric=\"" + instrument.getRIC() + "\"";
                 output += " price=\"" + instrument.getPrice() + "\"";
                 output += "/>\n";
-                writer.write( output );
+                writer.write(output);
             }
             writer.write("</instruments>\n");
             writer.close();
-        } catch ( IOException e ) {e.printStackTrace();}
+        } catch (IOException e) {e.printStackTrace(); }
     }
 
-    public void addCallback(InstrumentTableModel instrumentModel){
+    public void addCallback(InstrumentTableModel instrumentModel) {
         this.instrumentModel = instrumentModel;
     }
 }

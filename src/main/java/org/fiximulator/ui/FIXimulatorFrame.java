@@ -27,7 +27,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
     public FIXimulatorFrame() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {e.printStackTrace(); }
         initComponents();
     }
 
@@ -204,7 +204,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(okButton)
                     .addComponent(aboutDialogLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+);
         aboutPanelLayout.setVerticalGroup(
             aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aboutPanelLayout.createSequentialGroup()
@@ -213,7 +213,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(okButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+);
 
         javax.swing.GroupLayout aboutDialogLayout = new javax.swing.GroupLayout(aboutDialog.getContentPane());
         aboutDialog.getContentPane().setLayout(aboutDialogLayout);
@@ -223,14 +223,14 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(aboutPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                 .addContainerGap())
-        );
+);
         aboutDialogLayout.setVerticalGroup(
             aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutDialogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(aboutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7))
-        );
+);
 
         ioiDialog.setTitle("Add IOI...");
         ioiDialog.setAlwaysOnTop(true);
@@ -307,7 +307,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(ioiDialogShares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ioiDialogPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
-        );
+);
 
         ioiDialogLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ioiDialogCancel, ioiDialogOK});
 
@@ -355,7 +355,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(ioiDialogOK)
                     .addComponent(ioiDialogCancel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+);
 
         executionDialog.setTitle("Add execution...");
         executionDialog.setName("executionDialog"); // NOI18N
@@ -403,7 +403,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(executionDialogCancel)))
                 .addContainerGap())
-        );
+);
         executionDialogLayout.setVerticalGroup(
             executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(executionDialogLayout.createSequentialGroup()
@@ -420,7 +420,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(executionDialogOK)
                     .addComponent(executionDialogCancel))
                 .addContainerGap())
-        );
+);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FIXimulator");
@@ -435,20 +435,20 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         messageTable.setModel(new org.fiximulator.ui.MessageTableModel());
         messageTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
-        for (int i = 0; i < messageTable.getColumnCount(); i++){
-            if (i==0)
+        for (int i = 0; i < messageTable.getColumnCount(); i++) {
+            if (i ==0)
             messageTable.getColumnModel().
             getColumn(i).setPreferredWidth(30);
-            if (i==1)
+            if (i ==1)
             messageTable.getColumnModel().
             getColumn(i).setPreferredWidth(75);
-            if (i==2)
+            if (i ==2)
             messageTable.getColumnModel().
             getColumn(i).setPreferredWidth(150);
-            if (i==3)
+            if (i ==3)
             messageTable.getColumnModel().
             getColumn(i).setPreferredWidth(150);
-            if (i==4)
+            if (i ==4)
             messageTable.getColumnModel().
             getColumn(i).setPreferredWidth(800);
         }
@@ -459,11 +459,11 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         messagePanelLayout.setHorizontalGroup(
             messagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(messageScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
-        );
+);
         messagePanelLayout.setVerticalGroup(
             messagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(messageScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-        );
+);
 
         executorRunningLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/fiximulator/ui/red.gif"))); // NOI18N
         executorRunningLabel.setText("Executor status");
@@ -489,31 +489,31 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(executorRunningLabel)
                 .addContainerGap(69, Short.MAX_VALUE))
-        );
+);
         statusBarPanelLayout.setVerticalGroup(
             statusBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(clientConnectedLabel)
                 .addComponent(ioiSenderRunningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(executorRunningLabel))
-        );
+);
 
         messageDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Message Details"));
 
         messageDetailTable.setAutoCreateRowSorter(true);
         messageDetailTable.setModel(new org.fiximulator.ui.MessageDetailTableModel(messageTable));
         messageDetailTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        for (int i = 0; i < messageDetailTable.getColumnCount(); i++){
-            if (i==0)
+        for (int i = 0; i < messageDetailTable.getColumnCount(); i++) {
+            if (i ==0)
             messageDetailTable.getColumnModel().
             getColumn(i).setPreferredWidth(100);
-            if (i==1)
+            if (i ==1)
             messageDetailTable.getColumnModel().
             getColumn(i).setPreferredWidth(40);
-            if (i==2)
+            if (i ==2)
             messageDetailTable.getColumnModel().
             getColumn(i).setPreferredWidth(150);
-            if (i==3)
+            if (i ==3)
             messageDetailTable.getColumnModel().
             getColumn(i).setPreferredWidth(150);
         }
@@ -524,13 +524,13 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         messageDetailPanelLayout.setHorizontalGroup(
             messageDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(messageDetailScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-        );
+);
         messageDetailPanelLayout.setVerticalGroup(
             messageDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(messageDetailPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(messageDetailScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-        );
+);
 
         autoIOIPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Automated IOI Sender"));
 
@@ -608,7 +608,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                         .addComponent(securityIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(rateSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
                 .addContainerGap())
-        );
+);
 
         autoIOIPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {startButton, stopButton});
 
@@ -630,7 +630,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startButton)
                     .addComponent(stopButton)))
-        );
+);
 
         autoExecutePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Automated Executor"));
 
@@ -696,7 +696,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                                 .addComponent(stopExecutorButton))))
                     .addComponent(partialsSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
                 .addContainerGap())
-        );
+);
 
         autoExecutePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {startExecutorButton, stopExecutorButton});
 
@@ -716,7 +716,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(stopExecutorButton)
                     .addComponent(startExecutorButton))
                 .addGap(14, 14, 14))
-        );
+);
 
         javax.swing.GroupLayout loadPanelLayout = new javax.swing.GroupLayout(loadPanel);
         loadPanel.setLayout(loadPanelLayout);
@@ -727,7 +727,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(autoExecutePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(autoIOIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-        );
+);
         loadPanelLayout.setVerticalGroup(
             loadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loadPanelLayout.createSequentialGroup()
@@ -736,7 +736,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(autoExecutePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+);
 
         mainTabbedPane.addTab("Load", loadPanel);
 
@@ -774,7 +774,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelIOIButton)
                 .addContainerGap(140, Short.MAX_VALUE))
-        );
+);
 
         manualIOIPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelIOIButton, replaceIOIButton, singleIOIButton});
 
@@ -784,42 +784,42 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addComponent(singleIOIButton)
                 .addComponent(replaceIOIButton)
                 .addComponent(cancelIOIButton))
-        );
+);
 
         ioiTable.setDefaultRenderer(Object.class, new IOICellRenderer());
         ioiTable.setAutoCreateRowSorter(true);
         ioiTable.setModel(new org.fiximulator.ui.IOITableModel());
         ioiTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
-        for (int i = 0; i < ioiTable.getColumnCount(); i++){
-            if (i==0)
+        for (int i = 0; i < ioiTable.getColumnCount(); i++) {
+            if (i ==0)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(100);
-            if (i==1)
+            if (i ==1)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(60);
-            if (i==2)
+            if (i ==2)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==3)
+            if (i ==3)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==4)
+            if (i ==4)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==5)
+            if (i ==5)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(60);
-            if (i==6)
+            if (i ==6)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(60);
-            if (i==7)
+            if (i ==7)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(60);
-            if (i==8)
+            if (i ==8)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==9)
+            if (i ==9)
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(100);
         }
@@ -835,7 +835,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(ioiScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
-        );
+);
         ioiPanelLayout.setVerticalGroup(
             ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ioiPanelLayout.createSequentialGroup()
@@ -845,7 +845,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addGroup(ioiPanelLayout.createSequentialGroup()
                     .addGap(54, 54, 54)
                     .addComponent(ioiScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
-        );
+);
 
         mainTabbedPane.addTab("IOIs", ioiPanel);
 
@@ -955,7 +955,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(replaceAcceptButton)
                     .addComponent(replaceRejectButton))
                 .addContainerGap())
-        );
+);
 
         orderActionPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {replaceAcceptButton, replacePendingButton, replaceRejectButton});
 
@@ -992,51 +992,51 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(replaceAcceptButton)))
                 .addContainerGap())
-        );
+);
 
         //ioiTable.setDefaultRenderer(Object.class, new IOICellRenderer());
         orderTable.setAutoCreateRowSorter(true);
         orderTable.setModel(new org.fiximulator.ui.OrderTableModel());
         orderTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
-        for (int i = 0; i < orderTable.getColumnCount(); i++){
-            if (i==0) // Order ID
+        for (int i = 0; i < orderTable.getColumnCount(); i++) {
+            if (i ==0) // Order ID
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(90);
-            if (i==1) // Status
+            if (i ==1) // Status
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(100);
-            if (i==2) // Side
+            if (i ==2) // Side
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(30);
-            if (i==3)
+            if (i ==3)
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(60);
-            if (i==4)
+            if (i ==4)
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==5)
+            if (i ==5)
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(80);
-            if (i==6) // Limit
+            if (i ==6) // Limit
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==7) // TIF
+            if (i ==7) // TIF
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(30);
-            if (i==8) // Executed
+            if (i ==8) // Executed
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(70);
-            if (i==9) // Open
+            if (i ==9) // Open
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==10) // AvgPx
+            if (i ==10) // AvgPx
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==11) // ClOrdID
+            if (i ==11) // ClOrdID
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(90);
-            if (i==12) // OrigClOrdID
+            if (i ==12) // OrigClOrdID
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(90);
         }
@@ -1051,14 +1051,14 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             .addGroup(orderPanelLayout.createSequentialGroup()
                 .addComponent(orderActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-        );
+);
         orderPanelLayout.setVerticalGroup(
             orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(orderPanelLayout.createSequentialGroup()
                 .addComponent(orderActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(orderScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-        );
+);
 
         mainTabbedPane.addTab("Orders", orderPanel);
 
@@ -1087,54 +1087,54 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(executionCorrectButton)
                 .addGap(228, 228, 228))
-        );
+);
         executionActionPanelLayout.setVerticalGroup(
             executionActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(executionActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(executionBustButton)
                 .addComponent(executionCorrectButton))
-        );
+);
 
         executionTable.setDefaultRenderer(Object.class, new ExecutionCellRenderer());
         executionTable.setAutoCreateRowSorter(true);
         executionTable.setModel(new org.fiximulator.ui.ExecutionTableModel());
         executionTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
-        for (int i = 0; i < executionTable.getColumnCount(); i++){
-            if (i==0) // ID
+        for (int i = 0; i < executionTable.getColumnCount(); i++) {
+            if (i ==0) // ID
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(90);
-            if (i==1) // ClOrdID
+            if (i ==1) // ClOrdID
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(90);
-            if (i==2) // Side
+            if (i ==2) // Side
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(30);
-            if (i==3) // Sybol
+            if (i ==3) // Sybol
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(60);
-            if (i==4) // LastQty
+            if (i ==4) // LastQty
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==5) // LastPx
+            if (i ==5) // LastPx
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==6) // CumQty
+            if (i ==6) // CumQty
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==7) // AvgPx
+            if (i ==7) // AvgPx
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==8) // Open
+            if (i ==8) // Open
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==9) // ExecType
+            if (i ==9) // ExecType
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(70);
-            if (i==10) // ExecTransType
+            if (i ==10) // ExecTransType
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(70);
-            if (i==11) // RefID
+            if (i ==11) // RefID
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(90);
         }
@@ -1147,14 +1147,14 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             executionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(executionActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(executionScrollPane, 0, 0, Short.MAX_VALUE)
-        );
+);
         executionPanelLayout.setVerticalGroup(
             executionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(executionPanelLayout.createSequentialGroup()
                 .addComponent(executionActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(executionScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
-        );
+);
 
         mainTabbedPane.addTab("Executions", executionPanel);
 
@@ -1162,11 +1162,11 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         instrumentTable.setModel(new org.fiximulator.ui.InstrumentTableModel());
         instrumentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
-        for (int i = 0; i < instrumentTable.getColumnCount(); i++){
-            if (i==0)
+        for (int i = 0; i < instrumentTable.getColumnCount(); i++) {
+            if (i ==0)
             instrumentTable.getColumnModel().
             getColumn(i).setPreferredWidth(50);
-            if (i==1)
+            if (i ==1)
             instrumentTable.getColumnModel().
             getColumn(i).setPreferredWidth(200);
         }
@@ -1178,13 +1178,13 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         instrumentPanelLayout.setHorizontalGroup(
             instrumentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(instrumentScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-        );
+);
         instrumentPanelLayout.setVerticalGroup(
             instrumentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(instrumentPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(instrumentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
-        );
+);
 
         mainTabbedPane.addTab("Instruments", instrumentPanel);
 
@@ -1233,7 +1233,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(cannedQueryRunButton)
                     .addComponent(customQueryRunButton))
                 .addContainerGap())
-        );
+);
         reportActionPanelLayout.setVerticalGroup(
             reportActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportActionPanelLayout.createSequentialGroup()
@@ -1248,7 +1248,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(querySymbolLabel)
                     .addComponent(cannedQueryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-        );
+);
 
         executionTable.setDefaultRenderer(Object.class, new ExecutionCellRenderer());
         reportTable.setAutoCreateRowSorter(true);
@@ -1266,7 +1266,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(reportScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                     .addComponent(reportActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
                 .addContainerGap())
-        );
+);
         reportPanelLayout.setVerticalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
@@ -1274,7 +1274,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reportScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-        );
+);
 
         mainTabbedPane.addTab("Reports", reportPanel);
 
@@ -1285,7 +1285,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             autoAcknowledge.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoAcknowledge"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         autoAcknowledge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoAcknowledgeActionPerformed(evt);
@@ -1297,7 +1297,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             autoPendingCancel.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoPendingCancel"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         autoPendingCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoPendingCancelActionPerformed(evt);
@@ -1309,7 +1309,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             autoPendingReplace.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoPendingReplace"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         autoPendingReplace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoPendingReplaceActionPerformed(evt);
@@ -1321,7 +1321,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             autoCancel.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoCancel"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         autoCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoCancelActionPerformed(evt);
@@ -1333,7 +1333,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             autoReplace.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoReplace"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         autoReplace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoReplaceActionPerformed(evt);
@@ -1354,7 +1354,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(autoPendingReplace)
                     .addComponent(autoReplace))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+);
         autoResponsePanelLayout.setVerticalGroup(
             autoResponsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(autoResponsePanelLayout.createSequentialGroup()
@@ -1373,7 +1373,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(autoReplace)
                 .addContainerGap(76, Short.MAX_VALUE))
-        );
+);
 
         saveSettingsButton.setText("Save Settings");
         saveSettingsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1392,7 +1392,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         try {
             Long settingValue = FIXimulator.getApplication().getSettings()
             .getLong("FIXimulatorCachedObjects");
-            if ( settingValue == 50 || settingValue == 100 || settingValue == 200) {
+            if (settingValue == 50 || settingValue == 100 || settingValue == 200) {
                 cachedObjectsCombo.setSelectedItem(settingValue.toString());
             } else {
                 // default due to bad value
@@ -1400,7 +1400,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .setLong("FIXimulatorCachedObjects", 50);
             }
-        } catch ( Exception e ){
+        } catch (Exception e) {
             // default to to setting not existing
             cachedObjectsCombo.setSelectedItem("50");
             FIXimulator.getApplication().getSettings()
@@ -1416,7 +1416,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         try {
             Long settingValue = FIXimulator.getApplication().getSettings()
             .getLong("FIXimulatorPricePrecision");
-            if ( settingValue >= 0 && settingValue < 10 ) {
+            if (settingValue >= 0 && settingValue < 10) {
                 pricePrecisionCombo.setSelectedItem(settingValue.toString());
             } else {
                 // default due to bad value
@@ -1424,7 +1424,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .setLong("FIXimulatorPricePrecision", 4);
             }
-        } catch ( Exception e ){
+        } catch (Exception e) {
             // default to to setting not existing
             pricePrecisionCombo.setSelectedItem("4");
             FIXimulator.getApplication().getSettings()
@@ -1441,7 +1441,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             sendOnBehalfOfCompID.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorSendOnBehalfOfCompID"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         sendOnBehalfOfCompID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendOnBehalfOfCompIDActionPerformed(evt);
@@ -1453,7 +1453,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             sendOnBehalfOfSubID.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorSendOnBehalfOfSubID"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         sendOnBehalfOfSubID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendOnBehalfOfSubIDActionPerformed(evt);
@@ -1467,7 +1467,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             logToFile.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorLogToFile"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         logToFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logToFileActionPerformed(evt);
@@ -1479,7 +1479,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             logToDB.setSelected(
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorLogToDB"));
-        } catch ( Exception e ){}
+        } catch (Exception e) {}
         logToDB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logToDBActionPerformed(evt);
@@ -1511,7 +1511,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(oboCompIDSeparator, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(sendOnBehalfOfCompID))
                 .addContainerGap())
-        );
+);
 
         appSettingsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cachedObjectsCombo, pricePrecisionCombo});
 
@@ -1541,7 +1541,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(logToFile)
                     .addComponent(logToDB))
                 .addContainerGap())
-        );
+);
 
         showSettingsButton.setText("Show Settings");
         showSettingsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1566,7 +1566,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveSettingsButton)))
                 .addContainerGap())
-        );
+);
 
         settingsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {saveSettingsButton, showSettingsButton});
 
@@ -1582,7 +1582,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(saveSettingsButton)
                     .addComponent(showSettingsButton))
                 .addContainerGap())
-        );
+);
 
         mainTabbedPane.addTab("Settings", settingsPanel);
 
@@ -1634,7 +1634,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                         .addComponent(messageDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(statusBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-        );
+);
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -1647,50 +1647,50 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-        );
+);
 
         bindingGroup.bind();
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    } // < / editor - fold> // GEN - END:initComponents
 
-private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+private void okButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_okButtonActionPerformed
     aboutDialog.dispose();
-}//GEN-LAST:event_okButtonActionPerformed
+} // GEN - LAST:event_okButtonActionPerformed
 
-private void symbolComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_symbolComboBoxActionPerformed
+private void symbolComboBoxActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_symbolComboBoxActionPerformed
     FIXimulator.getApplication().setNewSymbol(
             symbolComboBox.getSelectedItem().toString());
-}//GEN-LAST:event_symbolComboBoxActionPerformed
+} // GEN - LAST:event_symbolComboBoxActionPerformed
 
-private void securityIDComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_securityIDComboBoxActionPerformed
+private void securityIDComboBoxActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_securityIDComboBoxActionPerformed
     FIXimulator.getApplication().setNewSecurityID(
             securityIDComboBox.getSelectedItem().toString());
-}//GEN-LAST:event_securityIDComboBoxActionPerformed
+} // GEN - LAST:event_securityIDComboBoxActionPerformed
 
-private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+private void startButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_startButtonActionPerformed
     String symbol = symbolComboBox.getSelectedItem().toString();
     String securityID = securityIDComboBox.getSelectedItem().toString();
     int rate = (int)rateSlider.getValue();
-    if ( rate == 0 ) rate = 1;
+    if (rate == 0) rate = 1;
     Integer delay = 60000 / rate;
-    FIXimulator.getApplication().startIOIsender( delay, symbol, securityID );
-}//GEN-LAST:event_startButtonActionPerformed
+    FIXimulator.getApplication().startIOIsender(delay, symbol, securityID);
+} // GEN - LAST:event_startButtonActionPerformed
 
-private void sliderChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderChanged
+private void sliderChanged(javax.swing.event.ChangeEvent evt) { // GEN - FIRST:event_sliderChanged
    if (!rateSlider.getValueIsAdjusting()) {
         int rate = (int)rateSlider.getValue();
-        if ( rate == 0 ) rate = 1;
+        if (rate == 0) rate = 1;
         Integer newDelay = 60000 / rate;
         FIXimulator.getApplication().setNewDelay(newDelay);
     }
-}//GEN-LAST:event_sliderChanged
+} // GEN - LAST:event_sliderChanged
 
-private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_stopButtonActionPerformed
     FIXimulator.getApplication().stopIOIsender();
-}//GEN-LAST:event_stopButtonActionPerformed
+} // GEN - LAST:event_stopButtonActionPerformed
 
-private void singleIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleIOIButtonActionPerformed
+private void singleIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_singleIOIButtonActionPerformed
     dialogIOI = new IOI();
     dialogIOI.setType("NEW");
     ioiDialog.setTitle("Add IOI...");
@@ -1701,32 +1701,32 @@ private void singleIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//G
     ioiDialogPrice.setValue(0.0);
     ioiDialog.pack();
     ioiDialog.setVisible(true);
-}//GEN-LAST:event_singleIOIButtonActionPerformed
+} // GEN - LAST:event_singleIOIButtonActionPerformed
 
-private void startExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startExecutorButtonActionPerformed
+private void startExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_startExecutorButtonActionPerformed
     int delay = 1;
-    if ( this.executorDelay.getSelectedItem().toString().equals("10 ms"))
+    if (this.executorDelay.getSelectedItem().toString().equals("10 ms"))
         delay = 10;
-    if ( this.executorDelay.getSelectedItem().toString().equals("100 ms"))
+    if (this.executorDelay.getSelectedItem().toString().equals("100 ms"))
         delay = 100;
-    if ( this.executorDelay.getSelectedItem().toString().equals("1 second"))
+    if (this.executorDelay.getSelectedItem().toString().equals("1 second"))
         delay = 1000;
-    if ( this.executorDelay.getSelectedItem().toString().equals("5 seconds"))
+    if (this.executorDelay.getSelectedItem().toString().equals("5 seconds"))
         delay = 5000;
     int partials = (int)partialsSlider.getValue();
-    if ( partials == 0 ) partials = 1;
+    if (partials == 0) partials = 1;
     FIXimulator.getApplication().startExecutor(delay, partials);
-}//GEN-LAST:event_startExecutorButtonActionPerformed
+} // GEN - LAST:event_startExecutorButtonActionPerformed
 
-private void stopExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopExecutorButtonActionPerformed
+private void stopExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_stopExecutorButtonActionPerformed
     FIXimulator.getApplication().stopExecutor();
-}//GEN-LAST:event_stopExecutorButtonActionPerformed
+} // GEN - LAST:event_stopExecutorButtonActionPerformed
 
-private void ioiDialogCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ioiDialogCancelActionPerformed
+private void ioiDialogCancelActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_ioiDialogCancelActionPerformed
     ioiDialog.dispose();
-}//GEN-LAST:event_ioiDialogCancelActionPerformed
+} // GEN - LAST:event_ioiDialogCancelActionPerformed
 
-private void ioiDialogOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ioiDialogOKActionPerformed
+private void ioiDialogOKActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_ioiDialogOKActionPerformed
     // Set fields
     dialogIOI.setSide(ioiDialogSide.getSelectedItem().toString());
     dialogIOI.setQuantity(Integer.parseInt(ioiDialogShares.getText()));
@@ -1737,24 +1737,24 @@ private void ioiDialogOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     dialogIOI.setNatural(ioiDialogNatural.getSelectedItem().toString());
     FIXimulator.getApplication().sendIOI(dialogIOI);
     ioiDialog.dispose();
-}//GEN-LAST:event_ioiDialogOKActionPerformed
+} // GEN - LAST:event_ioiDialogOKActionPerformed
 
-private void cancelIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelIOIButtonActionPerformed
+private void cancelIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelIOIButtonActionPerformed
     int row = ioiTable.getSelectedRow();
     // if there is a row selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = ioiTable.convertRowIndexToModel(row);
         IOI ioi = FIXimulator.getApplication().getIOIs().getIOI(row);
         IOI cancelIOI = ioi.clone();
         cancelIOI.setType("CANCEL");
         FIXimulator.getApplication().sendIOI(cancelIOI);
     }
-}//GEN-LAST:event_cancelIOIButtonActionPerformed
+} // GEN - LAST:event_cancelIOIButtonActionPerformed
 
-private void replaceIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceIOIButtonActionPerformed
+private void replaceIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_replaceIOIButtonActionPerformed
     int row = ioiTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         ioiDialog.setTitle("Replace IOI...");
         row = ioiTable.convertRowIndexToModel(row);
         IOI ioi = FIXimulator.getApplication().getIOIs().getIOI(row);
@@ -1782,15 +1782,15 @@ private void replaceIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//
         ioiDialog.pack();
         ioiDialog.setVisible(true);
     }
-}//GEN-LAST:event_replaceIOIButtonActionPerformed
+} // GEN - LAST:event_replaceIOIButtonActionPerformed
 
-private void acknowledgeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acknowledgeButtonActionPerformed
+private void acknowledgeButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_acknowledgeButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
-        if ( order.getStatus().equals("Received") ||
+        if (order.getStatus().equals("Received") ||
              order.getStatus().equals("Pending New")) {
             FIXimulator.getApplication().acknowledge(order);
         } else {
@@ -1799,25 +1799,25 @@ private void acknowledgeButtonActionPerformed(java.awt.event.ActionEvent evt) {/
                     "cannot be acknowledged...");
         }
     }
-}//GEN-LAST:event_acknowledgeButtonActionPerformed
+} // GEN - LAST:event_acknowledgeButtonActionPerformed
 
-private void partialsSliderChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_partialsSliderChanged
+private void partialsSliderChanged(javax.swing.event.ChangeEvent evt) { // GEN - FIRST:event_partialsSliderChanged
    if (!this.partialsSlider.getValueIsAdjusting()) {
         int partials = (int)partialsSlider.getValue();
-        if ( partials == 0 ) partials = 1;
+        if (partials == 0) partials = 1;
         System.out.println("The number of partials was changed to: " + partials);
         FIXimulator.getApplication().setNewExecutorPartials(partials);
     }
-}//GEN-LAST:event_partialsSliderChanged
+} // GEN - LAST:event_partialsSliderChanged
 
-private void executionBustButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executionBustButtonActionPerformed
+private void executionBustButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executionBustButtonActionPerformed
     int row = executionTable.getSelectedRow();
     // if there is a row selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = executionTable.convertRowIndexToModel(row);
         Execution execution =
                 FIXimulator.getApplication().getExecutions().getExecution(row);
-        if ( execution.getExecType().equals("Fill") ||
+        if (execution.getExecType().equals("Fill") ||
              execution.getExecType().equals("Partial fill")) {
             FIXimulator.getApplication().bust(execution);
         } else {
@@ -1826,9 +1826,9 @@ private void executionBustButtonActionPerformed(java.awt.event.ActionEvent evt) 
                     "executions cannot be busted...");
         }
     }
-}//GEN-LAST:event_executionBustButtonActionPerformed
+} // GEN - LAST:event_executionBustButtonActionPerformed
 
-private void executorDelayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executorDelayActionPerformed
+private void executorDelayActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executorDelayActionPerformed
     int delay = 1;
     String value = executorDelay.getSelectedItem().toString();
     if (value.equals("10 ms")) delay = 10;
@@ -1836,48 +1836,48 @@ private void executorDelayActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     if (value.equals("1 second")) delay = 1000;
     if (value.equals("5 seconds")) delay = 5000;
     FIXimulator.getApplication().setNewExecutorDelay(delay);
-}//GEN-LAST:event_executorDelayActionPerformed
+} // GEN - LAST:event_executorDelayActionPerformed
 
-private void autoReplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoReplaceActionPerformed
+private void autoReplaceActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoReplaceActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoReplace",
         autoReplace.isSelected());
-}//GEN-LAST:event_autoReplaceActionPerformed
+} // GEN - LAST:event_autoReplaceActionPerformed
 
-private void autoPendingCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoPendingCancelActionPerformed
+private void autoPendingCancelActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoPendingCancelActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoPendingCancel",
         autoPendingCancel.isSelected());
-}//GEN-LAST:event_autoPendingCancelActionPerformed
+} // GEN - LAST:event_autoPendingCancelActionPerformed
 
-private void autoAcknowledgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoAcknowledgeActionPerformed
+private void autoAcknowledgeActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoAcknowledgeActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoAcknowledge",
         autoAcknowledge.isSelected());
-}//GEN-LAST:event_autoAcknowledgeActionPerformed
+} // GEN - LAST:event_autoAcknowledgeActionPerformed
 
-private void autoPendingReplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoPendingReplaceActionPerformed
+private void autoPendingReplaceActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoPendingReplaceActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoPendingReplace",
         autoPendingReplace.isSelected());
-}//GEN-LAST:event_autoPendingReplaceActionPerformed
+} // GEN - LAST:event_autoPendingReplaceActionPerformed
 
-private void autoCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoCancelActionPerformed
+private void autoCancelActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoCancelActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoCancel",
         autoCancel.isSelected());
-}//GEN-LAST:event_autoCancelActionPerformed
+} // GEN - LAST:event_autoCancelActionPerformed
 
-private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSettingsButtonActionPerformed
+private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_saveSettingsButtonActionPerformed
     FIXimulator.getApplication().saveSettings();
-}//GEN-LAST:event_saveSettingsButtonActionPerformed
+} // GEN - LAST:event_saveSettingsButtonActionPerformed
 
-private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_exitMenuItemActionPerformed
 System.exit(0);
-}//GEN-LAST:event_exitMenuItemActionPerformed
+} // GEN - LAST:event_exitMenuItemActionPerformed
 
     @SuppressWarnings("static-access")
-private void loadInstrumentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadInstrumentMenuItemActionPerformed
+private void loadInstrumentMenuItemActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_loadInstrumentMenuItemActionPerformed
 int result = instrumentFileChooser.showOpenDialog(this);
     if (result == instrumentFileChooser.APPROVE_OPTION) {
         File file = instrumentFileChooser.getSelectedFile();
@@ -1885,48 +1885,48 @@ int result = instrumentFileChooser.showOpenDialog(this);
     } else {
         System.out.println("User cancelled loading file...");
     }
-}//GEN-LAST:event_loadInstrumentMenuItemActionPerformed
+} // GEN - LAST:event_loadInstrumentMenuItemActionPerformed
 
-private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_aboutMenuItemActionPerformed
 aboutDialog.pack();
     aboutDialog.setVisible(true);
-}//GEN-LAST:event_aboutMenuItemActionPerformed
+} // GEN - LAST:event_aboutMenuItemActionPerformed
 
-private void pricePrecisionComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricePrecisionComboActionPerformed
+private void pricePrecisionComboActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_pricePrecisionComboActionPerformed
     FIXimulator.getApplication().getSettings()
             .setLong("FIXimulatorPricePrecision",
             Long.valueOf(pricePrecisionCombo.getSelectedItem().toString()));
-}//GEN-LAST:event_pricePrecisionComboActionPerformed
+} // GEN - LAST:event_pricePrecisionComboActionPerformed
 
-private void sendOnBehalfOfCompIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendOnBehalfOfCompIDActionPerformed
+private void sendOnBehalfOfCompIDActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_sendOnBehalfOfCompIDActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorSendOnBehalfOfCompID",
         sendOnBehalfOfCompID.isSelected());
-}//GEN-LAST:event_sendOnBehalfOfCompIDActionPerformed
+} // GEN - LAST:event_sendOnBehalfOfCompIDActionPerformed
 
-private void sendOnBehalfOfSubIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendOnBehalfOfSubIDActionPerformed
+private void sendOnBehalfOfSubIDActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_sendOnBehalfOfSubIDActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorSendOnBehalfOfSubID",
         sendOnBehalfOfSubID.isSelected());
-}//GEN-LAST:event_sendOnBehalfOfSubIDActionPerformed
+} // GEN - LAST:event_sendOnBehalfOfSubIDActionPerformed
 
-private void cachedObjectsComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cachedObjectsComboActionPerformed
+private void cachedObjectsComboActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cachedObjectsComboActionPerformed
     FIXimulator.getApplication().getSettings()
             .setLong("FIXimulatorCachedObjects",
             Long.valueOf(cachedObjectsCombo.getSelectedItem().toString()));
-}//GEN-LAST:event_cachedObjectsComboActionPerformed
+} // GEN - LAST:event_cachedObjectsComboActionPerformed
 
-private void showSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSettingsButtonActionPerformed
+private void showSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_showSettingsButtonActionPerformed
     System.out.println(FIXimulator.getApplication().getSettings().toString());
-}//GEN-LAST:event_showSettingsButtonActionPerformed
+} // GEN - LAST:event_showSettingsButtonActionPerformed
 
-private void orderRejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderRejectButtonActionPerformed
+private void orderRejectButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_orderRejectButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
-        if ( order.getStatus().equals("Received") ||
+        if (order.getStatus().equals("Received") ||
              order.getStatus().equals("Pending New")) {
             FIXimulator.getApplication().reject(order);
         } else {
@@ -1935,140 +1935,140 @@ private void orderRejectButtonActionPerformed(java.awt.event.ActionEvent evt) {/
                     "cannot be rejected...");
         }
     }
-}//GEN-LAST:event_orderRejectButtonActionPerformed
+} // GEN - LAST:event_orderRejectButtonActionPerformed
 
-private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
         FIXimulator.getApplication().cancel(order);
     }
-}//GEN-LAST:event_cancelButtonActionPerformed
+} // GEN - LAST:event_cancelButtonActionPerformed
 
-private void dfdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dfdButtonActionPerformed
+private void dfdButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_dfdButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
         FIXimulator.getApplication().dfd(order);
     }
-}//GEN-LAST:event_dfdButtonActionPerformed
+} // GEN - LAST:event_dfdButtonActionPerformed
 
-private void cancelPendingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelPendingButtonActionPerformed
+private void cancelPendingButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelPendingButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
-        if ( order.isReceivedCancel() ) {
+        if (order.isReceivedCancel()) {
             FIXimulator.getApplication().pendingCancel(order);
         } else {
             System.out.println(
                     "Order is not in a valid status for pending cancel");
         }
     }
-}//GEN-LAST:event_cancelPendingButtonActionPerformed
+} // GEN - LAST:event_cancelPendingButtonActionPerformed
 
-private void cancelAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAcceptButtonActionPerformed
+private void cancelAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelAcceptButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
         FIXimulator.getApplication().cancel(order);
     }
-}//GEN-LAST:event_cancelAcceptButtonActionPerformed
+} // GEN - LAST:event_cancelAcceptButtonActionPerformed
 
-private void replacePendingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replacePendingButtonActionPerformed
+private void replacePendingButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_replacePendingButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
-        if ( order.isReceivedReplace() ) {
+        if (order.isReceivedReplace()) {
             FIXimulator.getApplication().pendingReplace(order);
         } else {
             System.out.println(
                     "Order is not in a valid status for pending replace");
         }
     }
-}//GEN-LAST:event_replacePendingButtonActionPerformed
+} // GEN - LAST:event_replacePendingButtonActionPerformed
 
-private void replaceAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceAcceptButtonActionPerformed
+private void replaceAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_replaceAcceptButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
-        if ( order.isReceivedReplace() ||
-                order.getStatus().equals("Pending Replace") ) {
+        if (order.isReceivedReplace() ||
+                order.getStatus().equals("Pending Replace")) {
             FIXimulator.getApplication().replace(order);
         } else {
             System.out.println(
                     "Order is not in a valid status to replace");
         }
     }
-}//GEN-LAST:event_replaceAcceptButtonActionPerformed
+} // GEN - LAST:event_replaceAcceptButtonActionPerformed
 
-private void cancelRejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRejectButtonActionPerformed
+private void cancelRejectButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelRejectButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
-        if ( order.isReceivedCancel() ||
-                order.getStatus().equals("Pending Cancel") ) {
+        if (order.isReceivedCancel() ||
+                order.getStatus().equals("Pending Cancel")) {
             FIXimulator.getApplication().rejectCancelReplace(order, true);
         } else {
             System.out.println(
                     "Order is not in a valid status to reject cancellation");
         }
     }
-}//GEN-LAST:event_cancelRejectButtonActionPerformed
+} // GEN - LAST:event_cancelRejectButtonActionPerformed
 
-private void replaceRejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceRejectButtonActionPerformed
+private void replaceRejectButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_replaceRejectButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
-        if ( order.isReceivedReplace() ||
-                order.getStatus().equals("Pending Replace") ) {
+        if (order.isReceivedReplace() ||
+                order.getStatus().equals("Pending Replace")) {
             FIXimulator.getApplication().rejectCancelReplace(order, false);
         } else {
             System.out.println(
                     "Order is not in a valid status to reject replace request");
         }
     }
-}//GEN-LAST:event_replaceRejectButtonActionPerformed
+} // GEN - LAST:event_replaceRejectButtonActionPerformed
 
-private void executionDialogOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executionDialogOKActionPerformed
+private void executionDialogOKActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executionDialogOKActionPerformed
     dialogExecution.setLastShares(
             Integer.parseInt(executionDialogShares.getText()));
     dialogExecution.setLastPx(
             Double.parseDouble(executionDialogPrice.getText()));
     String refID = dialogExecution.getRefID();
     // New execution
-    if ( refID == null ) {
+    if (refID == null) {
         FIXimulator.getApplication().execute(dialogExecution);
     // Correction
     } else {
         FIXimulator.getApplication().correct(dialogExecution);
     }
     executionDialog.dispose();
-}//GEN-LAST:event_executionDialogOKActionPerformed
+} // GEN - LAST:event_executionDialogOKActionPerformed
 
-private void executionDialogCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executionDialogCancelActionPerformed
+private void executionDialogCancelActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executionDialogCancelActionPerformed
     executionDialog.dispose();
-}//GEN-LAST:event_executionDialogCancelActionPerformed
+} // GEN - LAST:event_executionDialogCancelActionPerformed
 
-private void executeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executeButtonActionPerformed
+private void executeButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executeButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = orderTable.convertRowIndexToModel(row);
         Order order = FIXimulator.getApplication().getOrders().getOrder(row);
         dialogExecution = new Execution(order);
@@ -2077,16 +2077,16 @@ private void executeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         executionDialog.pack();
         executionDialog.setVisible(true);
     }
-}//GEN-LAST:event_executeButtonActionPerformed
+} // GEN - LAST:event_executeButtonActionPerformed
 
-private void executionCorrectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executionCorrectButtonActionPerformed
+private void executionCorrectButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executionCorrectButtonActionPerformed
     int row = executionTable.getSelectedRow();
     // if no rows are selected
-    if ( row != -1 ) {
+    if (row != -1) {
         row = executionTable.convertRowIndexToModel(row);
         Execution execution =
                 FIXimulator.getApplication().getExecutions().getExecution(row);
-        if ( execution.getExecType().equals("Fill") ||
+        if (execution.getExecType().equals("Fill") ||
              execution.getExecType().equals("Partial fill")) {
             dialogExecution = execution.clone();
             executionDialogShares.setValue(execution.getLastShares());
@@ -2099,26 +2099,26 @@ private void executionCorrectButtonActionPerformed(java.awt.event.ActionEvent ev
                     "executions cannot be corrected...");
         }
     }
-}//GEN-LAST:event_executionCorrectButtonActionPerformed
+} // GEN - LAST:event_executionCorrectButtonActionPerformed
 
-private void logToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logToFileActionPerformed
+private void logToFileActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_logToFileActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorLogToFile",
         sendOnBehalfOfSubID.isSelected());
-}//GEN-LAST:event_logToFileActionPerformed
+} // GEN - LAST:event_logToFileActionPerformed
 
-private void logToDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logToDBActionPerformed
+private void logToDBActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_logToDBActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorLogToDB",
         sendOnBehalfOfSubID.isSelected());
-}//GEN-LAST:event_logToDBActionPerformed
+} // GEN - LAST:event_logToDBActionPerformed
 
-private void customQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customQueryRunButtonActionPerformed
+private void customQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_customQueryRunButtonActionPerformed
     QueryTableModel qtm = (QueryTableModel) reportTable.getModel();
     qtm.setQuery(queryText.getText().trim());
-}//GEN-LAST:event_customQueryRunButtonActionPerformed
+} // GEN - LAST:event_customQueryRunButtonActionPerformed
 
-private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cannedQueryRunButtonActionPerformed
+private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cannedQueryRunButtonActionPerformed
     QueryTableModel qtm = (QueryTableModel) reportTable.getModel();
     String can = cannedQueryCombo.getSelectedItem().toString();
     String symbol = querySymbolText.getText().toString().trim().toLowerCase();
@@ -2155,7 +2155,7 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
         reportTable.getColumnModel().getColumn(0).setPreferredWidth(50);
         reportTable.getColumnModel().getColumn(1).setPreferredWidth(1000);
     }
-}//GEN-LAST:event_cannedQueryRunButtonActionPerformed
+} // GEN - LAST:event_cannedQueryRunButtonActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

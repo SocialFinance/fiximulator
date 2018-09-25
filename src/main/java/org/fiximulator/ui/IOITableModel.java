@@ -20,7 +20,7 @@ public class IOITableModel extends AbstractTableModel {
         {"ID", "Type", "Side", "Shares", "Symbol", "Price",
          "SecurityID", "IDSource", "Natural", "RefID"};
 
-    public IOITableModel(){
+    public IOITableModel() {
         FIXimulator.getApplication().getIOIs().addCallback(this);
     }
 

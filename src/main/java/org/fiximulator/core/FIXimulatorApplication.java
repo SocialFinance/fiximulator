@@ -86,8 +86,8 @@ public class FIXimulatorApplication extends MessageCracker
     private OrderSet orders = null;
     private ExecutionSet executions = null;
 
-    public FIXimulatorApplication( SessionSettings settings,
-            LogMessageSet messages ){
+    public FIXimulatorApplication(SessionSettings settings,
+            LogMessageSet messages) {
             this.settings = settings;
             this.messages = messages;
             iois = new IOIset();
@@ -95,9 +95,9 @@ public class FIXimulatorApplication extends MessageCracker
             executions = new ExecutionSet();
     }
 
-    public void onCreate( SessionID sessionID ) {}
+    public void onCreate(SessionID sessionID) {}
 
-    public void onLogon( SessionID sessionID ) {
+    public void onLogon(SessionID sessionID) {
         connected = true;
         currentSession = sessionID;
         dictionary = Session.lookupSession(currentSession).getDataDictionary();
@@ -106,7 +106,7 @@ public class FIXimulatorApplication extends MessageCracker
             .getResource("/org/fiximulator/ui/green.gif")));
     }
 
-    public void onLogout( SessionID sessionID ) {
+    public void onLogout(SessionID sessionID) {
         connected = false;
         currentSession = null;
         connectedStatus.setIcon(new javax.swing.ImageIcon(getClass()
@@ -114,85 +114,85 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     // IndicationofInterest handling
-    public void onMessage( quickfix.fix42.IndicationofInterest message,
-            SessionID sessionID )
+    public void onMessage(quickfix.fix42.IndicationofInterest message,
+            SessionID sessionID)
         throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
 
     // NewOrderSingle handling
-    public void onMessage( quickfix.fix42.NewOrderSingle message,
-            SessionID sessionID )
+    public void onMessage(quickfix.fix42.NewOrderSingle message,
+            SessionID sessionID)
         throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
-        Order order = new Order( message );
-        order.setReceivedOrder( true );
-        if ( executorStarted ) {
-            orders.add( order, true );
+        Order order = new Order(message);
+        order.setReceivedOrder(true);
+        if (executorStarted) {
+            orders.add(order, true);
             executorThread.interrupt();
         } else {
-            orders.add( order, false );
+            orders.add(order, false);
             boolean autoAck = false;
             try {
                 autoAck = settings.getBool("FIXimulatorAutoAcknowledge");
-            } catch ( Exception e ) {}
-            if ( autoAck ) {
-                acknowledge( order );
+            } catch (Exception e) {}
+            if (autoAck) {
+                acknowledge(order);
             }
         }
     }
 
     // OrderCancelRequest handling
-    public void onMessage( quickfix.fix42.OrderCancelRequest message,
-            SessionID sessionID )
+    public void onMessage(quickfix.fix42.OrderCancelRequest message,
+            SessionID sessionID)
         throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
-        Order order = new Order( message );
-        order.setReceivedCancel( true );
-        orders.add( order, false );
+        Order order = new Order(message);
+        order.setReceivedCancel(true);
+        orders.add(order, false);
         boolean autoPending = false;
         boolean autoCancel = false;
         try {
             autoPending = settings.getBool("FIXimulatorAutoPendingCancel");
             autoCancel = settings.getBool("FIXimulatorAutoCancel");
-        } catch ( Exception e ) {}
-        if ( autoPending ) {
+        } catch (Exception e) {}
+        if (autoPending) {
             pendingCancel(order);
         }
-        if ( autoCancel ) {
+        if (autoCancel) {
             cancel(order);
         }
     }
 
     // OrderReplaceRequest handling
-    public void onMessage( quickfix.fix42.OrderCancelReplaceRequest message,
-            SessionID sessionID )
+    public void onMessage(quickfix.fix42.OrderCancelReplaceRequest message,
+            SessionID sessionID)
         throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
-        Order order = new Order( message );
-        order.setReceivedReplace( true );
-        orders.add( order, false );
+        Order order = new Order(message);
+        order.setReceivedReplace(true);
+        orders.add(order, false);
         boolean autoPending = false;
         boolean autoCancel = false;
         try {
             autoPending = settings.getBool("FIXimulatorAutoPendingReplace");
             autoCancel = settings.getBool("FIXimulatorAutoReplace");
-        } catch ( Exception e ) {}
-        if ( autoPending ) {
+        } catch (Exception e) {}
+        if (autoPending) {
             pendingReplace(order);
         }
-        if ( autoCancel ) {
+        if (autoCancel) {
             replace(order);
         }
     }
 
     // OrderCancelReject handling
-    public void onMessage( quickfix.fix42.OrderCancelReject message,
-            SessionID sessionID )
+    public void onMessage(quickfix.fix42.OrderCancelReject message,
+            SessionID sessionID)
         throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
 
     // ExecutionReport handling
-    public void onMessage( quickfix.fix42.ExecutionReport message,
-            SessionID sessionID )
+    public void onMessage(quickfix.fix42.ExecutionReport message,
+            SessionID sessionID)
         throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
 
-    public void onMessage( quickfix.fix42.DontKnowTrade message,
-            SessionID sessionID )
+    public void onMessage(quickfix.fix42.DontKnowTrade message,
+            SessionID sessionID)
         throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
         try {
             ExecID execID = new ExecID();
@@ -204,34 +204,34 @@ public class FIXimulatorApplication extends MessageCracker
         } catch (FieldNotFound ex) {}
     }
 
-    public void fromApp( Message message, SessionID sessionID )
+    public void fromApp(Message message, SessionID sessionID)
         throws FieldNotFound, IncorrectDataFormat,
             IncorrectTagValue, UnsupportedMessageType {
         messages.add(message, true, dictionary, sessionID);
         crack(message, sessionID);
     }
 
-    public void toApp( Message message, SessionID sessionID ) throws DoNotSend {
+    public void toApp(Message message, SessionID sessionID) throws DoNotSend {
         try {
             messages.add(message, false, dictionary, sessionID);
             crack(message, sessionID);
         } catch (Exception e) {    e.printStackTrace(); }
     }
 
-    public void fromAdmin( Message message, SessionID sessionID )
+    public void fromAdmin(Message message, SessionID sessionID)
         throws
         FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {}
 
-    public void toAdmin( Message message, SessionID sessionID ) {}
+    public void toAdmin(Message message, SessionID sessionID) {}
 
-    public void addStatusCallbacks ( JLabel connectedStatus,
-            JLabel ioiSenderStatus, JLabel executorStatus ) {
+    public void addStatusCallbacks(JLabel connectedStatus,
+            JLabel ioiSenderStatus, JLabel executorStatus) {
         this.connectedStatus = connectedStatus;
         this.ioiSenderStatus = ioiSenderStatus;
         this.executorStatus = executorStatus;
     }
 
-    public boolean getConnectionStatus(){
+    public boolean getConnectionStatus() {
         return connected;
     }
 
@@ -264,7 +264,7 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     // Message handling methods
-    public void acknowledge( Order order ) {
+    public void acknowledge(Order order) {
         Execution acknowledgement = new Execution(order);
         order.setStatus(OrdStatus.NEW);
         acknowledgement.setExecType(ExecType.NEW);
@@ -275,7 +275,7 @@ public class FIXimulatorApplication extends MessageCracker
         orders.update();
     }
 
-    public void reject( Order order ) {
+    public void reject(Order order) {
         Execution reject = new Execution(order);
         order.setStatus(OrdStatus.REJECTED);
         reject.setExecType(ExecType.REJECTED);
@@ -286,7 +286,7 @@ public class FIXimulatorApplication extends MessageCracker
         orders.update();
     }
 
-    public void dfd( Order order ) {
+    public void dfd(Order order) {
         Execution dfd = new Execution(order);
         order.setStatus(OrdStatus.DONE_FOR_DAY);
         dfd.setExecType(ExecType.DONE_FOR_DAY);
@@ -298,7 +298,7 @@ public class FIXimulatorApplication extends MessageCracker
         orders.update();
     }
 
-    public void pendingCancel( Order order ) {
+    public void pendingCancel(Order order) {
         Execution pending = new Execution(order);
         order.setStatus(OrdStatus.PENDING_CANCEL);
         pending.setExecType(ExecType.PENDING_CANCEL);
@@ -311,7 +311,7 @@ public class FIXimulatorApplication extends MessageCracker
         orders.update();
     }
 
-    public void cancel( Order order ) {
+    public void cancel(Order order) {
         Execution cancel = new Execution(order);
         order.setStatus(OrdStatus.CANCELED);
         cancel.setExecType(ExecType.CANCELED);
@@ -324,7 +324,7 @@ public class FIXimulatorApplication extends MessageCracker
         orders.update();
     }
 
-    public void rejectCancelReplace( Order order, boolean cancel ) {
+    public void rejectCancelReplace(Order order, boolean cancel) {
         order.setReceivedCancel(false);
         order.setReceivedReplace(false);
         // *** Required fields ***
@@ -336,12 +336,12 @@ public class FIXimulatorApplication extends MessageCracker
         OrigClOrdID origClientID = new OrigClOrdID(order.getOrigClientID());
 
         // OrdStatus (39) Status as a result of this report
-        if ( order.getStatus().equals("<UNKNOWN>") )
+        if (order.getStatus().equals("<UNKNOWN>"))
             order.setStatus(OrdStatus.NEW);
         OrdStatus ordStatus = new OrdStatus(order.getFIXStatus());
 
         CxlRejResponseTo responseTo = new CxlRejResponseTo();
-        if ( cancel ) {
+        if (cancel) {
             responseTo.setValue(CxlRejResponseTo.ORDER_CANCEL_REQUEST);
         } else {
             responseTo.setValue(CxlRejResponseTo.ORDER_CANCEL_REPLACE_REQUEST);
@@ -361,7 +361,7 @@ public class FIXimulatorApplication extends MessageCracker
         orders.update();
     }
 
-    public void pendingReplace( Order order ) {
+    public void pendingReplace(Order order) {
         Execution pending = new Execution(order);
         order.setStatus(OrdStatus.PENDING_REPLACE);
         pending.setExecType(ExecType.PENDING_REPLACE);
@@ -374,7 +374,7 @@ public class FIXimulatorApplication extends MessageCracker
         orders.update();
     }
 
-    public void replace( Order order ) {
+    public void replace(Order order) {
         Execution replace = new Execution(order);
         order.setStatus(OrdStatus.REPLACED);
         replace.setExecType(ExecType.REPLACE);
@@ -387,14 +387,14 @@ public class FIXimulatorApplication extends MessageCracker
         orders.update();
     }
 
-    public void execute( Execution execution ){
+    public void execute(Execution execution) {
         Order order = execution.getOrder();
         double fillQty = execution.getLastShares();
         double fillPrice = execution.getLastPx();
         double open = order.getOpen();
         // partial fill
-        if ( fillQty < open ) {
-            order.setOpen( open - fillQty );
+        if (fillQty < open) {
+            order.setOpen(open - fillQty);
             order.setStatus(OrdStatus.PARTIALLY_FILLED);
             execution.setExecType(ExecType.PARTIAL_FILL);
             // full or over execution
@@ -403,9 +403,9 @@ public class FIXimulatorApplication extends MessageCracker
             order.setStatus(OrdStatus.FILLED);
             execution.setExecType(ExecType.FILL);
         }
-        double avgPx =(order.getAvgPx() * order.getExecuted()
+        double avgPx = (order.getAvgPx() * order.getExecuted()
                      + fillPrice * fillQty)
-                     /(order.getExecuted() + fillQty );
+                     / (order.getExecuted() + fillQty);
         order.setAvgPx(avgPx);
         order.setExecuted(order.getExecuted() + fillQty);
         orders.update();
@@ -417,19 +417,19 @@ public class FIXimulatorApplication extends MessageCracker
         sendExecution(execution);
     }
 
-    public void bust( Execution execution ){
+    public void bust(Execution execution) {
         Execution bust = execution.clone();
         Order order = execution.getOrder();
         double fillQty = execution.getLastShares();
         double fillPrice = execution.getLastPx();
         double executed = order.getExecuted();
         // partial fill
-        if ( fillQty < executed ) {
-            order.setOpen( executed - fillQty );
+        if (fillQty < executed) {
+            order.setOpen(executed - fillQty);
             order.setStatus(OrdStatus.PARTIALLY_FILLED);
-            double avgPx =(order.getAvgPx() * executed
+            double avgPx = (order.getAvgPx() * executed
                          - fillPrice * fillQty)
-                         /(order.getExecuted() - fillQty );
+                         / (order.getExecuted() - fillQty);
             order.setAvgPx(avgPx);
             order.setExecuted(order.getExecuted() - fillQty);
             // full or over execution
@@ -448,7 +448,7 @@ public class FIXimulatorApplication extends MessageCracker
         sendExecution(bust);
     }
 
-    public void correct( Execution correction ){
+    public void correct(Execution correction) {
         Order order = correction.getOrder();
         Execution original = executions.getExecution(correction.getRefID());
 
@@ -462,14 +462,14 @@ public class FIXimulatorApplication extends MessageCracker
         double ordered = order.getQuantity();
 
         double newCumQty = executed - oldQty + fillQty;
-        double avgPx =(order.getAvgPx() * executed
+        double avgPx = (order.getAvgPx() * executed
                      - oldPrice * oldQty
                      + fillPrice * fillQty)
                      / newCumQty;
 
         // partial fill
-        if ( newCumQty < ordered ) {
-            order.setOpen( ordered - newCumQty );
+        if (newCumQty < ordered) {
+            order.setOpen(ordered - newCumQty);
             order.setStatus(OrdStatus.PARTIALLY_FILLED);
         // full or over execution
         } else {
@@ -490,7 +490,7 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     // Message sending methods
-    public void sendMessage( Message message ) {
+    public void sendMessage(Message message) {
         String oboCompID = "<UNKNOWN>";
         String oboSubID = "<UNKNOWN>";
         boolean sendoboCompID = false;
@@ -501,54 +501,54 @@ public class FIXimulatorApplication extends MessageCracker
             oboSubID = settings.getString(currentSession, "OnBehalfOfSubID");
             sendoboCompID = settings.getBool("FIXimulatorSendOnBehalfOfCompID");
             sendoboSubID = settings.getBool("FIXimulatorSendOnBehalfOfSubID");
-        } catch ( Exception e ) {}
+        } catch (Exception e) {}
 
         // Add OnBehalfOfCompID
-        if ( sendoboCompID && !oboCompID.equals("") ) {
+        if (sendoboCompID && !oboCompID.equals("")) {
             OnBehalfOfCompID onBehalfOfCompID = new OnBehalfOfCompID(oboCompID);
             Header header = (Header) message.getHeader();
-            header.set( onBehalfOfCompID );
+            header.set(onBehalfOfCompID);
         }
 
         // Add OnBehalfOfSubID
-        if ( sendoboSubID && !oboSubID.equals("") ) {
+        if (sendoboSubID && !oboSubID.equals("")) {
             OnBehalfOfSubID onBehalfOfSubID = new OnBehalfOfSubID(oboSubID);
             Header header = (Header) message.getHeader();
-            header.set( onBehalfOfSubID );
+            header.set(onBehalfOfSubID);
         }
 
         // Send actual message
         try {
-            Session.sendToTarget( message, currentSession );
-        } catch ( SessionNotFound e ) { e.printStackTrace(); }
+            Session.sendToTarget(message, currentSession);
+        } catch (SessionNotFound e) { e.printStackTrace(); }
     }
 
-    public void sendIOI( IOI ioi ) {
+    public void sendIOI(IOI ioi) {
         // *** Required fields ***
         // IOIid
-        IOIid ioiID = new IOIid( ioi.getID() );
+        IOIid ioiID = new IOIid(ioi.getID());
 
         // IOITransType
         IOITransType ioiType = null;
-        if ( ioi.getType().equals("NEW") )
-            ioiType = new IOITransType( IOITransType.NEW );
-        if ( ioi.getType().equals("CANCEL") )
-            ioiType = new IOITransType( IOITransType.CANCEL );
-        if ( ioi.getType().equals("REPLACE") )
-            ioiType = new IOITransType( IOITransType.REPLACE );
+        if (ioi.getType().equals("NEW"))
+            ioiType = new IOITransType(IOITransType.NEW);
+        if (ioi.getType().equals("CANCEL"))
+            ioiType = new IOITransType(IOITransType.CANCEL);
+        if (ioi.getType().equals("REPLACE"))
+            ioiType = new IOITransType(IOITransType.REPLACE);
 
         // Side
         Side side = null;
-        if ( ioi.getSide().equals("BUY") ) side = new Side( Side.BUY );
-        if ( ioi.getSide().equals("SELL") ) side = new Side( Side.SELL );
-        if ( ioi.getSide().equals("UNDISCLOSED") )
-            side = new Side( Side.UNDISCLOSED );
+        if (ioi.getSide().equals("BUY")) side = new Side(Side.BUY);
+        if (ioi.getSide().equals("SELL")) side = new Side(Side.SELL);
+        if (ioi.getSide().equals("UNDISCLOSED"))
+            side = new Side(Side.UNDISCLOSED);
 
         // IOIShares
-        IOIShares shares = new IOIShares( ioi.getQuantity().toString() );
+        IOIShares shares = new IOIShares(ioi.getQuantity().toString());
 
         // Symbol
-        Symbol symbol = new Symbol( ioi.getSymbol() );
+        Symbol symbol = new Symbol(ioi.getSymbol());
 
         // Construct IOI from required fields
         quickfix.fix42.IndicationofInterest fixIOI =
@@ -558,67 +558,67 @@ public class FIXimulatorApplication extends MessageCracker
         // *** Conditionally required fields ***
         // IOIRefID
         IOIRefID ioiRefID = null;
-        if ( ioi.getType().equals("CANCEL") || ioi.getType().equals("REPLACE")){
-            ioiRefID = new IOIRefID( ioi.getRefID() );
+        if (ioi.getType().equals("CANCEL") || ioi.getType().equals("REPLACE")) {
+            ioiRefID = new IOIRefID(ioi.getRefID());
             fixIOI.set(ioiRefID);
         }
 
         // *** Optional fields ***
         // SecurityID
-        SecurityID securityID = new SecurityID( ioi.getSecurityID() );
-        fixIOI.set( securityID );
+        SecurityID securityID = new SecurityID(ioi.getSecurityID());
+        fixIOI.set(securityID);
 
         // IDSource
         IDSource idSource = null;
         if (ioi.getIDSource().equals("TICKER"))
-            idSource = new IDSource( IDSource.EXCHANGE_SYMBOL );
+            idSource = new IDSource(IDSource.EXCHANGE_SYMBOL);
         if (ioi.getIDSource().equals("RIC"))
-            idSource = new IDSource( IDSource.RIC_CODE );
+            idSource = new IDSource(IDSource.RIC_CODE);
         if (ioi.getIDSource().equals("SEDOL"))
-            idSource = new IDSource( IDSource.SEDOL );
+            idSource = new IDSource(IDSource.SEDOL);
         if (ioi.getIDSource().equals("CUSIP"))
-            idSource = new IDSource( IDSource.CUSIP );
+            idSource = new IDSource(IDSource.CUSIP);
         if (ioi.getIDSource().equals("UNKOWN"))
-            idSource = new IDSource( "100" );
-        fixIOI.set( idSource );
+            idSource = new IDSource("100");
+        fixIOI.set(idSource);
 
         // Price
-        Price price = new Price( ioi.getPrice() );
-        fixIOI.set( price );
+        Price price = new Price(ioi.getPrice());
+        fixIOI.set(price);
 
         // IOINaturalFlag
         IOINaturalFlag ioiNaturalFlag = new IOINaturalFlag();
-        if ( ioi.getNatural().equals("YES") )
-            ioiNaturalFlag.setValue( true );
-        if ( ioi.getNatural().equals("NO") )
-            ioiNaturalFlag.setValue( false );
-        fixIOI.set( ioiNaturalFlag );
+        if (ioi.getNatural().equals("YES"))
+            ioiNaturalFlag.setValue(true);
+        if (ioi.getNatural().equals("NO"))
+            ioiNaturalFlag.setValue(false);
+        fixIOI.set(ioiNaturalFlag);
 
         // SecurityDesc
         Instrument instrument =
                 FIXimulator.getInstruments().getInstrument(ioi.getSymbol());
         String name = "Unknown security";
-        if ( instrument != null ) name = instrument.getName();
-        SecurityDesc desc = new SecurityDesc( name );
-        fixIOI.set( desc );
+        if (instrument != null) name = instrument.getName();
+        SecurityDesc desc = new SecurityDesc(name);
+        fixIOI.set(desc);
 
         // ValidUntilTime
         int minutes = 30;
         long expiry = new Date().getTime() + 1000 * 60 * minutes;
-        Date validUntil = new Date( expiry );
-        ValidUntilTime validTime = new ValidUntilTime( validUntil );
-        fixIOI.set( validTime );
+        Date validUntil = new Date(expiry);
+        ValidUntilTime validTime = new ValidUntilTime(validUntil);
+        fixIOI.set(validTime);
 
         //Currency
-        Currency currency = new Currency( "USD" );
-        fixIOI.set( currency );
+        Currency currency = new Currency("USD");
+        fixIOI.set(currency);
 
         // *** Send message ***
         sendMessage(fixIOI);
         iois.add(ioi);
     }
 
-    public void sendExecution( Execution execution ) {
+    public void sendExecution(Execution execution) {
         Order order = execution.getOrder();
 
         // *** Required fields ***
@@ -669,7 +669,7 @@ public class FIXimulatorApplication extends MessageCracker
                     avgPx);
 
         // *** Conditional fields ***
-        if(execution.getRefID() != null) {
+        if (execution.getRefID() != null) {
             executionReport.set(
                     new ExecRefID(execution.getRefID()));
         }
@@ -682,8 +682,8 @@ public class FIXimulatorApplication extends MessageCracker
         System.out.println("Setting...");
         System.out.println("SecurityID: " + order.getSecurityID());
         System.out.println("IDSource: " + order.getIdSource());
-        if( order.getSecurityID() != null
-            && order.getIdSource()!= null) {
+        if (order.getSecurityID() != null
+            && order.getIdSource() != null) {
             executionReport.set(new SecurityID(order.getSecurityID()));
             executionReport.set(new IDSource(order.getIdSource()));
         }
@@ -694,23 +694,23 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     // IOI Sender methods
-    public void startIOIsender(Integer delay, String symbol, String securityID){
+    public void startIOIsender(Integer delay, String symbol, String securityID) {
         try {
-            ioiSender =  new IOIsender(delay, symbol, securityID);
+            ioiSender = new IOIsender(delay, symbol, securityID);
             ioiSenderThread = new Thread(ioiSender);
             ioiSenderThread.start();
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {e.printStackTrace(); }
         if (connected && ioiSenderStarted)
             ioiSenderStatus.setIcon(new javax.swing.ImageIcon(getClass()
             .getResource("/org/fiximulator/ui/green.gif")));
     }
 
-    public void stopIOIsender(){
+    public void stopIOIsender() {
         ioiSender.stopIOISender();
         ioiSenderThread.interrupt();
         try {
             ioiSenderThread.join();
-        } catch (InterruptedException e) {e.printStackTrace();}
+        } catch (InterruptedException e) {e.printStackTrace(); }
         ioiSenderStatus.setIcon(new javax.swing.ImageIcon(getClass()
             .getResource("/org/fiximulator/ui/red.gif")));
     }
@@ -719,11 +719,11 @@ public class FIXimulatorApplication extends MessageCracker
         if (ioiSenderStarted) ioiSender.setDelay(delay);
     }
 
-    public void setNewSymbol( String identifier ) {
+    public void setNewSymbol(String identifier) {
         if (ioiSenderStarted) ioiSender.setSymbol(identifier);
     }
 
-    public void setNewSecurityID( String identifier ) {
+    public void setNewSecurityID(String identifier) {
         if (ioiSenderStarted) ioiSender.setSecurityID(identifier);
     }
 
@@ -733,7 +733,7 @@ public class FIXimulatorApplication extends MessageCracker
         private String symbolValue = "";
         private String securityIDvalue = "";
 
-        public IOIsender ( Integer delay, String symbol, String securityID ) {
+        public IOIsender(Integer delay, String symbol, String securityID) {
             instruments = FIXimulator.getInstruments();
             ioiSenderStarted = true;
             this.delay = delay;
@@ -745,24 +745,24 @@ public class FIXimulatorApplication extends MessageCracker
             ioiSenderStarted = false;
         }
 
-        public void setDelay(Integer delay){
+        public void setDelay(Integer delay) {
             this.delay = delay;
         }
 
-         public void setSymbol( String identifier ) {
+         public void setSymbol(String identifier) {
             symbolValue = identifier;
          }
 
-         public void setSecurityID ( String identifier ) {
+         public void setSecurityID(String identifier) {
             securityIDvalue = identifier;
          }
 
         public void run() {
-            while ( connected && ioiSenderStarted ) {
+            while (connected && ioiSenderStarted) {
                 sendRandomIOI();
                 try {
-                    Thread.sleep( delay.longValue() );
-                } catch ( InterruptedException e ) {}
+                    Thread.sleep(delay.longValue());
+                } catch (InterruptedException e) {}
             }
             ioiSenderStatus.setIcon(new javax.swing.ImageIcon(getClass()
             .getResource("/org/fiximulator/ui/red.gif")));
@@ -775,21 +775,21 @@ public class FIXimulatorApplication extends MessageCracker
 
             // Side
             ioi.setSide("BUY");
-            if ( random.nextBoolean() ) ioi.setSide("SELL");
+            if (random.nextBoolean()) ioi.setSide("SELL");
 
             // IOIShares
-            Integer quantity = new Integer( random.nextInt(1000) * 100 + 100 );
-            ioi.setQuantity( quantity );
+            Integer quantity = new Integer(random.nextInt(1000) * 100 + 100);
+            ioi.setQuantity(quantity);
 
             // Symbol
             String value = "";
-            if (symbolValue.equals( "Ticker" ) ) value = instrument.getTicker();
-            if (symbolValue.equals( "RIC" ) ) value = instrument.getRIC();
-            if (symbolValue.equals( "Sedol" ) ) value = instrument.getSedol();
-            if (symbolValue.equals( "Cusip" ) ) value = instrument.getCusip();
-            if ( value.equals( "" ) ) value = "<MISSING>";
-            ioi.setSymbol( value );
-            Symbol symbol = new Symbol( ioi.getSymbol() );
+            if (symbolValue.equals("Ticker")) value = instrument.getTicker();
+            if (symbolValue.equals("RIC")) value = instrument.getRIC();
+            if (symbolValue.equals("Sedol")) value = instrument.getSedol();
+            if (symbolValue.equals("Cusip")) value = instrument.getCusip();
+            if (value.equals("")) value = "<MISSING>";
+            ioi.setSymbol(value);
+            Symbol symbol = new Symbol(ioi.getSymbol());
 
             // *** Optional fields ***
             // SecurityID
@@ -802,16 +802,16 @@ public class FIXimulatorApplication extends MessageCracker
                 value = instrument.getSedol();
             if (securityIDvalue.equals("Cusip"))
                 value = instrument.getCusip();
-            if ( value.equals( "" ) )
+            if (value.equals(""))
                 value = "<MISSING>";
-            ioi.setSecurityID( value );
+            ioi.setSecurityID(value);
 
             // IDSource
-            if ( securityIDvalue.equals("Ticker") ) ioi.setIDSource("TICKER");
-            if ( securityIDvalue.equals("RIC") ) ioi.setIDSource("RIC");
-            if ( securityIDvalue.equals("Sedol") ) ioi.setIDSource("SEDOL");
-            if ( securityIDvalue.equals("Cusip") ) ioi.setIDSource("CUSIP");
-            if ( ioi.getSecurityID().equals("<MISSING>") )
+            if (securityIDvalue.equals("Ticker")) ioi.setIDSource("TICKER");
+            if (securityIDvalue.equals("RIC")) ioi.setIDSource("RIC");
+            if (securityIDvalue.equals("Sedol")) ioi.setIDSource("SEDOL");
+            if (securityIDvalue.equals("Cusip")) ioi.setIDSource("CUSIP");
+            if (ioi.getSecurityID().equals("<MISSING>"))
                 ioi.setIDSource("UNKNOWN");
 
             // Price
@@ -819,47 +819,47 @@ public class FIXimulatorApplication extends MessageCracker
             try {
                 pricePrecision =
                         (int)settings.getLong("FIXimulatorPricePrecision");
-            } catch ( Exception e ) {}
-            double factor = Math.pow( 10, pricePrecision );
+            } catch (Exception e) {}
+            double factor = Math.pow(10, pricePrecision);
             double price = Math.round(
-                    random.nextDouble() * 100 * factor ) / factor;
+                    random.nextDouble() * 100 * factor) / factor;
             ioi.setPrice(price);
 
             // IOINaturalFlag
             ioi.setNatural("No");
-            if ( random.nextBoolean() ) ioi.setNatural("Yes");
+            if (random.nextBoolean()) ioi.setNatural("Yes");
 
             sendIOI(ioi);
         }
     }
 
     // Executor methods
-    public void startExecutor( Integer delay, Integer partials ) {
+    public void startExecutor(Integer delay, Integer partials) {
         try {
-            executor =  new Executor( delay, partials );
+            executor = new Executor(delay, partials);
             executorThread = new Thread(executor);
             executorThread.start();
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {e.printStackTrace(); }
         if (connected && executorStarted)
             executorStatus.setIcon(new javax.swing.ImageIcon(getClass()
             .getResource("/org/fiximulator/ui/green.gif")));
     }
 
-    public void stopExecutor(){
+    public void stopExecutor() {
         executor.stopExecutor();
         executorThread.interrupt();
         try {
             executorThread.join();
-        } catch (InterruptedException e) {e.printStackTrace();}
+        } catch (InterruptedException e) {e.printStackTrace(); }
         executorStatus.setIcon(new javax.swing.ImageIcon(getClass()
             .getResource("/org/fiximulator/ui/red.gif")));
     }
 
-    public void setNewExecutorDelay( Integer delay ) {
+    public void setNewExecutorDelay(Integer delay) {
         if (executorStarted) executor.setDelay(delay);
     }
 
-    public void setNewExecutorPartials( Integer partials ) {
+    public void setNewExecutorPartials(Integer partials) {
         if (executorStarted) executor.setPartials(partials);
     }
 
@@ -868,7 +868,7 @@ public class FIXimulatorApplication extends MessageCracker
         private Integer delay;
         private Integer partials;
 
-        public Executor( Integer delay, Integer partials ) {
+        public Executor(Integer delay, Integer partials) {
             instruments = FIXimulator.getInstruments();
             executorStarted = true;
             this.partials = partials;
@@ -876,40 +876,40 @@ public class FIXimulatorApplication extends MessageCracker
         }
 
         public void run() {
-            while ( connected && executorStarted ) {
-                while ( orders.haveOrdersToFill() ) {
+            while (connected && executorStarted) {
+                while (orders.haveOrdersToFill()) {
                     Order order = orders.getOrderToFill();
                     acknowledge(order);
                     fill(order);
                 }
                 // No orders to fill, check again in 5 seconds
                 try {
-                    Thread.sleep( 5000 );
-                } catch ( InterruptedException e ) {}
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {}
             }
             executorStatus.setIcon(new javax.swing.ImageIcon(getClass()
             .getResource("/org/fiximulator/ui/red.gif")));
         }
 
-        public void stopExecutor(){
+        public void stopExecutor() {
             executorStarted = false;
         }
 
-        public void setDelay(Integer delay){
+        public void setDelay(Integer delay) {
             this.delay = delay;
         }
 
-        public void setPartials(Integer partials){
+        public void setPartials(Integer partials) {
             this.partials = partials;
         }
 
-        public void fill( Order order ) {
-            double fillQty = Math.floor( order.getQuantity() / partials );
+        public void fill(Order order) {
+            double fillQty = Math.floor(order.getQuantity() / partials);
             double fillPrice = 0.0;
             // try to look the price up from the instruments
             Instrument instrument =
                     instruments.getInstrument(order.getSymbol());
-            if (instrument != null){
+            if (instrument != null) {
                 fillPrice = Double.valueOf(instrument.getPrice());
             // use a random price
             } else {
@@ -917,17 +917,17 @@ public class FIXimulatorApplication extends MessageCracker
                 try {
                     pricePrecision =
                             (int)settings.getLong("FIXimulatorPricePrecision");
-                } catch ( Exception e ) {}
-                double factor = Math.pow( 10, pricePrecision );
+                } catch (Exception e) {}
+                double factor = Math.pow(10, pricePrecision);
                 fillPrice = Math.round(
-                    random.nextDouble() * 100 * factor ) / factor;
+                    random.nextDouble() * 100 * factor) / factor;
             }
 
-            if ( fillQty == 0 ) fillQty = 1;
-            for (int i=0; i < partials; i++) {
+            if (fillQty == 0) fillQty = 1;
+            for (int i = 0; i < partials; i++) {
                 double open = order.getOpen();
-                if ( open > 0 ) {
-                    if ( fillQty < open && i != partials - 1) {
+                if (open > 0) {
+                    if (fillQty < open && i != partials - 1) {
                         // send partial
                         // calculate fields
                         double priorQty = order.getExecuted();
@@ -936,19 +936,19 @@ public class FIXimulatorApplication extends MessageCracker
                             fillPrice += 0.01;
                         else
                             fillPrice -= 0.01;
-                        double thisAvg = ((fillQty*fillPrice)
-                                + (priorQty*priorAvg))
+                        double thisAvg = ((fillQty * fillPrice)
+                                + (priorQty * priorAvg))
                                 / (priorQty + fillQty);
                         int pricePrecision = 4;
                         try {
                             pricePrecision =
                             (int)settings.getLong("FIXimulatorPricePrecision");
-                        } catch ( Exception e ) {}
-                        double factor = Math.pow( 10, pricePrecision );
-                        fillPrice = Math.round( fillPrice * factor ) / factor;
-                        thisAvg = Math.round( thisAvg * factor ) / factor;
+                        } catch (Exception e) {}
+                        double factor = Math.pow(10, pricePrecision);
+                        fillPrice = Math.round(fillPrice * factor) / factor;
+                        thisAvg = Math.round(thisAvg * factor) / factor;
                        // update order
-                        order.setOpen( open - fillQty );
+                        order.setOpen(open - fillQty);
                         order.setStatus(OrdStatus.PARTIALLY_FILLED);
                         order.setExecuted(order.getExecuted() + fillQty);
                         order.setAvgPx(thisAvg);
@@ -958,7 +958,7 @@ public class FIXimulatorApplication extends MessageCracker
                         partial.setExecType(ExecType.PARTIAL_FILL);
                         partial.setExecTranType(ExecTransType.NEW);
                         partial.setLeavesQty(order.getOpen());
-                        partial.setCumQty(order.getQuantity()-order.getOpen());
+                        partial.setCumQty(order.getQuantity() - order.getOpen());
                         partial.setAvgPx(thisAvg);
                         partial.setLastShares(fillQty);
                         partial.setLastPx(fillPrice);
@@ -973,19 +973,19 @@ public class FIXimulatorApplication extends MessageCracker
                             fillPrice += 0.01;
                         else
                             fillPrice -= 0.01;
-                        double thisAvg = ((fillQty*fillPrice)
-                                + (priorQty*priorAvg))
+                        double thisAvg = ((fillQty * fillPrice)
+                                + (priorQty * priorAvg))
                                 / (priorQty + fillQty);
                         int pricePrecision = 4;
                         try {
                             pricePrecision =
                             (int)settings.getLong("FIXimulatorPricePrecision");
-                        } catch ( Exception e ) {}
-                        double factor = Math.pow( 10, pricePrecision );
-                        fillPrice = Math.round( fillPrice * factor ) / factor;
-                        thisAvg = Math.round( thisAvg * factor ) / factor;
+                        } catch (Exception e) {}
+                        double factor = Math.pow(10, pricePrecision);
+                        fillPrice = Math.round(fillPrice * factor) / factor;
+                        thisAvg = Math.round(thisAvg * factor) / factor;
                         //update order
-                        order.setOpen( open - fillQty );
+                        order.setOpen(open - fillQty);
                         order.setStatus(OrdStatus.FILLED);
                         order.setExecuted(order.getExecuted() + fillQty);
                         order.setAvgPx(thisAvg);
@@ -995,7 +995,7 @@ public class FIXimulatorApplication extends MessageCracker
                         partial.setExecType(ExecType.FILL);
                         partial.setExecTranType(ExecTransType.NEW);
                         partial.setLeavesQty(order.getOpen());
-                        partial.setCumQty(order.getQuantity()-order.getOpen());
+                        partial.setCumQty(order.getQuantity() - order.getOpen());
                         partial.setAvgPx(thisAvg);
                         partial.setLastShares(fillQty);
                         partial.setLastPx(fillPrice);
@@ -1004,8 +1004,8 @@ public class FIXimulatorApplication extends MessageCracker
                     }
                 }
                 try {
-                    Thread.sleep( delay.longValue() );
-                } catch ( InterruptedException e ) {}
+                    Thread.sleep(delay.longValue());
+                } catch (InterruptedException e) {}
             }
         }
     }

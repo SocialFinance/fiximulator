@@ -23,7 +23,7 @@ public class IOI implements Cloneable {
     private double price = 0.0;
     private String natural = "";    // YES, NO
 
-    public IOI () {
+    public IOI() {
         ID = generateID();
     }
 
@@ -34,13 +34,13 @@ public class IOI implements Cloneable {
             ioi.setRefID(getID());
             ioi.setID(ioi.generateID());
             return ioi;
-        } catch(CloneNotSupportedException e) {}
+        } catch (CloneNotSupportedException e) {}
         return null;
     }
 
     public String generateID() {
         return "I" + Long.valueOf(
-                System.currentTimeMillis()+(nextID++)).toString();
+                System.currentTimeMillis() + (nextID++)).toString();
     }
 
     public String getID() {

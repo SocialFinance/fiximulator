@@ -20,25 +20,25 @@ public class OrderSet {
 
     public OrderSet() {}
 
-    public void add ( Order order, boolean toFill ) {
-        orders.add( order );
-        if ( toFill ) ordersToFill.add(order);
+    public void add(Order order, boolean toFill) {
+        orders.add(order);
+        if (toFill) ordersToFill.add(order);
         int limit = 50;
         try {
             limit = (int)FIXimulator.getApplication().getSettings()
                     .getLong("FIXimulatorCachedObjects");
-        } catch ( Exception e ) {}
-        while ( orders.size() > limit ) {
+        } catch (Exception e) {}
+        while (orders.size() > limit) {
             orders.remove(0);
         }
         orderTableModel.update();
     }
 
-    public void update () {
+    public void update() {
         orderTableModel.update();
     }
 
-    public void addCallback(OrderTableModel orderTableModel){
+    public void addCallback(OrderTableModel orderTableModel) {
         this.orderTableModel = orderTableModel;
     }
 
@@ -46,22 +46,22 @@ public class OrderSet {
         return orders.size();
     }
 
-    public Order getOrder( int i ) {
-        return orders.get( i );
+    public Order getOrder(int i) {
+        return orders.get(i);
     }
 
-    public Order getOrder( String id ) {
+    public Order getOrder(String id) {
         Iterator<Order> iterator = orders.iterator();
-        while ( iterator.hasNext() ){
+        while (iterator.hasNext()) {
             Order order = iterator.next();
-            if ( order.getID().equals(id) || order.getClientID().equals(id))
+            if (order.getID().equals(id) || order.getClientID().equals(id))
                 return order;
         }
         return null;
     }
 
     public boolean haveOrdersToFill() {
-        if ( ordersToFill.size() > 0 ) return true;
+        if (ordersToFill.size() > 0) return true;
         return false;
     }
 

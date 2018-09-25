@@ -20,20 +20,20 @@ public class IOIset {
 
     public IOIset() {}
 
-    public void add ( IOI ioi ) {
-        iois.add( ioi );
+    public void add(IOI ioi) {
+        iois.add(ioi);
         int limit = 50;
         try {
             limit = (int)FIXimulator.getApplication().getSettings()
                     .getLong("FIXimulatorCachedObjects");
-        } catch ( Exception e ) {}
-        while ( iois.size() > limit ) {
+        } catch (Exception e) {}
+        while (iois.size() > limit) {
             iois.remove(0);
         }
         ioiTableModel.update();
     }
 
-    public void addCallback(IOITableModel ioiTableModel){
+    public void addCallback(IOITableModel ioiTableModel) {
         this.ioiTableModel = ioiTableModel;
     }
 
@@ -41,15 +41,15 @@ public class IOIset {
         return iois.size();
     }
 
-    public IOI getIOI( int i ) {
-        return iois.get( i );
+    public IOI getIOI(int i) {
+        return iois.get(i);
     }
 
-    public IOI getIOI( String id ) {
+    public IOI getIOI(String id) {
         Iterator<IOI> iterator = iois.iterator();
-        while ( iterator.hasNext() ){
+        while (iterator.hasNext()) {
             IOI ioi = iterator.next();
-            if ( ioi.getID().equals(id) )
+            if (ioi.getID().equals(id))
                 return ioi;
         }
         return null;

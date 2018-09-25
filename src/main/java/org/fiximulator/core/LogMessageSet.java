@@ -36,19 +36,19 @@ public class LogMessageSet {
                 try {
                     limit = (int)FIXimulator.getApplication().getSettings()
                             .getLong("FIXimulatorCachedObjects");
-                } catch ( Exception e ) {}
-                while ( messages.size() > limit ) {
+                } catch (Exception e) {}
+                while (messages.size() > limit) {
                     messages.remove(0);
                 }
         //call back to the model to update
         model.update();
     }
 
-    public LogMessage getMessage( int i ) {
+    public LogMessage getMessage(int i) {
         return messages.get(i);
     }
 
-    public int getCount(){
+    public int getCount() {
         return messages.size();
     }
 

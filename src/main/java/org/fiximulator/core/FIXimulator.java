@@ -42,7 +42,7 @@ public class FIXimulator {
         try {
             inputStream = new BufferedInputStream(
                             new FileInputStream(
-                            new File( "config/FIXimulator.cfg" )));
+                            new File("config/FIXimulator.cfg")));
         } catch (FileNotFoundException exception) {
             exception.printStackTrace();
             System.exit(0);
@@ -50,10 +50,10 @@ public class FIXimulator {
         instruments = new InstrumentSet(new File("config/instruments.xml"));
         messages = new LogMessageSet();
         try {
-            SessionSettings settings = new SessionSettings( inputStream );
-            application = new FIXimulatorApplication( settings, messages );
+            SessionSettings settings = new SessionSettings(inputStream);
+            application = new FIXimulatorApplication(settings, messages);
             MessageStoreFactory messageStoreFactory =
-                    new FileStoreFactory( settings );
+                    new FileStoreFactory(settings);
             boolean logToFile = false;
             boolean logToDB = false;
             LogFactory logFactory;
@@ -61,16 +61,16 @@ public class FIXimulator {
                 logToFile = settings.getBool("FIXimulatorLogToFile");
                 logToDB = settings.getBool("FIXimulatorLogToDB");
             } catch (FieldConvertError ex) {}
-            if ( logToFile && logToDB ) {
+            if (logToFile && logToDB) {
                 logFactory = new CompositeLogFactory(
                     new LogFactory[] { new ScreenLogFactory(settings),
                                        new FileLogFactory(settings),
                                        new JdbcLogFactory(settings)});
-            } else if ( logToFile ) {
+            } else if (logToFile) {
                 logFactory = new CompositeLogFactory(
                     new LogFactory[] { new ScreenLogFactory(settings),
                                        new FileLogFactory(settings)});
-            } else if ( logToDB ) {
+            } else if (logToDB) {
                 logFactory = new CompositeLogFactory(
                     new LogFactory[] { new ScreenLogFactory(settings),
                                        new JdbcLogFactory(settings)});
@@ -79,8 +79,8 @@ public class FIXimulator {
             }
             MessageFactory messageFactory = new DefaultMessageFactory();
             acceptor = new SocketAcceptor
-                    ( application, messageStoreFactory,
-                            settings, logFactory, messageFactory );
+                    (application, messageStoreFactory,
+                            settings, logFactory, messageFactory);
         } catch (ConfigError e) {
             e.printStackTrace();
         }
@@ -101,8 +101,8 @@ public class FIXimulator {
     public void start() {
         try {
             acceptor.start();
-        } catch ( Exception e ) {
-            System.out.println( e );
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }

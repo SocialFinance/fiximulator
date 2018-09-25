@@ -29,7 +29,7 @@ public class MessageDetailTableModel extends AbstractTableModel
     private static String[] columns =
         {"Field", "Tag", "Value", "Value Name", "Required", "Section"};
 
-    public MessageDetailTableModel(JTable messageTable){
+    public MessageDetailTableModel(JTable messageTable) {
         this.messageTable = messageTable;
         messageTable.getSelectionModel().addListSelectionListener(this);
     }
@@ -53,8 +53,8 @@ public class MessageDetailTableModel extends AbstractTableModel
         return fields.size();
     }
 
-    public Object getValueAt( int row, int column ) {
-        LogField logField = fields.get( row );
+    public Object getValueAt(int row, int column) {
+        LogField logField = fields.get(row);
         if (column == 0) return logField.getFieldName();
         if (column == 1) return logField.getTag();
         if (column == 2) return logField.getValue();
@@ -84,9 +84,9 @@ public class MessageDetailTableModel extends AbstractTableModel
         if (!selection.getValueIsAdjusting()) {
             int row = messageTable.getSelectedRow();
             // if the first row is selected when it gets purged
-            if ( row != -1 ) {
+            if (row != -1) {
                 row = messageTable.convertRowIndexToModel(row);
-                LogMessage msg = messages.getMessage( row );
+                LogMessage msg = messages.getMessage(row);
                 updateMessageDetailsTable(msg);
             }
         }

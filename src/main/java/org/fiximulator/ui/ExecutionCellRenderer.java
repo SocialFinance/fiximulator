@@ -16,7 +16,7 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class ExecutionCellRenderer  extends DefaultTableCellRenderer {
+public class ExecutionCellRenderer extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column) {
@@ -26,10 +26,10 @@ public class ExecutionCellRenderer  extends DefaultTableCellRenderer {
         Boolean DKd = (Boolean)((ExecutionTableModel)table.getModel())
                 .getValueAt(myRow, 12);
 
-        if ( DKd ) {
+        if (DKd) {
             component.setForeground(Color.RED);
         }
-        if ( !DKd ) {
+        if (!DKd) {
             component.setForeground(Color.BLACK);
         }
         return component;

@@ -193,7 +193,7 @@ public class LogMessage implements Comparable<Object> {
     public int compareTo(Object o) {
         LogMessage rhs = (LogMessage) o;
         int rhsMessageIndex = rhs.messageIndex;
-        return (messageIndex < rhsMessageIndex ? -1 :
+        return (messageIndex < rhsMessageIndex ? - 1 :
                 (messageIndex == rhsMessageIndex ? 0 : 1));
     }
 
@@ -215,7 +215,7 @@ public class LogMessage implements Comparable<Object> {
         if (groupInfo != null) {
             int delimeterField = groupInfo.getDelimeterField();
             Group group = new Group(field.getTag(), delimeterField);
-            int numberOfGroups =  Integer.valueOf((String) field.getObject());
+            int numberOfGroups = Integer.valueOf((String) field.getObject());
             for (int index = 0; index < numberOfGroups; index++) {
                 LogGroup logGroup =
                         new LogGroup(messageType, field, dictionary);

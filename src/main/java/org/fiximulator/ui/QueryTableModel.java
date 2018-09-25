@@ -30,7 +30,7 @@ class QueryTableModel extends AbstractTableModel {
             url = FIXimulator.getApplication().getSettings()
                     .getString("JdbcURL");
             driver = FIXimulator.getApplication().getSettings()
-                    .getString( "JdbcDriver");
+                    .getString("JdbcDriver");
             user = FIXimulator.getApplication().getSettings()
                     .getString("JdbcUser");
             pass = FIXimulator.getApplication().getSettings()
@@ -62,7 +62,7 @@ class QueryTableModel extends AbstractTableModel {
             Class.forName(driver).newInstance();
             connection = DriverManager.getConnection(url, user, pass);
         }
-        catch(Exception e) {
+        catch (Exception e) {
             System.out.println("Could not initialize the database.");
             e.printStackTrace();
         }
@@ -73,12 +73,12 @@ class QueryTableModel extends AbstractTableModel {
             ResultSetMetaData meta = (ResultSetMetaData) rs.getMetaData();
             int fields = meta.getColumnCount();
             columns = new String[fields];
-            for ( int i=0; i < fields; i++) {
-                columns[i] = meta.getColumnName(i+1);
+            for (int i = 0; i < fields; i++) {
+                columns[i] = meta.getColumnName(i + 1);
             }
             while (rs.next()) {
                 String[] record = new String[fields];
-                for (int i=0; i < fields; i++) {
+                for (int i = 0; i < fields; i++) {
                     record[i] = rs.getString(i + 1);
                 }
                 results.addElement(record);
@@ -86,14 +86,14 @@ class QueryTableModel extends AbstractTableModel {
             statement.close();
             rs.close();
             fireTableChanged(null);
-        } catch(Exception e) {
+        } catch (Exception e) {
             results = new Vector();
             e.printStackTrace();
         }
 
         if (connection != null) {
             try {
-                connection.close ();
+                connection.close();
             } catch (Exception e) {}
         }
     }

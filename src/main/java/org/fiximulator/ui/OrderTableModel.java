@@ -20,7 +20,7 @@ public class OrderTableModel extends AbstractTableModel {
         {"ID", "Status", "Side", "Quantity", "Symbol", "Type", "Limit", "TIF",
          "Executed", "Open", "AvgPx", "ClOrdID", "OrigClOrdID"};
 
-    public OrderTableModel(){
+    public OrderTableModel() {
         FIXimulator.getApplication().getOrders().addCallback(this);
     }
 
@@ -56,7 +56,7 @@ public class OrderTableModel extends AbstractTableModel {
         if (column == 4) return order.getSymbol();
         if (column == 5) return order.getType();
         if (column == 6) return order.getLimit();
-        if (column == 7) return order.getTif();
+        if (column == 7) return order.getTif ();
         if (column == 8) return order.getExecuted();
         if (column == 9) return order.getOpen();
         if (column == 10) return order.getAvgPx();

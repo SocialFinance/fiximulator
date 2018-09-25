@@ -51,15 +51,15 @@ public class Order implements Cloneable {
             order.setOrigClientID(getID());
             order.setID(generateID());
             return order;
-        } catch ( CloneNotSupportedException e ) {}
+        } catch (CloneNotSupportedException e) {}
         return null;
     }
 
-    public Order () {
+    public Order() {
         ID = generateID();
     }
 
-    public Order( quickfix.fix42.NewOrderSingle message ) {
+    public Order(quickfix.fix42.NewOrderSingle message) {
         ID = generateID();
 
         // ClOrdID
@@ -102,7 +102,7 @@ public class Order implements Cloneable {
         try {
             TimeInForce msgTIF = new TimeInForce();
             message.get(msgTIF);
-            this.setTif(msgTIF.getValue());
+            this.setTif (msgTIF.getValue());
         } catch (FieldNotFound ex) {}
 
         // Price
@@ -130,7 +130,7 @@ public class Order implements Cloneable {
         System.out.println("IDSource: " + this.getIdSource());
     }
 
-    public Order( quickfix.fix42.OrderCancelRequest message ) {
+    public Order(quickfix.fix42.OrderCancelRequest message) {
         ID = generateID();
 
         // ClOrdID
@@ -149,7 +149,7 @@ public class Order implements Cloneable {
 
         Order oldOrder = FIXimulator.getApplication()
                 .getOrders().getOrder(origClientID);
-        if ( oldOrder != null ) {
+        if (oldOrder != null) {
             open = oldOrder.getOpen();
             executed = oldOrder.getExecuted();
             limit = oldOrder.getLimit();
@@ -194,7 +194,7 @@ public class Order implements Cloneable {
         } catch (FieldNotFound ex) {}
     }
 
-    public Order( quickfix.fix42.OrderCancelReplaceRequest message ) {
+    public Order(quickfix.fix42.OrderCancelReplaceRequest message) {
         ID = generateID();
 
         // ClOrdID
@@ -213,7 +213,7 @@ public class Order implements Cloneable {
 
         Order oldOrder = FIXimulator.getApplication()
                 .getOrders().getOrder(origClientID);
-        if ( oldOrder != null ) {
+        if (oldOrder != null) {
             open = oldOrder.getOpen();
             executed = oldOrder.getExecuted();
             avgPx = oldOrder.getAvgPx();
@@ -253,7 +253,7 @@ public class Order implements Cloneable {
         try {
             TimeInForce msgTIF = new TimeInForce();
             message.get(msgTIF);
-            this.setTif(msgTIF.getValue());
+            this.setTif (msgTIF.getValue());
         } catch (FieldNotFound ex) {}
 
         // Price
@@ -280,7 +280,7 @@ public class Order implements Cloneable {
 
     public String generateID() {
         return "O" + Long.valueOf(
-                System.currentTimeMillis()+(nextID++)).toString();
+                System.currentTimeMillis() + (nextID++)).toString();
     }
 
     public String getID() {
@@ -415,7 +415,7 @@ public class Order implements Cloneable {
         this.symbol = symbol;
     }
 
-    public String getTif() {
+    public String getTif () {
         if (tif == '0') return "Day";
         if (tif == '1') return "GTC";
         if (tif == '2') return "OPG";
@@ -426,11 +426,11 @@ public class Order implements Cloneable {
         return "<UNKNOWN>";
     }
 
-    public char getFIXTif() {
+    public char getFIXTif () {
         return tif;
     }
 
-    public void setTif(char tif) {
+    public void setTif (char tif) {
         this.tif = tif;
     }
 

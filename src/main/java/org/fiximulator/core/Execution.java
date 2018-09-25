@@ -32,18 +32,18 @@ public class Execution implements Cloneable {
             execution.setID(generateID());
             execution.setDKd(false);
             return execution;
-        } catch(CloneNotSupportedException e) {}
+        } catch (CloneNotSupportedException e) {}
         return null;
     }
 
-    public Execution( Order order ) {
+    public Execution(Order order) {
         ID = generateID();
         this.order = order;
     }
 
     public String generateID() {
         return "E" + Long.valueOf(
-                System.currentTimeMillis()+(nextID++)).toString();
+                System.currentTimeMillis() + (nextID++)).toString();
     }
 
     public String getID() {
