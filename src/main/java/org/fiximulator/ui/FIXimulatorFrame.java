@@ -8,7 +8,6 @@
  *            by NetBeans.
  *
  */
-
 package org.fiximulator.ui;
 
 import org.fiximulator.core.Execution;
@@ -16,20 +15,60 @@ import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.IOI;
 import org.fiximulator.core.Order;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.NumberFormatter;
 
-public class FIXimulatorFrame extends javax.swing.JFrame {
+public class FIXimulatorFrame extends JFrame {
     private static FIXimulator fiximulator;
     private IOI dialogIOI = null;
     private Execution dialogExecution = null;
 
-    /** Creates new form FIXimulatorFrame */
+    /**
+     * Creates new form FIXimulatorFrame
+     */
     public FIXimulatorFrame() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
     }
 
@@ -47,190 +86,190 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        aboutDialog = new javax.swing.JDialog();
-        aboutPanel = new javax.swing.JPanel();
-        okButton = new javax.swing.JButton();
-        aboutDialogLabel = new javax.swing.JLabel();
-        instrumentFileChooser = new javax.swing.JFileChooser();
-        ioiDialog = new javax.swing.JDialog();
-        ioiDialogOK = new javax.swing.JButton();
-        ioiDialogCancel = new javax.swing.JButton();
-        ioiIDLabel = new javax.swing.JLabel();
-        ioiSideLabel = new javax.swing.JLabel();
-        ioiSharesLabel = new javax.swing.JLabel();
-        ioiSymbolLabel = new javax.swing.JLabel();
-        ioiSecurityIDLabel = new javax.swing.JLabel();
-        ioiIDSourceLabel = new javax.swing.JLabel();
-        ioiPriceLabel = new javax.swing.JLabel();
-        ioiNaturalLabel = new javax.swing.JLabel();
-        ioiDialogID = new javax.swing.JLabel();
-        ioiDialogSide = new javax.swing.JComboBox();
-        ioiDialogSymbol = new javax.swing.JTextField();
-        ioiDialogSecurityID = new javax.swing.JTextField();
-        ioiDialogIDSource = new javax.swing.JComboBox();
-        ioiDialogNatural = new javax.swing.JComboBox();
-        ioiDialogShares = new javax.swing.JFormattedTextField();
-        ioiDialogPrice = new javax.swing.JFormattedTextField();
-        executionDialog = new javax.swing.JDialog();
-        executionDialogOK = new javax.swing.JButton();
-        executionDialogCancel = new javax.swing.JButton();
-        executionDialogShares = new javax.swing.JFormattedTextField();
-        executionDialogPrice = new javax.swing.JFormattedTextField();
-        executionSharesLabel = new javax.swing.JLabel();
-        executionPriceLabel = new javax.swing.JLabel();
-        messagePanel = new javax.swing.JPanel();
-        messageScrollPane = new javax.swing.JScrollPane();
-        messageTable = new javax.swing.JTable();
-        statusBarPanel = new javax.swing.JPanel();
-        executorRunningLabel = new javax.swing.JLabel();
-        ioiSenderRunningLabel = new javax.swing.JLabel();
-        clientConnectedLabel = new javax.swing.JLabel();
-        messageDetailPanel = new javax.swing.JPanel();
-        messageDetailScrollPane = new javax.swing.JScrollPane();
-        messageDetailTable = new javax.swing.JTable();
-        mainTabbedPane = new javax.swing.JTabbedPane();
-        loadPanel = new javax.swing.JPanel();
-        autoIOIPanel = new javax.swing.JPanel();
-        securityIDComboBox = new javax.swing.JComboBox();
-        rateSlider = new javax.swing.JSlider();
-        rateDisplayLable = new javax.swing.JLabel();
-        symbolLabel = new javax.swing.JLabel();
-        stopButton = new javax.swing.JButton();
-        startButton = new javax.swing.JButton();
-        symbolComboBox = new javax.swing.JComboBox();
-        securityIDLabel = new javax.swing.JLabel();
-        ioiSliderLabel = new javax.swing.JLabel();
-        autoExecutePanel = new javax.swing.JPanel();
-        stopExecutorButton = new javax.swing.JButton();
-        partialsSlider = new javax.swing.JSlider();
-        partialsLabel = new javax.swing.JLabel();
-        partialsNumber = new javax.swing.JLabel();
-        startExecutorButton = new javax.swing.JButton();
-        delayLabel = new javax.swing.JLabel();
-        executorDelay = new javax.swing.JComboBox();
-        ioiPanel = new javax.swing.JPanel();
-        manualIOIPanel = new javax.swing.JPanel();
-        singleIOIButton = new javax.swing.JButton();
-        cancelIOIButton = new javax.swing.JButton();
-        replaceIOIButton = new javax.swing.JButton();
-        ioiScrollPane = new javax.swing.JScrollPane();
-        ioiTable = new javax.swing.JTable();
-        orderPanel = new javax.swing.JPanel();
-        orderActionPanel = new javax.swing.JPanel();
-        acknowledgeButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        cancelPendingButton = new javax.swing.JButton();
-        replacePendingButton = new javax.swing.JButton();
-        executeButton = new javax.swing.JButton();
-        dfdButton = new javax.swing.JButton();
-        cancelAcceptButton = new javax.swing.JButton();
-        replaceAcceptButton = new javax.swing.JButton();
-        orderRejectButton = new javax.swing.JButton();
-        cancelRejectButton = new javax.swing.JButton();
-        replaceRejectButton = new javax.swing.JButton();
-        orderScrollPane = new javax.swing.JScrollPane();
-        orderTable = new javax.swing.JTable();
-        executionPanel = new javax.swing.JPanel();
-        executionActionPanel = new javax.swing.JPanel();
-        executionBustButton = new javax.swing.JButton();
-        executionCorrectButton = new javax.swing.JButton();
-        executionScrollPane = new javax.swing.JScrollPane();
-        executionTable = new javax.swing.JTable();
-        instrumentPanel = new javax.swing.JPanel();
-        instrumentScrollPane = new javax.swing.JScrollPane();
-        instrumentTable = new javax.swing.JTable();
-        reportPanel = new javax.swing.JPanel();
-        reportActionPanel = new javax.swing.JPanel();
-        customQueryRunButton = new javax.swing.JButton();
-        queryLabel = new javax.swing.JLabel();
-        queryText = new javax.swing.JTextField();
-        cannedQueryCombo = new javax.swing.JComboBox();
-        querySymbolLabel = new javax.swing.JLabel();
-        querySymbolText = new javax.swing.JTextField();
-        cannedQueryRunButton = new javax.swing.JButton();
-        reportScrollPane = new javax.swing.JScrollPane();
-        reportTable = new javax.swing.JTable();
-        settingsPanel = new javax.swing.JPanel();
-        autoResponsePanel = new javax.swing.JPanel();
-        autoAcknowledge = new javax.swing.JCheckBox();
-        autoPendingCancel = new javax.swing.JCheckBox();
-        autoPendingReplace = new javax.swing.JCheckBox();
-        autoCancel = new javax.swing.JCheckBox();
-        autoReplace = new javax.swing.JCheckBox();
-        cancelSeparator = new javax.swing.JSeparator();
-        replaceSeparator = new javax.swing.JSeparator();
-        saveSettingsButton = new javax.swing.JButton();
-        appSettingsPanel = new javax.swing.JPanel();
-        pricePrecisionLabel = new javax.swing.JLabel();
-        cachedObjectsLabel = new javax.swing.JLabel();
-        cachedObjectsCombo = new javax.swing.JComboBox();
-        pricePrecisionCombo = new javax.swing.JComboBox();
-        oboCompIDSeparator = new javax.swing.JSeparator();
-        sendOnBehalfOfCompID = new javax.swing.JCheckBox();
-        sendOnBehalfOfSubID = new javax.swing.JCheckBox();
-        oboCompIDSeparator1 = new javax.swing.JSeparator();
-        logToFileLabel = new javax.swing.JLabel();
-        logToFile = new javax.swing.JCheckBox();
-        logToDB = new javax.swing.JCheckBox();
-        showSettingsButton = new javax.swing.JButton();
-        mainMenuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        exitMenuItem = new javax.swing.JMenuItem();
-        instrumentMenu = new javax.swing.JMenu();
-        loadInstrumentMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        aboutMenuItem = new javax.swing.JMenuItem();
+        aboutDialog = new JDialog();
+        aboutPanel = new JPanel();
+        okButton = new JButton();
+        aboutDialogLabel = new JLabel();
+        instrumentFileChooser = new JFileChooser();
+        ioiDialog = new JDialog();
+        ioiDialogOK = new JButton();
+        ioiDialogCancel = new JButton();
+        ioiIDLabel = new JLabel();
+        ioiSideLabel = new JLabel();
+        ioiSharesLabel = new JLabel();
+        ioiSymbolLabel = new JLabel();
+        ioiSecurityIDLabel = new JLabel();
+        ioiIDSourceLabel = new JLabel();
+        ioiPriceLabel = new JLabel();
+        ioiNaturalLabel = new JLabel();
+        ioiDialogID = new JLabel();
+        ioiDialogSide = new JComboBox();
+        ioiDialogSymbol = new JTextField();
+        ioiDialogSecurityID = new JTextField();
+        ioiDialogIDSource = new JComboBox();
+        ioiDialogNatural = new JComboBox();
+        ioiDialogShares = new JFormattedTextField();
+        ioiDialogPrice = new JFormattedTextField();
+        executionDialog = new JDialog();
+        executionDialogOK = new JButton();
+        executionDialogCancel = new JButton();
+        executionDialogShares = new JFormattedTextField();
+        executionDialogPrice = new JFormattedTextField();
+        executionSharesLabel = new JLabel();
+        executionPriceLabel = new JLabel();
+        messagePanel = new JPanel();
+        messageScrollPane = new JScrollPane();
+        messageTable = new JTable();
+        statusBarPanel = new JPanel();
+        executorRunningLabel = new JLabel();
+        ioiSenderRunningLabel = new JLabel();
+        clientConnectedLabel = new JLabel();
+        messageDetailPanel = new JPanel();
+        messageDetailScrollPane = new JScrollPane();
+        messageDetailTable = new JTable();
+        mainTabbedPane = new JTabbedPane();
+        loadPanel = new JPanel();
+        autoIOIPanel = new JPanel();
+        securityIDComboBox = new JComboBox();
+        rateSlider = new JSlider();
+        rateDisplayLable = new JLabel();
+        symbolLabel = new JLabel();
+        stopButton = new JButton();
+        startButton = new JButton();
+        symbolComboBox = new JComboBox();
+        securityIDLabel = new JLabel();
+        ioiSliderLabel = new JLabel();
+        autoExecutePanel = new JPanel();
+        stopExecutorButton = new JButton();
+        partialsSlider = new JSlider();
+        partialsLabel = new JLabel();
+        partialsNumber = new JLabel();
+        startExecutorButton = new JButton();
+        delayLabel = new JLabel();
+        executorDelay = new JComboBox();
+        ioiPanel = new JPanel();
+        manualIOIPanel = new JPanel();
+        singleIOIButton = new JButton();
+        cancelIOIButton = new JButton();
+        replaceIOIButton = new JButton();
+        ioiScrollPane = new JScrollPane();
+        ioiTable = new JTable();
+        orderPanel = new JPanel();
+        orderActionPanel = new JPanel();
+        acknowledgeButton = new JButton();
+        cancelButton = new JButton();
+        cancelPendingButton = new JButton();
+        replacePendingButton = new JButton();
+        executeButton = new JButton();
+        dfdButton = new JButton();
+        cancelAcceptButton = new JButton();
+        replaceAcceptButton = new JButton();
+        orderRejectButton = new JButton();
+        cancelRejectButton = new JButton();
+        replaceRejectButton = new JButton();
+        orderScrollPane = new JScrollPane();
+        orderTable = new JTable();
+        executionPanel = new JPanel();
+        executionActionPanel = new JPanel();
+        executionBustButton = new JButton();
+        executionCorrectButton = new JButton();
+        executionScrollPane = new JScrollPane();
+        executionTable = new JTable();
+        instrumentPanel = new JPanel();
+        instrumentScrollPane = new JScrollPane();
+        instrumentTable = new JTable();
+        reportPanel = new JPanel();
+        reportActionPanel = new JPanel();
+        customQueryRunButton = new JButton();
+        queryLabel = new JLabel();
+        queryText = new JTextField();
+        cannedQueryCombo = new JComboBox();
+        querySymbolLabel = new JLabel();
+        querySymbolText = new JTextField();
+        cannedQueryRunButton = new JButton();
+        reportScrollPane = new JScrollPane();
+        reportTable = new JTable();
+        settingsPanel = new JPanel();
+        autoResponsePanel = new JPanel();
+        autoAcknowledge = new JCheckBox();
+        autoPendingCancel = new JCheckBox();
+        autoPendingReplace = new JCheckBox();
+        autoCancel = new JCheckBox();
+        autoReplace = new JCheckBox();
+        cancelSeparator = new JSeparator();
+        replaceSeparator = new JSeparator();
+        saveSettingsButton = new JButton();
+        appSettingsPanel = new JPanel();
+        pricePrecisionLabel = new JLabel();
+        cachedObjectsLabel = new JLabel();
+        cachedObjectsCombo = new JComboBox();
+        pricePrecisionCombo = new JComboBox();
+        oboCompIDSeparator = new JSeparator();
+        sendOnBehalfOfCompID = new JCheckBox();
+        sendOnBehalfOfSubID = new JCheckBox();
+        oboCompIDSeparator1 = new JSeparator();
+        logToFileLabel = new JLabel();
+        logToFile = new JCheckBox();
+        logToDB = new JCheckBox();
+        showSettingsButton = new JButton();
+        mainMenuBar = new JMenuBar();
+        fileMenu = new JMenu();
+        exitMenuItem = new JMenuItem();
+        instrumentMenu = new JMenu();
+        loadInstrumentMenuItem = new JMenuItem();
+        helpMenu = new JMenu();
+        aboutMenuItem = new JMenuItem();
 
-        aboutDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        aboutDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         aboutDialog.setTitle("About...");
         aboutDialog.setLocationByPlatform(true);
 
-        aboutPanel.setPreferredSize(new java.awt.Dimension(200, 100));
+        aboutPanel.setPreferredSize(new Dimension(200, 100));
 
         okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
 
         aboutDialogLabel.setText("FIXimulator by Zoltan Feledy");
 
-        javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
+        GroupLayout aboutPanelLayout = new GroupLayout(aboutPanel);
         aboutPanel.setLayout(aboutPanelLayout);
         aboutPanelLayout.setHorizontalGroup(
-            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            aboutPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(aboutPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(aboutPanelLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
                     .addComponent(okButton)
                     .addComponent(aboutDialogLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 );
         aboutPanelLayout.setVerticalGroup(
-            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            aboutPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(aboutPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(aboutDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aboutDialogLabel, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(okButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 );
 
-        javax.swing.GroupLayout aboutDialogLayout = new javax.swing.GroupLayout(aboutDialog.getContentPane());
+        GroupLayout aboutDialogLayout = new GroupLayout(aboutDialog.getContentPane());
         aboutDialog.getContentPane().setLayout(aboutDialogLayout);
         aboutDialogLayout.setHorizontalGroup(
-            aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            aboutDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(aboutDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(aboutPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                .addComponent(aboutPanel, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                 .addContainerGap())
 );
         aboutDialogLayout.setVerticalGroup(
-            aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(aboutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+            aboutDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, aboutDialogLayout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(aboutPanel, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7))
 );
 
@@ -239,15 +278,15 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         ioiDialog.setName("ioiDialog"); // NOI18N
 
         ioiDialogOK.setText("OK");
-        ioiDialogOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ioiDialogOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 ioiDialogOKActionPerformed(evt);
             }
         });
 
         ioiDialogCancel.setText("Cancel");
-        ioiDialogCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ioiDialogCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 ioiDialogCancelActionPerformed(evt);
             }
         });
@@ -270,24 +309,24 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
 
         ioiDialogID.setText("ioiIDLabel");
 
-        ioiDialogSide.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buy", "Sell", "Undisclosed" }));
+        ioiDialogSide.setModel(new DefaultComboBoxModel(new String[] { "Buy", "Sell", "Undisclosed" }));
 
-        ioiDialogIDSource.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CUSIP", "SEDOL", "RIC", "TICKER", "OTHER" }));
+        ioiDialogIDSource.setModel(new DefaultComboBoxModel(new String[] { "CUSIP", "SEDOL", "RIC", "TICKER", "OTHER" }));
 
-        ioiDialogNatural.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
+        ioiDialogNatural.setModel(new DefaultComboBoxModel(new String[] { "Yes", "No" }));
 
-        ioiDialogShares.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        ioiDialogShares.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        ioiDialogPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.####"))));
+        ioiDialogPrice.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(new java.text.DecimalFormat("#,##0.####"))));
         ioiDialogPrice.setText("0.0");
 
-        javax.swing.GroupLayout ioiDialogLayout = new javax.swing.GroupLayout(ioiDialog.getContentPane());
+        GroupLayout ioiDialogLayout = new GroupLayout(ioiDialog.getContentPane());
         ioiDialog.getContentPane().setLayout(ioiDialogLayout);
         ioiDialogLayout.setHorizontalGroup(
-            ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(ioiDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(ioiDialogOK)
                     .addComponent(ioiNaturalLabel)
                     .addComponent(ioiIDLabel)
@@ -297,145 +336,145 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                     .addComponent(ioiSecurityIDLabel)
                     .addComponent(ioiIDSourceLabel)
                     .addComponent(ioiPriceLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ioiDialogSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ioiDialogSymbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(ioiDialogSide, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ioiDialogSymbol, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(ioiDialogID)
-                    .addComponent(ioiDialogSecurityID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ioiDialogIDSource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ioiDialogNatural, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ioiDialogSecurityID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ioiDialogIDSource, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ioiDialogNatural, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(ioiDialogCancel)
-                    .addComponent(ioiDialogShares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ioiDialogPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ioiDialogShares, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ioiDialogPrice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
 );
 
-        ioiDialogLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ioiDialogCancel, ioiDialogOK});
+        ioiDialogLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {ioiDialogCancel, ioiDialogOK});
 
-        ioiDialogLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ioiIDLabel, ioiIDSourceLabel, ioiNaturalLabel, ioiPriceLabel, ioiSecurityIDLabel, ioiSharesLabel, ioiSideLabel, ioiSymbolLabel});
+        ioiDialogLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {ioiIDLabel, ioiIDSourceLabel, ioiNaturalLabel, ioiPriceLabel, ioiSecurityIDLabel, ioiSharesLabel, ioiSideLabel, ioiSymbolLabel});
 
-        ioiDialogLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ioiDialogID, ioiDialogIDSource, ioiDialogNatural, ioiDialogPrice, ioiDialogSecurityID, ioiDialogShares, ioiDialogSide, ioiDialogSymbol});
+        ioiDialogLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {ioiDialogID, ioiDialogIDSource, ioiDialogNatural, ioiDialogPrice, ioiDialogSecurityID, ioiDialogShares, ioiDialogSide, ioiDialogSymbol});
 
         ioiDialogLayout.setVerticalGroup(
-            ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(ioiDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ioiIDLabel)
-                    .addComponent(ioiDialogID, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ioiDialogID, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ioiSideLabel)
-                    .addComponent(ioiDialogSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ioiDialogSide, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ioiSharesLabel)
-                    .addComponent(ioiDialogShares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ioiDialogShares, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ioiSymbolLabel)
-                    .addComponent(ioiDialogSymbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ioiDialogSymbol, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ioiSecurityIDLabel)
-                    .addComponent(ioiDialogSecurityID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ioiIDSourceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ioiDialogIDSource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ioiDialogSecurityID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(ioiIDSourceLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ioiDialogIDSource, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ioiPriceLabel)
-                    .addComponent(ioiDialogPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ioiDialogPrice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(ioiNaturalLabel)
-                    .addComponent(ioiDialogNatural, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ioiDialogNatural, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(ioiDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ioiDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ioiDialogOK)
                     .addComponent(ioiDialogCancel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 );
 
         executionDialog.setTitle("Add execution...");
         executionDialog.setName("executionDialog"); // NOI18N
 
         executionDialogOK.setText("OK");
-        executionDialogOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        executionDialogOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 executionDialogOKActionPerformed(evt);
             }
         });
 
         executionDialogCancel.setText("Cancel");
-        executionDialogCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        executionDialogCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 executionDialogCancelActionPerformed(evt);
             }
         });
 
-        executionDialogShares.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        executionDialogShares.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        executionDialogPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.####"))));
+        executionDialogPrice.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(new java.text.DecimalFormat("#,##0.####"))));
         executionDialogPrice.setText("0.0");
 
         executionSharesLabel.setText("LastShares(32):");
 
         executionPriceLabel.setText("LastPx(31):");
 
-        javax.swing.GroupLayout executionDialogLayout = new javax.swing.GroupLayout(executionDialog.getContentPane());
+        GroupLayout executionDialogLayout = new GroupLayout(executionDialog.getContentPane());
         executionDialog.getContentPane().setLayout(executionDialogLayout);
         executionDialogLayout.setHorizontalGroup(
-            executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            executionDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(executionDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(executionDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(executionDialogLayout.createSequentialGroup()
-                        .addGroup(executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(executionDialogLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addComponent(executionPriceLabel)
                             .addComponent(executionSharesLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(executionDialogPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .addComponent(executionDialogShares, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, executionDialogLayout.createSequentialGroup()
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(executionDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(executionDialogPrice, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(executionDialogShares, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)))
+                    .addGroup(GroupLayout.Alignment.TRAILING, executionDialogLayout.createSequentialGroup()
                         .addComponent(executionDialogOK)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(executionDialogCancel)))
                 .addContainerGap())
 );
         executionDialogLayout.setVerticalGroup(
-            executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            executionDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(executionDialogLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(executionDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(executionSharesLabel)
-                    .addComponent(executionDialogShares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(executionDialogShares, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(executionDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(executionPriceLabel)
-                    .addComponent(executionDialogPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(executionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(executionDialogPrice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(executionDialogLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(executionDialogOK)
                     .addComponent(executionDialogCancel))
                 .addContainerGap())
 );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("FIXimulator");
-        setBounds(new java.awt.Rectangle(50, 50, 0, 0));
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setBounds(new Rectangle(50, 50, 0, 0));
+        setMinimumSize(new Dimension(800, 600));
         setName("fiximulatorFrame"); // NOI18N
         setResizable(false);
 
-        messagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Application Messages"));
+        messagePanel.setBorder(BorderFactory.createTitledBorder("Application Messages"));
 
         messageTable.setAutoCreateRowSorter(true);
         messageTable.setModel(new org.fiximulator.ui.MessageTableModel());
-        messageTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        messageTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
         for (int i = 0; i < messageTable.getColumnCount(); i++) {
             if (i ==0)
@@ -456,55 +495,55 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         }
         messageScrollPane.setViewportView(messageTable);
 
-        javax.swing.GroupLayout messagePanelLayout = new javax.swing.GroupLayout(messagePanel);
+        GroupLayout messagePanelLayout = new GroupLayout(messagePanel);
         messagePanel.setLayout(messagePanelLayout);
         messagePanelLayout.setHorizontalGroup(
-            messagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(messageScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
+            messagePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(messageScrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
 );
         messagePanelLayout.setVerticalGroup(
-            messagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(messageScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+            messagePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(messageScrollPane, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
 );
 
-        executorRunningLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/fiximulator/ui/red.gif"))); // NOI18N
+        executorRunningLabel.setIcon(new ImageIcon(getClass().getResource("/org/fiximulator/ui/red.gif"))); // NOI18N
         executorRunningLabel.setText("Executor status");
         FIXimulator.getApplication().addStatusCallbacks(clientConnectedLabel, ioiSenderRunningLabel, executorRunningLabel);
 
-        ioiSenderRunningLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/fiximulator/ui/red.gif"))); // NOI18N
+        ioiSenderRunningLabel.setIcon(new ImageIcon(getClass().getResource("/org/fiximulator/ui/red.gif"))); // NOI18N
         ioiSenderRunningLabel.setText("IOI sender status");
 
-        clientConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/fiximulator/ui/red.gif"))); // NOI18N
+        clientConnectedLabel.setIcon(new ImageIcon(getClass().getResource("/org/fiximulator/ui/red.gif"))); // NOI18N
         if (FIXimulator.getApplication().getConnectionStatus())
-        clientConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/fiximulator/ui/green.gif")));
+        clientConnectedLabel.setIcon(new ImageIcon(getClass().getResource("/org/fiximulator/ui/green.gif")));
         clientConnectedLabel.setText("Client connection status");
 
-        javax.swing.GroupLayout statusBarPanelLayout = new javax.swing.GroupLayout(statusBarPanel);
+        GroupLayout statusBarPanelLayout = new GroupLayout(statusBarPanel);
         statusBarPanel.setLayout(statusBarPanelLayout);
         statusBarPanelLayout.setHorizontalGroup(
-            statusBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            statusBarPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(statusBarPanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(clientConnectedLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ioiSenderRunningLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(executorRunningLabel)
                 .addContainerGap(69, Short.MAX_VALUE))
 );
         statusBarPanelLayout.setVerticalGroup(
-            statusBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(statusBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            statusBarPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(statusBarPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(clientConnectedLabel)
-                .addComponent(ioiSenderRunningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ioiSenderRunningLabel, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
                 .addComponent(executorRunningLabel))
 );
 
-        messageDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Message Details"));
+        messageDetailPanel.setBorder(BorderFactory.createTitledBorder("Message Details"));
 
         messageDetailTable.setAutoCreateRowSorter(true);
         messageDetailTable.setModel(new org.fiximulator.ui.MessageDetailTableModel(messageTable));
-        messageDetailTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        messageDetailTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for (int i = 0; i < messageDetailTable.getColumnCount(); i++) {
             if (i ==0)
             messageDetailTable.getColumnModel().
@@ -521,24 +560,24 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         }
         messageDetailScrollPane.setViewportView(messageDetailTable);
 
-        javax.swing.GroupLayout messageDetailPanelLayout = new javax.swing.GroupLayout(messageDetailPanel);
+        GroupLayout messageDetailPanelLayout = new GroupLayout(messageDetailPanel);
         messageDetailPanel.setLayout(messageDetailPanelLayout);
         messageDetailPanelLayout.setHorizontalGroup(
-            messageDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(messageDetailScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+            messageDetailPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(messageDetailScrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
 );
         messageDetailPanelLayout.setVerticalGroup(
-            messageDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            messageDetailPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(messageDetailPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(messageDetailScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(messageDetailScrollPane, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
 );
 
-        autoIOIPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Automated IOI Sender"));
+        autoIOIPanel.setBorder(BorderFactory.createTitledBorder("Automated IOI Sender"));
 
-        securityIDComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RIC", "Sedol", "RIC", "Cusip" }));
-        securityIDComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        securityIDComboBox.setModel(new DefaultComboBoxModel(new String[] { "RIC", "Sedol", "RIC", "Cusip" }));
+        securityIDComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 securityIDComboBoxActionPerformed(evt);
             }
         });
@@ -549,8 +588,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         rateSlider.setPaintLabels(true);
         rateSlider.setPaintTicks(true);
         rateSlider.setValue(60);
-        rateSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        rateSlider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 sliderChanged(evt);
             }
         });
@@ -561,22 +600,22 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         symbolLabel.setText("Symbol (55):");
 
         stopButton.setText("Stop");
-        stopButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        stopButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 stopButtonActionPerformed(evt);
             }
         });
 
         startButton.setText("Start");
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        startButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 startButtonActionPerformed(evt);
             }
         });
 
-        symbolComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ticker", "Sedol", "RIC", "Cusip" }));
-        symbolComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        symbolComboBox.setModel(new DefaultComboBoxModel(new String[] { "Ticker", "Sedol", "RIC", "Cusip" }));
+        symbolComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 symbolComboBoxActionPerformed(evt);
             }
         });
@@ -585,60 +624,60 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
 
         ioiSliderLabel.setText(" IOIs per minute:");
 
-        javax.swing.GroupLayout autoIOIPanelLayout = new javax.swing.GroupLayout(autoIOIPanel);
+        GroupLayout autoIOIPanelLayout = new GroupLayout(autoIOIPanel);
         autoIOIPanel.setLayout(autoIOIPanelLayout);
         autoIOIPanelLayout.setHorizontalGroup(
-            autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            autoIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(autoIOIPanelLayout.createSequentialGroup()
-                .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(autoIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(autoIOIPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(startButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(stopButton))
                     .addGroup(autoIOIPanelLayout.createSequentialGroup()
-                        .addComponent(ioiSliderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rateDisplayLable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ioiSliderLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rateDisplayLable, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
                     .addGroup(autoIOIPanelLayout.createSequentialGroup()
                         .addComponent(symbolLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(symbolComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(symbolComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(securityIDLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(securityIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rateSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(securityIDComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rateSlider, GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
                 .addContainerGap())
 );
 
-        autoIOIPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {startButton, stopButton});
+        autoIOIPanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {startButton, stopButton});
 
         autoIOIPanelLayout.setVerticalGroup(
-            autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, autoIOIPanelLayout.createSequentialGroup()
-                .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            autoIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, autoIOIPanelLayout.createSequentialGroup()
+                .addGroup(autoIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(symbolLabel)
-                    .addComponent(symbolComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(symbolComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(securityIDLabel)
-                    .addComponent(securityIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(securityIDComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(autoIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ioiSliderLabel)
-                    .addComponent(rateDisplayLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rateDisplayLable, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rateSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(autoIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(startButton)
                     .addComponent(stopButton)))
 );
 
-        autoExecutePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Automated Executor"));
+        autoExecutePanel.setBorder(BorderFactory.createTitledBorder("Automated Executor"));
 
         stopExecutorButton.setText("Stop");
-        stopExecutorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        stopExecutorButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 stopExecutorButtonActionPerformed(evt);
             }
         });
@@ -648,8 +687,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         partialsSlider.setPaintLabels(true);
         partialsSlider.setPaintTicks(true);
         partialsSlider.setValue(0);
-        partialsSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        partialsSlider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 partialsSliderChanged(evt);
             }
         });
@@ -660,129 +699,129 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         bindingGroup.addBinding(binding);
 
         startExecutorButton.setText("Start");
-        startExecutorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        startExecutorButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 startExecutorButtonActionPerformed(evt);
             }
         });
 
         delayLabel.setText("Delay:");
 
-        executorDelay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 ms", "10 ms", "100 ms", "1 second", "5 seconds" }));
-        executorDelay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        executorDelay.setModel(new DefaultComboBoxModel(new String[] { "1 ms", "10 ms", "100 ms", "1 second", "5 seconds" }));
+        executorDelay.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 executorDelayActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout autoExecutePanelLayout = new javax.swing.GroupLayout(autoExecutePanel);
+        GroupLayout autoExecutePanelLayout = new GroupLayout(autoExecutePanel);
         autoExecutePanel.setLayout(autoExecutePanelLayout);
         autoExecutePanelLayout.setHorizontalGroup(
-            autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            autoExecutePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(autoExecutePanelLayout.createSequentialGroup()
-                .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(autoExecutePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(autoExecutePanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(autoExecutePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(autoExecutePanelLayout.createSequentialGroup()
                                 .addComponent(delayLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(executorDelay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(executorDelay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(partialsLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(partialsNumber))
                             .addGroup(autoExecutePanelLayout.createSequentialGroup()
                                 .addComponent(startExecutorButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(stopExecutorButton))))
-                    .addComponent(partialsSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
+                    .addComponent(partialsSlider, GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
                 .addContainerGap())
 );
 
-        autoExecutePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {startExecutorButton, stopExecutorButton});
+        autoExecutePanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {startExecutorButton, stopExecutorButton});
 
         autoExecutePanelLayout.setVerticalGroup(
-            autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            autoExecutePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(autoExecutePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(autoExecutePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(delayLabel)
-                    .addComponent(executorDelay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(executorDelay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(partialsNumber)
                     .addComponent(partialsLabel))
                 .addGap(11, 11, 11)
-                .addComponent(partialsSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(partialsSlider, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(autoExecutePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(stopExecutorButton)
                     .addComponent(startExecutorButton))
                 .addGap(14, 14, 14))
 );
 
-        javax.swing.GroupLayout loadPanelLayout = new javax.swing.GroupLayout(loadPanel);
+        GroupLayout loadPanelLayout = new GroupLayout(loadPanel);
         loadPanel.setLayout(loadPanelLayout);
         loadPanelLayout.setHorizontalGroup(
-            loadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loadPanelLayout.createSequentialGroup()
-                .addGroup(loadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(autoExecutePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(autoIOIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            loadPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, loadPanelLayout.createSequentialGroup()
+                .addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(autoExecutePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(autoIOIPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
 );
         loadPanelLayout.setVerticalGroup(
-            loadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            loadPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(loadPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(autoIOIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(autoExecutePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(autoIOIPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(autoExecutePanel, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 );
 
         mainTabbedPane.addTab("Load", loadPanel);
 
-        manualIOIPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("IOIs"));
+        manualIOIPanel.setBorder(BorderFactory.createTitledBorder("IOIs"));
 
         singleIOIButton.setText("Add IOI");
-        singleIOIButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        singleIOIButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 singleIOIButtonActionPerformed(evt);
             }
         });
 
         cancelIOIButton.setText("Cancel IOI");
-        cancelIOIButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelIOIButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cancelIOIButtonActionPerformed(evt);
             }
         });
 
         replaceIOIButton.setText("Replace IOI");
-        replaceIOIButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        replaceIOIButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 replaceIOIButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout manualIOIPanelLayout = new javax.swing.GroupLayout(manualIOIPanel);
+        GroupLayout manualIOIPanelLayout = new GroupLayout(manualIOIPanel);
         manualIOIPanel.setLayout(manualIOIPanelLayout);
         manualIOIPanelLayout.setHorizontalGroup(
-            manualIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            manualIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(manualIOIPanelLayout.createSequentialGroup()
                 .addComponent(singleIOIButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(replaceIOIButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelIOIButton)
                 .addContainerGap(140, Short.MAX_VALUE))
 );
 
-        manualIOIPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelIOIButton, replaceIOIButton, singleIOIButton});
+        manualIOIPanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {cancelIOIButton, replaceIOIButton, singleIOIButton});
 
         manualIOIPanelLayout.setVerticalGroup(
-            manualIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manualIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            manualIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(manualIOIPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(singleIOIButton)
                 .addComponent(replaceIOIButton)
                 .addComponent(cancelIOIButton))
@@ -791,7 +830,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         ioiTable.setDefaultRenderer(Object.class, new IOICellRenderer());
         ioiTable.setAutoCreateRowSorter(true);
         ioiTable.setModel(new org.fiximulator.ui.IOITableModel());
-        ioiTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        ioiTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
         for (int i = 0; i < ioiTable.getColumnCount(); i++) {
             if (i ==0)
@@ -825,167 +864,167 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(100);
         }
-        ioiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ioiTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ioiScrollPane.setViewportView(ioiTable);
 
-        javax.swing.GroupLayout ioiPanelLayout = new javax.swing.GroupLayout(ioiPanel);
+        GroupLayout ioiPanelLayout = new GroupLayout(ioiPanel);
         ioiPanel.setLayout(ioiPanelLayout);
         ioiPanelLayout.setHorizontalGroup(
-            ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ioiPanelLayout.createSequentialGroup()
-                .addComponent(manualIOIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            ioiPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, ioiPanelLayout.createSequentialGroup()
+                .addComponent(manualIOIPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(ioiScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
+            .addGroup(ioiPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(ioiScrollPane, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
 );
         ioiPanelLayout.setVerticalGroup(
-            ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            ioiPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(ioiPanelLayout.createSequentialGroup()
-                .addComponent(manualIOIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manualIOIPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(262, Short.MAX_VALUE))
-            .addGroup(ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ioiPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(ioiPanelLayout.createSequentialGroup()
                     .addGap(54, 54, 54)
-                    .addComponent(ioiScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
+                    .addComponent(ioiScrollPane, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
 );
 
         mainTabbedPane.addTab("IOIs", ioiPanel);
 
-        orderActionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Orders"));
+        orderActionPanel.setBorder(BorderFactory.createTitledBorder("Orders"));
 
         acknowledgeButton.setText("Acknowledge");
-        acknowledgeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        acknowledgeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 acknowledgeButtonActionPerformed(evt);
             }
         });
 
         cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
 
         cancelPendingButton.setText("Pending Cancel");
-        cancelPendingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelPendingButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cancelPendingButtonActionPerformed(evt);
             }
         });
 
         replacePendingButton.setText("Pending Replace");
-        replacePendingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        replacePendingButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 replacePendingButtonActionPerformed(evt);
             }
         });
 
         executeButton.setText("Execute");
-        executeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        executeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 executeButtonActionPerformed(evt);
             }
         });
 
         dfdButton.setText("DFD");
-        dfdButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        dfdButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 dfdButtonActionPerformed(evt);
             }
         });
 
         cancelAcceptButton.setText("Accept Cancel");
-        cancelAcceptButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelAcceptButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cancelAcceptButtonActionPerformed(evt);
             }
         });
 
         replaceAcceptButton.setText("Accept Replace");
-        replaceAcceptButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        replaceAcceptButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 replaceAcceptButtonActionPerformed(evt);
             }
         });
 
         orderRejectButton.setText("Reject");
-        orderRejectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        orderRejectButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 orderRejectButtonActionPerformed(evt);
             }
         });
 
         cancelRejectButton.setText("Reject Cancel");
-        cancelRejectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelRejectButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cancelRejectButtonActionPerformed(evt);
             }
         });
 
         replaceRejectButton.setText("Reject Replace");
-        replaceRejectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        replaceRejectButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 replaceRejectButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout orderActionPanelLayout = new javax.swing.GroupLayout(orderActionPanel);
+        GroupLayout orderActionPanelLayout = new GroupLayout(orderActionPanel);
         orderActionPanel.setLayout(orderActionPanelLayout);
         orderActionPanelLayout.setHorizontalGroup(
-            orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, orderActionPanelLayout.createSequentialGroup()
+            orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, orderActionPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
                     .addGroup(orderActionPanelLayout.createSequentialGroup()
-                        .addComponent(orderRejectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(orderRejectButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(6, 6, 6)
-                        .addComponent(dfdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dfdButton, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
                     .addGroup(orderActionPanelLayout.createSequentialGroup()
-                        .addComponent(acknowledgeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(acknowledgeButton, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(cancelButton))
-                    .addComponent(executeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(executeButton, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
                     .addComponent(cancelRejectButton)
                     .addComponent(cancelAcceptButton)
                     .addComponent(cancelPendingButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
                     .addComponent(replacePendingButton)
                     .addComponent(replaceAcceptButton)
                     .addComponent(replaceRejectButton))
                 .addContainerGap())
 );
 
-        orderActionPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {replaceAcceptButton, replacePendingButton, replaceRejectButton});
+        orderActionPanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {replaceAcceptButton, replacePendingButton, replaceRejectButton});
 
-        orderActionPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelAcceptButton, cancelPendingButton, cancelRejectButton});
+        orderActionPanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {cancelAcceptButton, cancelPendingButton, cancelRejectButton});
 
-        orderActionPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, dfdButton});
+        orderActionPanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {cancelButton, dfdButton});
 
-        orderActionPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {acknowledgeButton, orderRejectButton});
+        orderActionPanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {acknowledgeButton, orderRejectButton});
 
         orderActionPanelLayout.setVerticalGroup(
-            orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(orderActionPanelLayout.createSequentialGroup()
-                .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(orderActionPanelLayout.createSequentialGroup()
-                        .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(cancelPendingButton)
-                            .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cancelButton)
                                 .addComponent(acknowledgeButton))
                             .addGroup(orderActionPanelLayout.createSequentialGroup()
                                 .addGap(29, 29, 29)
-                                .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(cancelAcceptButton)
-                                    .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(orderRejectButton)
                                         .addComponent(dfdButton)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(orderActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(orderActionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(cancelRejectButton)
                             .addComponent(replaceRejectButton)
                             .addComponent(executeButton)))
@@ -999,7 +1038,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         //ioiTable.setDefaultRenderer(Object.class, new IOICellRenderer());
         orderTable.setAutoCreateRowSorter(true);
         orderTable.setModel(new org.fiximulator.ui.OrderTableModel());
-        orderTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        orderTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
         for (int i = 0; i < orderTable.getColumnCount(); i++) {
             if (i ==0) // Order ID
@@ -1042,57 +1081,57 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             orderTable.getColumnModel().
             getColumn(i).setPreferredWidth(90);
         }
-        orderTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        orderTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         orderScrollPane.setViewportView(orderTable);
 
-        javax.swing.GroupLayout orderPanelLayout = new javax.swing.GroupLayout(orderPanel);
+        GroupLayout orderPanelLayout = new GroupLayout(orderPanel);
         orderPanel.setLayout(orderPanelLayout);
         orderPanelLayout.setHorizontalGroup(
-            orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(orderScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            orderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(orderScrollPane, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(orderPanelLayout.createSequentialGroup()
-                .addComponent(orderActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(orderActionPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
 );
         orderPanelLayout.setVerticalGroup(
-            orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            orderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(orderPanelLayout.createSequentialGroup()
-                .addComponent(orderActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(orderScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                .addComponent(orderActionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(orderScrollPane, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
 );
 
         mainTabbedPane.addTab("Orders", orderPanel);
 
-        executionActionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Executions"));
+        executionActionPanel.setBorder(BorderFactory.createTitledBorder("Executions"));
 
         executionBustButton.setText("Bust");
-        executionBustButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        executionBustButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 executionBustButtonActionPerformed(evt);
             }
         });
 
         executionCorrectButton.setText("Correct");
-        executionCorrectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        executionCorrectButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 executionCorrectButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout executionActionPanelLayout = new javax.swing.GroupLayout(executionActionPanel);
+        GroupLayout executionActionPanelLayout = new GroupLayout(executionActionPanel);
         executionActionPanel.setLayout(executionActionPanelLayout);
         executionActionPanelLayout.setHorizontalGroup(
-            executionActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            executionActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(executionActionPanelLayout.createSequentialGroup()
                 .addComponent(executionBustButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(executionCorrectButton)
                 .addGap(228, 228, 228))
 );
         executionActionPanelLayout.setVerticalGroup(
-            executionActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(executionActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            executionActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(executionActionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(executionBustButton)
                 .addComponent(executionCorrectButton))
 );
@@ -1100,7 +1139,7 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         executionTable.setDefaultRenderer(Object.class, new ExecutionCellRenderer());
         executionTable.setAutoCreateRowSorter(true);
         executionTable.setModel(new org.fiximulator.ui.ExecutionTableModel());
-        executionTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        executionTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
         for (int i = 0; i < executionTable.getColumnCount(); i++) {
             if (i ==0) // ID
@@ -1140,29 +1179,29 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             executionTable.getColumnModel().
             getColumn(i).setPreferredWidth(90);
         }
-        executionTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        executionTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         executionScrollPane.setViewportView(executionTable);
 
-        javax.swing.GroupLayout executionPanelLayout = new javax.swing.GroupLayout(executionPanel);
+        GroupLayout executionPanelLayout = new GroupLayout(executionPanel);
         executionPanel.setLayout(executionPanelLayout);
         executionPanelLayout.setHorizontalGroup(
-            executionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(executionActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            executionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(executionActionPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(executionScrollPane, 0, 0, Short.MAX_VALUE)
 );
         executionPanelLayout.setVerticalGroup(
-            executionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            executionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(executionPanelLayout.createSequentialGroup()
-                .addComponent(executionActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(executionScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                .addComponent(executionActionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(executionScrollPane, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
 );
 
         mainTabbedPane.addTab("Executions", executionPanel);
 
         instrumentTable.setAutoCreateRowSorter(true);
         instrumentTable.setModel(new org.fiximulator.ui.InstrumentTableModel());
-        instrumentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        instrumentTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
         for (int i = 0; i < instrumentTable.getColumnCount(); i++) {
             if (i ==0)
@@ -1172,29 +1211,29 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             instrumentTable.getColumnModel().
             getColumn(i).setPreferredWidth(200);
         }
-        instrumentTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        instrumentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         instrumentScrollPane.setViewportView(instrumentTable);
 
-        javax.swing.GroupLayout instrumentPanelLayout = new javax.swing.GroupLayout(instrumentPanel);
+        GroupLayout instrumentPanelLayout = new GroupLayout(instrumentPanel);
         instrumentPanel.setLayout(instrumentPanelLayout);
         instrumentPanelLayout.setHorizontalGroup(
-            instrumentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(instrumentScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+            instrumentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(instrumentScrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
 );
         instrumentPanelLayout.setVerticalGroup(
-            instrumentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            instrumentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(instrumentPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(instrumentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
+                .addComponent(instrumentScrollPane, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
 );
 
         mainTabbedPane.addTab("Instruments", instrumentPanel);
 
-        reportActionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Reporting"));
+        reportActionPanel.setBorder(BorderFactory.createTitledBorder("Reporting"));
 
         customQueryRunButton.setText("Run");
-        customQueryRunButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        customQueryRunButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 customQueryRunButtonActionPerformed(evt);
             }
         });
@@ -1203,84 +1242,84 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
 
         queryText.setText("select text from messages_log where text like '%35=6%';");
 
-        cannedQueryCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Show last 10 IOIs...", "Show last 10 orders...", "Show last 10 executions...", "Show all IOIs where Symbol(55) is...", "Show all orders where Symbol(55) is...", "Show all executions where Symbol(55) is...", "Show all activity where Symbol(55) is..." }));
+        cannedQueryCombo.setModel(new DefaultComboBoxModel(new String[] { "Show last 10 IOIs...", "Show last 10 orders...", "Show last 10 executions...", "Show all IOIs where Symbol(55) is...", "Show all orders where Symbol(55) is...", "Show all executions where Symbol(55) is...", "Show all activity where Symbol(55) is..." }));
 
         querySymbolLabel.setText("Symbol:");
 
         cannedQueryRunButton.setText("Run");
-        cannedQueryRunButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cannedQueryRunButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cannedQueryRunButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout reportActionPanelLayout = new javax.swing.GroupLayout(reportActionPanel);
+        GroupLayout reportActionPanelLayout = new GroupLayout(reportActionPanel);
         reportActionPanel.setLayout(reportActionPanelLayout);
         reportActionPanelLayout.setHorizontalGroup(
-            reportActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(reportActionPanelLayout.createSequentialGroup()
-                .addGroup(reportActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(reportActionPanelLayout.createSequentialGroup()
-                        .addComponent(cannedQueryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cannedQueryCombo, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(querySymbolLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(querySymbolText))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportActionPanelLayout.createSequentialGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, reportActionPanelLayout.createSequentialGroup()
                         .addComponent(queryLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(queryText, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(reportActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(queryText, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(cannedQueryRunButton)
                     .addComponent(customQueryRunButton))
                 .addContainerGap())
 );
         reportActionPanelLayout.setVerticalGroup(
-            reportActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(reportActionPanelLayout.createSequentialGroup()
-                .addGroup(reportActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(queryLabel)
                     .addComponent(customQueryRunButton)
-                    .addComponent(queryText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(reportActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(queryText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(reportActionPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(cannedQueryRunButton)
-                    .addComponent(querySymbolText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(querySymbolText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(querySymbolLabel)
-                    .addComponent(cannedQueryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cannedQueryCombo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
 );
 
         executionTable.setDefaultRenderer(Object.class, new ExecutionCellRenderer());
         reportTable.setAutoCreateRowSorter(true);
         reportTable.setModel(new QueryTableModel());
-        reportTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        reportTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        reportTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        reportTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         reportScrollPane.setViewportView(reportTable);
 
-        javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
+        GroupLayout reportPanelLayout = new GroupLayout(reportPanel);
         reportPanel.setLayout(reportPanelLayout);
         reportPanelLayout.setHorizontalGroup(
-            reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
-                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(reportScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                    .addComponent(reportActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
+            reportPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
+                .addGroup(reportPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(reportScrollPane, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                    .addComponent(reportActionPanel, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
                 .addContainerGap())
 );
         reportPanelLayout.setVerticalGroup(
-            reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
-                .addComponent(reportActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reportScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+            reportPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
+                .addComponent(reportActionPanel, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reportScrollPane, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
 );
 
         mainTabbedPane.addTab("Reports", reportPanel);
 
-        autoResponsePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Automated Responses"));
+        autoResponsePanel.setBorder(BorderFactory.createTitledBorder("Automated Responses"));
 
         autoAcknowledge.setText("Acknowledge orders on receipt");
         try {
@@ -1288,8 +1327,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoAcknowledge"));
         } catch (Exception e) {}
-        autoAcknowledge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        autoAcknowledge.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 autoAcknowledgeActionPerformed(evt);
             }
         });
@@ -1300,8 +1339,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoPendingCancel"));
         } catch (Exception e) {}
-        autoPendingCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        autoPendingCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 autoPendingCancelActionPerformed(evt);
             }
         });
@@ -1312,8 +1351,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoPendingReplace"));
         } catch (Exception e) {}
-        autoPendingReplace.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        autoPendingReplace.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 autoPendingReplaceActionPerformed(evt);
             }
         });
@@ -1324,8 +1363,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoCancel"));
         } catch (Exception e) {}
-        autoCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        autoCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 autoCancelActionPerformed(evt);
             }
         });
@@ -1336,61 +1375,61 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorAutoReplace"));
         } catch (Exception e) {}
-        autoReplace.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        autoReplace.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 autoReplaceActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout autoResponsePanelLayout = new javax.swing.GroupLayout(autoResponsePanel);
+        GroupLayout autoResponsePanelLayout = new GroupLayout(autoResponsePanel);
         autoResponsePanel.setLayout(autoResponsePanelLayout);
         autoResponsePanelLayout.setHorizontalGroup(
-            autoResponsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            autoResponsePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(autoResponsePanelLayout.createSequentialGroup()
-                .addGroup(autoResponsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(autoResponsePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(autoPendingCancel)
                     .addComponent(autoCancel)
-                    .addComponent(cancelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelSeparator, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
                     .addComponent(autoAcknowledge)
-                    .addComponent(replaceSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(replaceSeparator, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
                     .addComponent(autoPendingReplace)
                     .addComponent(autoReplace))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 );
         autoResponsePanelLayout.setVerticalGroup(
-            autoResponsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            autoResponsePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(autoResponsePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(autoAcknowledge)
                 .addGap(6, 6, 6)
-                .addComponent(cancelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancelSeparator, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(autoPendingCancel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(autoCancel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(replaceSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(replaceSeparator, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(autoPendingReplace)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(autoReplace)
                 .addContainerGap(76, Short.MAX_VALUE))
 );
 
         saveSettingsButton.setText("Save Settings");
-        saveSettingsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        saveSettingsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 saveSettingsButtonActionPerformed(evt);
             }
         });
 
-        appSettingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("FIXimulator Settings"));
+        appSettingsPanel.setBorder(BorderFactory.createTitledBorder("FIXimulator Settings"));
 
         pricePrecisionLabel.setText("Price precision:");
 
         cachedObjectsLabel.setText("Number of cached objects:");
 
-        cachedObjectsCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "200" }));
+        cachedObjectsCombo.setModel(new DefaultComboBoxModel(new String[] { "50", "100", "200" }));
         try {
             Long settingValue = FIXimulator.getApplication().getSettings()
             .getLong("FIXimulatorCachedObjects");
@@ -1408,13 +1447,13 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             FIXimulator.getApplication().getSettings()
             .setLong("FIXimulatorCachedObjects", 50);
         }
-        cachedObjectsCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cachedObjectsCombo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cachedObjectsComboActionPerformed(evt);
             }
         });
 
-        pricePrecisionCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        pricePrecisionCombo.setModel(new DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         try {
             Long settingValue = FIXimulator.getApplication().getSettings()
             .getLong("FIXimulatorPricePrecision");
@@ -1432,8 +1471,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
             FIXimulator.getApplication().getSettings()
             .setLong("FIXimulatorPricePrecision", 4);
         }
-        pricePrecisionCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        pricePrecisionCombo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 pricePrecisionComboActionPerformed(evt);
             }
         });
@@ -1444,8 +1483,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorSendOnBehalfOfCompID"));
         } catch (Exception e) {}
-        sendOnBehalfOfCompID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sendOnBehalfOfCompID.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 sendOnBehalfOfCompIDActionPerformed(evt);
             }
         });
@@ -1456,8 +1495,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorSendOnBehalfOfSubID"));
         } catch (Exception e) {}
-        sendOnBehalfOfSubID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sendOnBehalfOfSubID.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 sendOnBehalfOfSubIDActionPerformed(evt);
             }
         });
@@ -1470,8 +1509,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorLogToFile"));
         } catch (Exception e) {}
-        logToFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        logToFile.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 logToFileActionPerformed(evt);
             }
         });
@@ -1482,105 +1521,105 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
                 FIXimulator.getApplication().getSettings()
                 .getBool("FIXimulatorLogToDB"));
         } catch (Exception e) {}
-        logToDB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        logToDB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 logToDBActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout appSettingsPanelLayout = new javax.swing.GroupLayout(appSettingsPanel);
+        GroupLayout appSettingsPanelLayout = new GroupLayout(appSettingsPanel);
         appSettingsPanel.setLayout(appSettingsPanelLayout);
         appSettingsPanelLayout.setHorizontalGroup(
-            appSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(appSettingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(appSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logToFileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(logToFileLabel, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
                     .addGroup(appSettingsPanelLayout.createSequentialGroup()
                         .addComponent(logToFile)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logToDB))
                     .addComponent(oboCompIDSeparator1)
                     .addComponent(sendOnBehalfOfSubID)
                     .addGroup(appSettingsPanelLayout.createSequentialGroup()
-                        .addGroup(appSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(cachedObjectsLabel)
                             .addComponent(pricePrecisionLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(appSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cachedObjectsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pricePrecisionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(oboCompIDSeparator, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(cachedObjectsCombo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pricePrecisionCombo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(oboCompIDSeparator, GroupLayout.Alignment.TRAILING)
                     .addComponent(sendOnBehalfOfCompID))
                 .addContainerGap())
 );
 
-        appSettingsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cachedObjectsCombo, pricePrecisionCombo});
+        appSettingsPanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {cachedObjectsCombo, pricePrecisionCombo});
 
         appSettingsPanelLayout.setVerticalGroup(
-            appSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(appSettingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(appSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(pricePrecisionLabel)
-                    .addComponent(pricePrecisionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(appSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pricePrecisionCombo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(cachedObjectsLabel)
-                    .addComponent(cachedObjectsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cachedObjectsCombo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(oboCompIDSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(oboCompIDSeparator, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sendOnBehalfOfCompID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sendOnBehalfOfSubID)
                 .addGap(12, 12, 12)
-                .addComponent(oboCompIDSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logToFileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(appSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(oboCompIDSeparator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logToFileLabel, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(logToFile)
                     .addComponent(logToDB))
                 .addContainerGap())
 );
 
         showSettingsButton.setText("Show Settings");
-        showSettingsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        showSettingsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 showSettingsButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout settingsPanelLayout = new javax.swing.GroupLayout(settingsPanel);
+        GroupLayout settingsPanelLayout = new GroupLayout(settingsPanel);
         settingsPanel.setLayout(settingsPanelLayout);
         settingsPanelLayout.setHorizontalGroup(
-            settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            settingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(settingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(settingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(settingsPanelLayout.createSequentialGroup()
-                        .addComponent(autoResponsePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appSettingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createSequentialGroup()
+                        .addComponent(autoResponsePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(appSettingsPanel, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, settingsPanelLayout.createSequentialGroup()
                         .addComponent(showSettingsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveSettingsButton)))
                 .addContainerGap())
 );
 
-        settingsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {saveSettingsButton, showSettingsButton});
+        settingsPanelLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {saveSettingsButton, showSettingsButton});
 
         settingsPanelLayout.setVerticalGroup(
-            settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsPanelLayout.createSequentialGroup()
+            settingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, settingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(appSettingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(autoResponsePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(settingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(appSettingsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(autoResponsePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(settingsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(saveSettingsButton)
                     .addComponent(showSettingsButton))
                 .addContainerGap())
@@ -1591,8 +1630,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         fileMenu.setText("File");
 
         exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
             }
         });
@@ -1601,8 +1640,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         mainMenuBar.add(fileMenu);
 
         loadInstrumentMenuItem.setText("Load Instruments...");
-        loadInstrumentMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        loadInstrumentMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 loadInstrumentMenuItemActionPerformed(evt);
             }
         });
@@ -1611,8 +1650,8 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         mainMenuBar.add(instrumentMenu);
 
         aboutMenuItem.setText("About...");
-        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        aboutMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 aboutMenuItemActionPerformed(evt);
             }
         });
@@ -1622,32 +1661,32 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
 
         setJMenuBar(mainMenuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(messagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(messageDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(statusBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(messagePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(mainTabbedPane, GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(messageDetailPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(statusBarPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
 );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(messageDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(messagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(messageDetailPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(messagePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusBarPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
 );
 
@@ -1656,21 +1695,21 @@ public class FIXimulatorFrame extends javax.swing.JFrame {
         pack();
     } // < / editor - fold> // GEN - END:initComponents
 
-private void okButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_okButtonActionPerformed
+private void okButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_okButtonActionPerformed
     aboutDialog.dispose();
 } // GEN - LAST:event_okButtonActionPerformed
 
-private void symbolComboBoxActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_symbolComboBoxActionPerformed
+private void symbolComboBoxActionPerformed(ActionEvent evt) { // GEN - FIRST:event_symbolComboBoxActionPerformed
     FIXimulator.getApplication().setNewSymbol(
             symbolComboBox.getSelectedItem().toString());
 } // GEN - LAST:event_symbolComboBoxActionPerformed
 
-private void securityIDComboBoxActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_securityIDComboBoxActionPerformed
+private void securityIDComboBoxActionPerformed(ActionEvent evt) { // GEN - FIRST:event_securityIDComboBoxActionPerformed
     FIXimulator.getApplication().setNewSecurityID(
             securityIDComboBox.getSelectedItem().toString());
 } // GEN - LAST:event_securityIDComboBoxActionPerformed
 
-private void startButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_startButtonActionPerformed
+private void startButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_startButtonActionPerformed
     String symbol = symbolComboBox.getSelectedItem().toString();
     String securityID = securityIDComboBox.getSelectedItem().toString();
     int rate = (int)rateSlider.getValue();
@@ -1679,7 +1718,7 @@ private void startButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN
     FIXimulator.getApplication().startIOIsender(delay, symbol, securityID);
 } // GEN - LAST:event_startButtonActionPerformed
 
-private void sliderChanged(javax.swing.event.ChangeEvent evt) { // GEN - FIRST:event_sliderChanged
+private void sliderChanged(ChangeEvent evt) { // GEN - FIRST:event_sliderChanged
    if (!rateSlider.getValueIsAdjusting()) {
         int rate = (int)rateSlider.getValue();
         if (rate == 0) rate = 1;
@@ -1688,11 +1727,11 @@ private void sliderChanged(javax.swing.event.ChangeEvent evt) { // GEN - FIRST:e
     }
 } // GEN - LAST:event_sliderChanged
 
-private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_stopButtonActionPerformed
+private void stopButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_stopButtonActionPerformed
     FIXimulator.getApplication().stopIOIsender();
 } // GEN - LAST:event_stopButtonActionPerformed
 
-private void singleIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_singleIOIButtonActionPerformed
+private void singleIOIButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_singleIOIButtonActionPerformed
     dialogIOI = new IOI();
     dialogIOI.setType("NEW");
     ioiDialog.setTitle("Add IOI...");
@@ -1705,7 +1744,7 @@ private void singleIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { //
     ioiDialog.setVisible(true);
 } // GEN - LAST:event_singleIOIButtonActionPerformed
 
-private void startExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_startExecutorButtonActionPerformed
+private void startExecutorButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_startExecutorButtonActionPerformed
     int delay = 1;
     if (this.executorDelay.getSelectedItem().toString().equals("10 ms"))
         delay = 10;
@@ -1720,15 +1759,15 @@ private void startExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) 
     FIXimulator.getApplication().startExecutor(delay, partials);
 } // GEN - LAST:event_startExecutorButtonActionPerformed
 
-private void stopExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_stopExecutorButtonActionPerformed
+private void stopExecutorButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_stopExecutorButtonActionPerformed
     FIXimulator.getApplication().stopExecutor();
 } // GEN - LAST:event_stopExecutorButtonActionPerformed
 
-private void ioiDialogCancelActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_ioiDialogCancelActionPerformed
+private void ioiDialogCancelActionPerformed(ActionEvent evt) { // GEN - FIRST:event_ioiDialogCancelActionPerformed
     ioiDialog.dispose();
 } // GEN - LAST:event_ioiDialogCancelActionPerformed
 
-private void ioiDialogOKActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_ioiDialogOKActionPerformed
+private void ioiDialogOKActionPerformed(ActionEvent evt) { // GEN - FIRST:event_ioiDialogOKActionPerformed
     // Set fields
     dialogIOI.setSide(ioiDialogSide.getSelectedItem().toString());
     dialogIOI.setQuantity(Integer.parseInt(ioiDialogShares.getText()));
@@ -1741,7 +1780,7 @@ private void ioiDialogOKActionPerformed(java.awt.event.ActionEvent evt) { // GEN
     ioiDialog.dispose();
 } // GEN - LAST:event_ioiDialogOKActionPerformed
 
-private void cancelIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelIOIButtonActionPerformed
+private void cancelIOIButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cancelIOIButtonActionPerformed
     int row = ioiTable.getSelectedRow();
     // if there is a row selected
     if (row != -1) {
@@ -1753,7 +1792,7 @@ private void cancelIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { //
     }
 } // GEN - LAST:event_cancelIOIButtonActionPerformed
 
-private void replaceIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_replaceIOIButtonActionPerformed
+private void replaceIOIButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_replaceIOIButtonActionPerformed
     int row = ioiTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -1786,7 +1825,7 @@ private void replaceIOIButtonActionPerformed(java.awt.event.ActionEvent evt) { /
     }
 } // GEN - LAST:event_replaceIOIButtonActionPerformed
 
-private void acknowledgeButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_acknowledgeButtonActionPerformed
+private void acknowledgeButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_acknowledgeButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -1803,7 +1842,7 @@ private void acknowledgeButtonActionPerformed(java.awt.event.ActionEvent evt) { 
     }
 } // GEN - LAST:event_acknowledgeButtonActionPerformed
 
-private void partialsSliderChanged(javax.swing.event.ChangeEvent evt) { // GEN - FIRST:event_partialsSliderChanged
+private void partialsSliderChanged(ChangeEvent evt) { // GEN - FIRST:event_partialsSliderChanged
    if (!this.partialsSlider.getValueIsAdjusting()) {
         int partials = (int)partialsSlider.getValue();
         if (partials == 0) partials = 1;
@@ -1812,7 +1851,7 @@ private void partialsSliderChanged(javax.swing.event.ChangeEvent evt) { // GEN -
     }
 } // GEN - LAST:event_partialsSliderChanged
 
-private void executionBustButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executionBustButtonActionPerformed
+private void executionBustButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_executionBustButtonActionPerformed
     int row = executionTable.getSelectedRow();
     // if there is a row selected
     if (row != -1) {
@@ -1830,7 +1869,7 @@ private void executionBustButtonActionPerformed(java.awt.event.ActionEvent evt) 
     }
 } // GEN - LAST:event_executionBustButtonActionPerformed
 
-private void executorDelayActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executorDelayActionPerformed
+private void executorDelayActionPerformed(ActionEvent evt) { // GEN - FIRST:event_executorDelayActionPerformed
     int delay = 1;
     String value = executorDelay.getSelectedItem().toString();
     if (value.equals("10 ms")) delay = 10;
@@ -1840,46 +1879,46 @@ private void executorDelayActionPerformed(java.awt.event.ActionEvent evt) { // G
     FIXimulator.getApplication().setNewExecutorDelay(delay);
 } // GEN - LAST:event_executorDelayActionPerformed
 
-private void autoReplaceActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoReplaceActionPerformed
+private void autoReplaceActionPerformed(ActionEvent evt) { // GEN - FIRST:event_autoReplaceActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoReplace",
         autoReplace.isSelected());
 } // GEN - LAST:event_autoReplaceActionPerformed
 
-private void autoPendingCancelActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoPendingCancelActionPerformed
+private void autoPendingCancelActionPerformed(ActionEvent evt) { // GEN - FIRST:event_autoPendingCancelActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoPendingCancel",
         autoPendingCancel.isSelected());
 } // GEN - LAST:event_autoPendingCancelActionPerformed
 
-private void autoAcknowledgeActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoAcknowledgeActionPerformed
+private void autoAcknowledgeActionPerformed(ActionEvent evt) { // GEN - FIRST:event_autoAcknowledgeActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoAcknowledge",
         autoAcknowledge.isSelected());
 } // GEN - LAST:event_autoAcknowledgeActionPerformed
 
-private void autoPendingReplaceActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoPendingReplaceActionPerformed
+private void autoPendingReplaceActionPerformed(ActionEvent evt) { // GEN - FIRST:event_autoPendingReplaceActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoPendingReplace",
         autoPendingReplace.isSelected());
 } // GEN - LAST:event_autoPendingReplaceActionPerformed
 
-private void autoCancelActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_autoCancelActionPerformed
+private void autoCancelActionPerformed(ActionEvent evt) { // GEN - FIRST:event_autoCancelActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorAutoCancel",
         autoCancel.isSelected());
 } // GEN - LAST:event_autoCancelActionPerformed
 
-private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_saveSettingsButtonActionPerformed
+private void saveSettingsButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_saveSettingsButtonActionPerformed
     FIXimulator.getApplication().saveSettings();
 } // GEN - LAST:event_saveSettingsButtonActionPerformed
 
-private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_exitMenuItemActionPerformed
+private void exitMenuItemActionPerformed(ActionEvent evt) { // GEN - FIRST:event_exitMenuItemActionPerformed
 System.exit(0);
 } // GEN - LAST:event_exitMenuItemActionPerformed
 
     @SuppressWarnings("static-access")
-private void loadInstrumentMenuItemActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_loadInstrumentMenuItemActionPerformed
+private void loadInstrumentMenuItemActionPerformed(ActionEvent evt) { // GEN - FIRST:event_loadInstrumentMenuItemActionPerformed
 int result = instrumentFileChooser.showOpenDialog(this);
     if (result == instrumentFileChooser.APPROVE_OPTION) {
         File file = instrumentFileChooser.getSelectedFile();
@@ -1889,40 +1928,40 @@ int result = instrumentFileChooser.showOpenDialog(this);
     }
 } // GEN - LAST:event_loadInstrumentMenuItemActionPerformed
 
-private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_aboutMenuItemActionPerformed
+private void aboutMenuItemActionPerformed(ActionEvent evt) { // GEN - FIRST:event_aboutMenuItemActionPerformed
 aboutDialog.pack();
     aboutDialog.setVisible(true);
 } // GEN - LAST:event_aboutMenuItemActionPerformed
 
-private void pricePrecisionComboActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_pricePrecisionComboActionPerformed
+private void pricePrecisionComboActionPerformed(ActionEvent evt) { // GEN - FIRST:event_pricePrecisionComboActionPerformed
     FIXimulator.getApplication().getSettings()
             .setLong("FIXimulatorPricePrecision",
             Long.valueOf(pricePrecisionCombo.getSelectedItem().toString()));
 } // GEN - LAST:event_pricePrecisionComboActionPerformed
 
-private void sendOnBehalfOfCompIDActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_sendOnBehalfOfCompIDActionPerformed
+private void sendOnBehalfOfCompIDActionPerformed(ActionEvent evt) { // GEN - FIRST:event_sendOnBehalfOfCompIDActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorSendOnBehalfOfCompID",
         sendOnBehalfOfCompID.isSelected());
 } // GEN - LAST:event_sendOnBehalfOfCompIDActionPerformed
 
-private void sendOnBehalfOfSubIDActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_sendOnBehalfOfSubIDActionPerformed
+private void sendOnBehalfOfSubIDActionPerformed(ActionEvent evt) { // GEN - FIRST:event_sendOnBehalfOfSubIDActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorSendOnBehalfOfSubID",
         sendOnBehalfOfSubID.isSelected());
 } // GEN - LAST:event_sendOnBehalfOfSubIDActionPerformed
 
-private void cachedObjectsComboActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cachedObjectsComboActionPerformed
+private void cachedObjectsComboActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cachedObjectsComboActionPerformed
     FIXimulator.getApplication().getSettings()
             .setLong("FIXimulatorCachedObjects",
             Long.valueOf(cachedObjectsCombo.getSelectedItem().toString()));
 } // GEN - LAST:event_cachedObjectsComboActionPerformed
 
-private void showSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_showSettingsButtonActionPerformed
+private void showSettingsButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_showSettingsButtonActionPerformed
     System.out.println(FIXimulator.getApplication().getSettings().toString());
 } // GEN - LAST:event_showSettingsButtonActionPerformed
 
-private void orderRejectButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_orderRejectButtonActionPerformed
+private void orderRejectButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_orderRejectButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -1939,7 +1978,7 @@ private void orderRejectButtonActionPerformed(java.awt.event.ActionEvent evt) { 
     }
 } // GEN - LAST:event_orderRejectButtonActionPerformed
 
-private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelButtonActionPerformed
+private void cancelButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cancelButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -1949,7 +1988,7 @@ private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) { // GE
     }
 } // GEN - LAST:event_cancelButtonActionPerformed
 
-private void dfdButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_dfdButtonActionPerformed
+private void dfdButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_dfdButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -1959,7 +1998,7 @@ private void dfdButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN -
     }
 } // GEN - LAST:event_dfdButtonActionPerformed
 
-private void cancelPendingButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelPendingButtonActionPerformed
+private void cancelPendingButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cancelPendingButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -1974,7 +2013,7 @@ private void cancelPendingButtonActionPerformed(java.awt.event.ActionEvent evt) 
     }
 } // GEN - LAST:event_cancelPendingButtonActionPerformed
 
-private void cancelAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelAcceptButtonActionPerformed
+private void cancelAcceptButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cancelAcceptButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -1984,7 +2023,7 @@ private void cancelAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {
     }
 } // GEN - LAST:event_cancelAcceptButtonActionPerformed
 
-private void replacePendingButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_replacePendingButtonActionPerformed
+private void replacePendingButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_replacePendingButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -1999,7 +2038,7 @@ private void replacePendingButtonActionPerformed(java.awt.event.ActionEvent evt)
     }
 } // GEN - LAST:event_replacePendingButtonActionPerformed
 
-private void replaceAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_replaceAcceptButtonActionPerformed
+private void replaceAcceptButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_replaceAcceptButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -2015,7 +2054,7 @@ private void replaceAcceptButtonActionPerformed(java.awt.event.ActionEvent evt) 
     }
 } // GEN - LAST:event_replaceAcceptButtonActionPerformed
 
-private void cancelRejectButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cancelRejectButtonActionPerformed
+private void cancelRejectButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cancelRejectButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -2031,7 +2070,7 @@ private void cancelRejectButtonActionPerformed(java.awt.event.ActionEvent evt) {
     }
 } // GEN - LAST:event_cancelRejectButtonActionPerformed
 
-private void replaceRejectButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_replaceRejectButtonActionPerformed
+private void replaceRejectButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_replaceRejectButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -2047,7 +2086,7 @@ private void replaceRejectButtonActionPerformed(java.awt.event.ActionEvent evt) 
     }
 } // GEN - LAST:event_replaceRejectButtonActionPerformed
 
-private void executionDialogOKActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executionDialogOKActionPerformed
+private void executionDialogOKActionPerformed(ActionEvent evt) { // GEN - FIRST:event_executionDialogOKActionPerformed
     dialogExecution.setLastShares(
             Integer.parseInt(executionDialogShares.getText()));
     dialogExecution.setLastPx(
@@ -2063,11 +2102,11 @@ private void executionDialogOKActionPerformed(java.awt.event.ActionEvent evt) { 
     executionDialog.dispose();
 } // GEN - LAST:event_executionDialogOKActionPerformed
 
-private void executionDialogCancelActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executionDialogCancelActionPerformed
+private void executionDialogCancelActionPerformed(ActionEvent evt) { // GEN - FIRST:event_executionDialogCancelActionPerformed
     executionDialog.dispose();
 } // GEN - LAST:event_executionDialogCancelActionPerformed
 
-private void executeButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executeButtonActionPerformed
+private void executeButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_executeButtonActionPerformed
     int row = orderTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -2081,7 +2120,7 @@ private void executeButtonActionPerformed(java.awt.event.ActionEvent evt) { // G
     }
 } // GEN - LAST:event_executeButtonActionPerformed
 
-private void executionCorrectButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_executionCorrectButtonActionPerformed
+private void executionCorrectButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_executionCorrectButtonActionPerformed
     int row = executionTable.getSelectedRow();
     // if no rows are selected
     if (row != -1) {
@@ -2103,24 +2142,24 @@ private void executionCorrectButtonActionPerformed(java.awt.event.ActionEvent ev
     }
 } // GEN - LAST:event_executionCorrectButtonActionPerformed
 
-private void logToFileActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_logToFileActionPerformed
+private void logToFileActionPerformed(ActionEvent evt) { // GEN - FIRST:event_logToFileActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorLogToFile",
         sendOnBehalfOfSubID.isSelected());
 } // GEN - LAST:event_logToFileActionPerformed
 
-private void logToDBActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_logToDBActionPerformed
+private void logToDBActionPerformed(ActionEvent evt) { // GEN - FIRST:event_logToDBActionPerformed
     FIXimulator.getApplication().getSettings()
         .setBool("FIXimulatorLogToDB",
         sendOnBehalfOfSubID.isSelected());
 } // GEN - LAST:event_logToDBActionPerformed
 
-private void customQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_customQueryRunButtonActionPerformed
+private void customQueryRunButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_customQueryRunButtonActionPerformed
     QueryTableModel qtm = (QueryTableModel) reportTable.getModel();
     qtm.setQuery(queryText.getText().trim());
 } // GEN - LAST:event_customQueryRunButtonActionPerformed
 
-private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN - FIRST:event_cannedQueryRunButtonActionPerformed
+private void cannedQueryRunButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cannedQueryRunButtonActionPerformed
     QueryTableModel qtm = (QueryTableModel) reportTable.getModel();
     String can = cannedQueryCombo.getSelectedItem().toString();
     String symbol = querySymbolText.getText().toString().trim().toLowerCase();
@@ -2160,7 +2199,7 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
 } // GEN - LAST:event_cannedQueryRunButtonActionPerformed
 
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        EventQueue.invokeLater(new Runnable() {
             public void run() {
                 fiximulator = new FIXimulator();
                 fiximulator.start();
@@ -2170,139 +2209,139 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog aboutDialog;
-    private javax.swing.JLabel aboutDialogLabel;
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JPanel aboutPanel;
-    private javax.swing.JButton acknowledgeButton;
-    private javax.swing.JPanel appSettingsPanel;
-    private javax.swing.JCheckBox autoAcknowledge;
-    private javax.swing.JCheckBox autoCancel;
-    private javax.swing.JPanel autoExecutePanel;
-    private javax.swing.JPanel autoIOIPanel;
-    private javax.swing.JCheckBox autoPendingCancel;
-    private javax.swing.JCheckBox autoPendingReplace;
-    private javax.swing.JCheckBox autoReplace;
-    private javax.swing.JPanel autoResponsePanel;
-    private javax.swing.JComboBox cachedObjectsCombo;
-    private javax.swing.JLabel cachedObjectsLabel;
-    private javax.swing.JButton cancelAcceptButton;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JButton cancelIOIButton;
-    private javax.swing.JButton cancelPendingButton;
-    private javax.swing.JButton cancelRejectButton;
-    private javax.swing.JSeparator cancelSeparator;
-    private javax.swing.JComboBox cannedQueryCombo;
-    private javax.swing.JButton cannedQueryRunButton;
-    private javax.swing.JLabel clientConnectedLabel;
-    private javax.swing.JButton customQueryRunButton;
-    private javax.swing.JLabel delayLabel;
-    private javax.swing.JButton dfdButton;
-    private javax.swing.JButton executeButton;
-    private javax.swing.JPanel executionActionPanel;
-    private javax.swing.JButton executionBustButton;
-    private javax.swing.JButton executionCorrectButton;
-    private javax.swing.JDialog executionDialog;
-    private javax.swing.JButton executionDialogCancel;
-    private javax.swing.JButton executionDialogOK;
-    private javax.swing.JFormattedTextField executionDialogPrice;
-    private javax.swing.JFormattedTextField executionDialogShares;
-    private javax.swing.JPanel executionPanel;
-    private javax.swing.JLabel executionPriceLabel;
-    private javax.swing.JScrollPane executionScrollPane;
-    private javax.swing.JLabel executionSharesLabel;
-    private javax.swing.JTable executionTable;
-    private javax.swing.JComboBox executorDelay;
-    private javax.swing.JLabel executorRunningLabel;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JFileChooser instrumentFileChooser;
-    private javax.swing.JMenu instrumentMenu;
-    private javax.swing.JPanel instrumentPanel;
-    private javax.swing.JScrollPane instrumentScrollPane;
-    private javax.swing.JTable instrumentTable;
-    private javax.swing.JDialog ioiDialog;
-    private javax.swing.JButton ioiDialogCancel;
-    private javax.swing.JLabel ioiDialogID;
-    private javax.swing.JComboBox ioiDialogIDSource;
-    private javax.swing.JComboBox ioiDialogNatural;
-    private javax.swing.JButton ioiDialogOK;
-    private javax.swing.JFormattedTextField ioiDialogPrice;
-    private javax.swing.JTextField ioiDialogSecurityID;
-    private javax.swing.JFormattedTextField ioiDialogShares;
-    private javax.swing.JComboBox ioiDialogSide;
-    private javax.swing.JTextField ioiDialogSymbol;
-    private javax.swing.JLabel ioiIDLabel;
-    private javax.swing.JLabel ioiIDSourceLabel;
-    private javax.swing.JLabel ioiNaturalLabel;
-    private javax.swing.JPanel ioiPanel;
-    private javax.swing.JLabel ioiPriceLabel;
-    private javax.swing.JScrollPane ioiScrollPane;
-    private javax.swing.JLabel ioiSecurityIDLabel;
-    private javax.swing.JLabel ioiSenderRunningLabel;
-    private javax.swing.JLabel ioiSharesLabel;
-    private javax.swing.JLabel ioiSideLabel;
-    private javax.swing.JLabel ioiSliderLabel;
-    private javax.swing.JLabel ioiSymbolLabel;
-    private javax.swing.JTable ioiTable;
-    private javax.swing.JMenuItem loadInstrumentMenuItem;
-    private javax.swing.JPanel loadPanel;
-    private javax.swing.JCheckBox logToDB;
-    private javax.swing.JCheckBox logToFile;
-    private javax.swing.JLabel logToFileLabel;
-    private javax.swing.JMenuBar mainMenuBar;
-    private javax.swing.JTabbedPane mainTabbedPane;
-    private javax.swing.JPanel manualIOIPanel;
-    private javax.swing.JPanel messageDetailPanel;
-    private javax.swing.JScrollPane messageDetailScrollPane;
-    private javax.swing.JTable messageDetailTable;
-    private javax.swing.JPanel messagePanel;
-    private javax.swing.JScrollPane messageScrollPane;
-    private javax.swing.JTable messageTable;
-    private javax.swing.JSeparator oboCompIDSeparator;
-    private javax.swing.JSeparator oboCompIDSeparator1;
-    private javax.swing.JButton okButton;
-    private javax.swing.JPanel orderActionPanel;
-    private javax.swing.JPanel orderPanel;
-    private javax.swing.JButton orderRejectButton;
-    private javax.swing.JScrollPane orderScrollPane;
-    private javax.swing.JTable orderTable;
-    private javax.swing.JLabel partialsLabel;
-    private javax.swing.JLabel partialsNumber;
-    private javax.swing.JSlider partialsSlider;
-    private javax.swing.JComboBox pricePrecisionCombo;
-    private javax.swing.JLabel pricePrecisionLabel;
-    private javax.swing.JLabel queryLabel;
-    private javax.swing.JLabel querySymbolLabel;
-    private javax.swing.JTextField querySymbolText;
-    private javax.swing.JTextField queryText;
-    private javax.swing.JLabel rateDisplayLable;
-    private javax.swing.JSlider rateSlider;
-    private javax.swing.JButton replaceAcceptButton;
-    private javax.swing.JButton replaceIOIButton;
-    private javax.swing.JButton replacePendingButton;
-    private javax.swing.JButton replaceRejectButton;
-    private javax.swing.JSeparator replaceSeparator;
-    private javax.swing.JPanel reportActionPanel;
-    private javax.swing.JPanel reportPanel;
-    private javax.swing.JScrollPane reportScrollPane;
-    private javax.swing.JTable reportTable;
-    private javax.swing.JButton saveSettingsButton;
-    private javax.swing.JComboBox securityIDComboBox;
-    private javax.swing.JLabel securityIDLabel;
-    private javax.swing.JCheckBox sendOnBehalfOfCompID;
-    private javax.swing.JCheckBox sendOnBehalfOfSubID;
-    private javax.swing.JPanel settingsPanel;
-    private javax.swing.JButton showSettingsButton;
-    private javax.swing.JButton singleIOIButton;
-    private javax.swing.JButton startButton;
-    private javax.swing.JButton startExecutorButton;
-    private javax.swing.JPanel statusBarPanel;
-    private javax.swing.JButton stopButton;
-    private javax.swing.JButton stopExecutorButton;
-    private javax.swing.JComboBox symbolComboBox;
-    private javax.swing.JLabel symbolLabel;
+    private JDialog aboutDialog;
+    private JLabel aboutDialogLabel;
+    private JMenuItem aboutMenuItem;
+    private JPanel aboutPanel;
+    private JButton acknowledgeButton;
+    private JPanel appSettingsPanel;
+    private JCheckBox autoAcknowledge;
+    private JCheckBox autoCancel;
+    private JPanel autoExecutePanel;
+    private JPanel autoIOIPanel;
+    private JCheckBox autoPendingCancel;
+    private JCheckBox autoPendingReplace;
+    private JCheckBox autoReplace;
+    private JPanel autoResponsePanel;
+    private JComboBox cachedObjectsCombo;
+    private JLabel cachedObjectsLabel;
+    private JButton cancelAcceptButton;
+    private JButton cancelButton;
+    private JButton cancelIOIButton;
+    private JButton cancelPendingButton;
+    private JButton cancelRejectButton;
+    private JSeparator cancelSeparator;
+    private JComboBox cannedQueryCombo;
+    private JButton cannedQueryRunButton;
+    private JLabel clientConnectedLabel;
+    private JButton customQueryRunButton;
+    private JLabel delayLabel;
+    private JButton dfdButton;
+    private JButton executeButton;
+    private JPanel executionActionPanel;
+    private JButton executionBustButton;
+    private JButton executionCorrectButton;
+    private JDialog executionDialog;
+    private JButton executionDialogCancel;
+    private JButton executionDialogOK;
+    private JFormattedTextField executionDialogPrice;
+    private JFormattedTextField executionDialogShares;
+    private JPanel executionPanel;
+    private JLabel executionPriceLabel;
+    private JScrollPane executionScrollPane;
+    private JLabel executionSharesLabel;
+    private JTable executionTable;
+    private JComboBox executorDelay;
+    private JLabel executorRunningLabel;
+    private JMenuItem exitMenuItem;
+    private JMenu fileMenu;
+    private JMenu helpMenu;
+    private JFileChooser instrumentFileChooser;
+    private JMenu instrumentMenu;
+    private JPanel instrumentPanel;
+    private JScrollPane instrumentScrollPane;
+    private JTable instrumentTable;
+    private JDialog ioiDialog;
+    private JButton ioiDialogCancel;
+    private JLabel ioiDialogID;
+    private JComboBox ioiDialogIDSource;
+    private JComboBox ioiDialogNatural;
+    private JButton ioiDialogOK;
+    private JFormattedTextField ioiDialogPrice;
+    private JTextField ioiDialogSecurityID;
+    private JFormattedTextField ioiDialogShares;
+    private JComboBox ioiDialogSide;
+    private JTextField ioiDialogSymbol;
+    private JLabel ioiIDLabel;
+    private JLabel ioiIDSourceLabel;
+    private JLabel ioiNaturalLabel;
+    private JPanel ioiPanel;
+    private JLabel ioiPriceLabel;
+    private JScrollPane ioiScrollPane;
+    private JLabel ioiSecurityIDLabel;
+    private JLabel ioiSenderRunningLabel;
+    private JLabel ioiSharesLabel;
+    private JLabel ioiSideLabel;
+    private JLabel ioiSliderLabel;
+    private JLabel ioiSymbolLabel;
+    private JTable ioiTable;
+    private JMenuItem loadInstrumentMenuItem;
+    private JPanel loadPanel;
+    private JCheckBox logToDB;
+    private JCheckBox logToFile;
+    private JLabel logToFileLabel;
+    private JMenuBar mainMenuBar;
+    private JTabbedPane mainTabbedPane;
+    private JPanel manualIOIPanel;
+    private JPanel messageDetailPanel;
+    private JScrollPane messageDetailScrollPane;
+    private JTable messageDetailTable;
+    private JPanel messagePanel;
+    private JScrollPane messageScrollPane;
+    private JTable messageTable;
+    private JSeparator oboCompIDSeparator;
+    private JSeparator oboCompIDSeparator1;
+    private JButton okButton;
+    private JPanel orderActionPanel;
+    private JPanel orderPanel;
+    private JButton orderRejectButton;
+    private JScrollPane orderScrollPane;
+    private JTable orderTable;
+    private JLabel partialsLabel;
+    private JLabel partialsNumber;
+    private JSlider partialsSlider;
+    private JComboBox pricePrecisionCombo;
+    private JLabel pricePrecisionLabel;
+    private JLabel queryLabel;
+    private JLabel querySymbolLabel;
+    private JTextField querySymbolText;
+    private JTextField queryText;
+    private JLabel rateDisplayLable;
+    private JSlider rateSlider;
+    private JButton replaceAcceptButton;
+    private JButton replaceIOIButton;
+    private JButton replacePendingButton;
+    private JButton replaceRejectButton;
+    private JSeparator replaceSeparator;
+    private JPanel reportActionPanel;
+    private JPanel reportPanel;
+    private JScrollPane reportScrollPane;
+    private JTable reportTable;
+    private JButton saveSettingsButton;
+    private JComboBox securityIDComboBox;
+    private JLabel securityIDLabel;
+    private JCheckBox sendOnBehalfOfCompID;
+    private JCheckBox sendOnBehalfOfSubID;
+    private JPanel settingsPanel;
+    private JButton showSettingsButton;
+    private JButton singleIOIButton;
+    private JButton startButton;
+    private JButton startExecutorButton;
+    private JPanel statusBarPanel;
+    private JButton stopButton;
+    private JButton stopExecutorButton;
+    private JComboBox symbolComboBox;
+    private JLabel symbolLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
