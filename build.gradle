@@ -12,7 +12,7 @@ repositories {
     maven { url = uri('https://repo.marketcetera.org/maven') }
 }
 
-mainClassName = 'edu.harvard.fas.zfeledy.fiximulator.ui.FIXimulatorFrame'
+mainClassName = 'org.fiximulator.ui.FIXimulatorFrame'
 group = 'org.fiximulator'
 
 dependencies {
