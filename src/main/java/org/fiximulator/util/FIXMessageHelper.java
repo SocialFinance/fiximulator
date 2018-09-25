@@ -53,7 +53,6 @@ import quickfix.field.converter.UtcTimestampConverter;
  * @author Brian M. Coyner
  */
 public class FIXMessageHelper {
-
     public static String getTargetCompId(String rawMessage, char delimeter) {
         int beginIndex = rawMessage.indexOf("56=") + 3;
         int endIndex = rawMessage.indexOf(delimeter, beginIndex);

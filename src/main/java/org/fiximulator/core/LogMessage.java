@@ -71,7 +71,6 @@ import quickfix.field.MsgType;
  * @author Brian M. Coyner
  */
 public class LogMessage implements Comparable<Object> {
-
     public static final char DEFAULT_DELIMETER = '|';
     public static final char SOH_DELIMETER = (char) 0x01;
 
@@ -117,7 +116,7 @@ public class LogMessage implements Comparable<Object> {
     }
 
     public int getMessageIndex() {
-    	return messageIndex;
+        return messageIndex;
     }
 
     /**
@@ -170,8 +169,6 @@ public class LogMessage implements Comparable<Object> {
      * not a cached value.
      */
     public List<LogField> getLogFields() {
-
-
         Message message = createMessage();
 
         List<LogField> logFields = new ArrayList<LogField>();
@@ -200,15 +197,13 @@ public class LogMessage implements Comparable<Object> {
                 (messageIndex == rhsMessageIndex ? 0 : 1));
     }
 
-
     @Override
     public String toString() {
         return "" + messageIndex;
     }
 
     @SuppressWarnings("unchecked")
-	private LogField createLogField(Message message, Field field) {
-
+    private LogField createLogField(Message message, Field field) {
         MsgType messageType = getMessageType(message);
         String messageTypeValue = messageType.getValue();
 
@@ -218,7 +213,6 @@ public class LogMessage implements Comparable<Object> {
         final DataDictionary.GroupInfo groupInfo = dictionary.getGroup(
                     messageTypeValue, field.getTag());
         if (groupInfo != null) {
-
             int delimeterField = groupInfo.getDelimeterField();
             Group group = new Group(field.getTag(), delimeterField);
             int numberOfGroups =  Integer.valueOf((String) field.getObject());
@@ -227,7 +221,6 @@ public class LogMessage implements Comparable<Object> {
                         new LogGroup(messageType, field, dictionary);
 
                 try {
-
                     message.getGroup(index + 1, group);
 
                     Iterator groupIterator = group.iterator();
@@ -235,7 +228,6 @@ public class LogMessage implements Comparable<Object> {
                         Field groupField = (Field) groupIterator.next();
                         logGroup.addField(LogField.createLogField(messageType,
                                 groupField, dictionary));
-
                     }
                 } catch (FieldNotFound fieldNotFound) {
                 }
@@ -262,7 +254,7 @@ public class LogMessage implements Comparable<Object> {
     }
 
     @SuppressWarnings("unchecked")
-	private Map<Integer, Field> getAllFields(Message genericMessage) {
+    private Map<Integer, Field> getAllFields(Message genericMessage) {
         Map<Integer, Field> allFields = new LinkedHashMap<Integer, Field>();
 
         Iterator iterator = genericMessage.getHeader().iterator();

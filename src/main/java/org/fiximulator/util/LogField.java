@@ -64,7 +64,6 @@ import quickfix.field.MsgType;
  * @author Brian M. Coyner
  */
 public class LogField {
-
     private Field field;
     private FieldType fieldType;
     private String fieldName;

@@ -56,7 +56,6 @@ import quickfix.field.MsgType;
  * @author Brian M. Coyner
  */
 public class LogGroup extends LogField {
-
     private List<LogField> fields;
 
     public LogGroup(MsgType messageType, Field field,

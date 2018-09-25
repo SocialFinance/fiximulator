@@ -20,7 +20,6 @@ public class OrderTableModel extends AbstractTableModel {
         {"ID", "Status", "Side", "Quantity", "Symbol", "Type", "Limit", "TIF",
          "Executed", "Open", "AvgPx", "ClOrdID", "OrigClOrdID"};
 
-
     public OrderTableModel(){
         FIXimulator.getApplication().getOrders().addCallback(this);
     }

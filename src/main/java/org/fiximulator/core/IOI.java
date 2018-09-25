@@ -140,5 +140,4 @@ public class IOI implements Cloneable {
         else
             this.symbol = symbol;
     }
-
 }

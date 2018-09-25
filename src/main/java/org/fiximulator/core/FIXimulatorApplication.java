@@ -107,8 +107,8 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     public void onLogout( SessionID sessionID ) {
-    	connected = false;
-    	currentSession = null;
+        connected = false;
+        currentSession = null;
         connectedStatus.setIcon(new javax.swing.ImageIcon(getClass()
             .getResource("/org/fiximulator/ui/red.gif")));
     }
@@ -116,12 +116,12 @@ public class FIXimulatorApplication extends MessageCracker
     // IndicationofInterest handling
     public void onMessage( quickfix.fix42.IndicationofInterest message,
             SessionID sessionID )
-    	throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
+        throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
 
     // NewOrderSingle handling
     public void onMessage( quickfix.fix42.NewOrderSingle message,
             SessionID sessionID )
-    	throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
+        throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
         Order order = new Order( message );
         order.setReceivedOrder( true );
         if ( executorStarted ) {
@@ -142,7 +142,7 @@ public class FIXimulatorApplication extends MessageCracker
     // OrderCancelRequest handling
     public void onMessage( quickfix.fix42.OrderCancelRequest message,
             SessionID sessionID )
-    	throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
+        throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
         Order order = new Order( message );
         order.setReceivedCancel( true );
         orders.add( order, false );
@@ -163,7 +163,7 @@ public class FIXimulatorApplication extends MessageCracker
     // OrderReplaceRequest handling
     public void onMessage( quickfix.fix42.OrderCancelReplaceRequest message,
             SessionID sessionID )
-    	throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
+        throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
         Order order = new Order( message );
         order.setReceivedReplace( true );
         orders.add( order, false );
@@ -184,17 +184,16 @@ public class FIXimulatorApplication extends MessageCracker
     // OrderCancelReject handling
     public void onMessage( quickfix.fix42.OrderCancelReject message,
             SessionID sessionID )
-    	throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
+        throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
 
     // ExecutionReport handling
     public void onMessage( quickfix.fix42.ExecutionReport message,
             SessionID sessionID )
-    	throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
+        throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {}
 
     public void onMessage( quickfix.fix42.DontKnowTrade message,
             SessionID sessionID )
-    	throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
-
+        throws FieldNotFound, UnsupportedMessageType, IncorrectTagValue {
         try {
             ExecID execID = new ExecID();
             message.get(execID);
@@ -208,19 +207,19 @@ public class FIXimulatorApplication extends MessageCracker
     public void fromApp( Message message, SessionID sessionID )
         throws FieldNotFound, IncorrectDataFormat,
             IncorrectTagValue, UnsupportedMessageType {
-    	messages.add(message, true, dictionary, sessionID);
+        messages.add(message, true, dictionary, sessionID);
         crack(message, sessionID);
     }
 
     public void toApp( Message message, SessionID sessionID ) throws DoNotSend {
-    	try {
+        try {
             messages.add(message, false, dictionary, sessionID);
             crack(message, sessionID);
-        } catch (Exception e) {	e.printStackTrace(); }
+        } catch (Exception e) {    e.printStackTrace(); }
     }
 
     public void fromAdmin( Message message, SessionID sessionID )
-    	throws
+        throws
         FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {}
 
     public void toAdmin( Message message, SessionID sessionID ) {}
@@ -707,9 +706,9 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     public void stopIOIsender(){
-    	ioiSender.stopIOISender();
+        ioiSender.stopIOISender();
         ioiSenderThread.interrupt();
-    	try {
+        try {
             ioiSenderThread.join();
         } catch (InterruptedException e) {e.printStackTrace();}
         ioiSenderStatus.setIcon(new javax.swing.ImageIcon(getClass()
@@ -729,34 +728,34 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     public class IOIsender implements Runnable {
-    	InstrumentSet instruments;
-    	private Integer delay;
-    	private String symbolValue = "";
-    	private String securityIDvalue = "";
+        InstrumentSet instruments;
+        private Integer delay;
+        private String symbolValue = "";
+        private String securityIDvalue = "";
 
-    	public IOIsender ( Integer delay, String symbol, String securityID ) {
+        public IOIsender ( Integer delay, String symbol, String securityID ) {
             instruments = FIXimulator.getInstruments();
             ioiSenderStarted = true;
             this.delay = delay;
             symbolValue = symbol;
             securityIDvalue = securityID;
-    	}
+        }
 
-    	public void stopIOISender() {
+        public void stopIOISender() {
             ioiSenderStarted = false;
         }
 
-    	public void setDelay(Integer delay){
+        public void setDelay(Integer delay){
             this.delay = delay;
-    	}
+        }
 
-     	public void setSymbol( String identifier ) {
+         public void setSymbol( String identifier ) {
             symbolValue = identifier;
-     	}
+         }
 
-     	public void setSecurityID ( String identifier ) {
+         public void setSecurityID ( String identifier ) {
             securityIDvalue = identifier;
-     	}
+         }
 
         public void run() {
             while ( connected && ioiSenderStarted ) {
@@ -769,7 +768,7 @@ public class FIXimulatorApplication extends MessageCracker
             .getResource("/org/fiximulator/ui/red.gif")));
         }
 
-    	public void sendRandomIOI() {
+        public void sendRandomIOI() {
             Instrument instrument = instruments.randomInstrument();
             IOI ioi = new IOI();
             ioi.setType("NEW");
@@ -849,7 +848,7 @@ public class FIXimulatorApplication extends MessageCracker
     public void stopExecutor(){
         executor.stopExecutor();
         executorThread.interrupt();
-    	try {
+        try {
             executorThread.join();
         } catch (InterruptedException e) {e.printStackTrace();}
         executorStatus.setIcon(new javax.swing.ImageIcon(getClass()
@@ -865,9 +864,9 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     public class Executor implements Runnable {
-    	InstrumentSet instruments;
-    	private Integer delay;
-    	private Integer partials;
+        InstrumentSet instruments;
+        private Integer delay;
+        private Integer partials;
 
         public Executor( Integer delay, Integer partials ) {
             instruments = FIXimulator.getInstruments();
@@ -898,7 +897,7 @@ public class FIXimulatorApplication extends MessageCracker
 
         public void setDelay(Integer delay){
             this.delay = delay;
-    	}
+        }
 
         public void setPartials(Integer partials){
             this.partials = partials;

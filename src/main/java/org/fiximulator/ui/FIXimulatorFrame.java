@@ -1782,7 +1782,6 @@ private void replaceIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//
         ioiDialog.pack();
         ioiDialog.setVisible(true);
     }
-
 }//GEN-LAST:event_replaceIOIButtonActionPerformed
 
 private void acknowledgeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acknowledgeButtonActionPerformed
@@ -1826,7 +1825,6 @@ private void executionBustButtonActionPerformed(java.awt.event.ActionEvent evt) 
                     "\"" + execution.getExecType() + "\" " +
                     "executions cannot be busted...");
         }
-
     }
 }//GEN-LAST:event_executionBustButtonActionPerformed
 
@@ -2079,7 +2077,6 @@ private void executeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         executionDialog.pack();
         executionDialog.setVisible(true);
     }
-
 }//GEN-LAST:event_executeButtonActionPerformed
 
 private void executionCorrectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executionCorrectButtonActionPerformed
@@ -2306,5 +2303,4 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JLabel symbolLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-
 }

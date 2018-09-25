@@ -28,7 +28,6 @@ import org.fiximulator.ui.InstrumentTableModel;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
-
 public class InstrumentSet extends DefaultHandler {
     private ArrayList<Instrument> instruments = new ArrayList<Instrument>();
     private ArrayList<Instrument> oldInstruments = new ArrayList<Instrument>();

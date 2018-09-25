@@ -22,7 +22,6 @@ public class ExecutionTableModel extends AbstractTableModel {
         {"ID", "ClOrdID", "Side", "Symbol", "LastQty", "LastPx",
          "CumQty", "AvgPx", "Open", "ExecType", "ExecTranType", "RefID", "DKd"};
 
-
     public ExecutionTableModel(){
         FIXimulator.getApplication().getExecutions().addCallback(this);
     }
