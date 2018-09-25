@@ -10,6 +10,10 @@
  */
 package org.fiximulator.ui;
 
+import com.sofi.quotes.QuoteEndpoint;
+import com.sofi.quotes.QuoteService;
+import com.sofi.quotes.Timeout;
+
 import org.fiximulator.core.Execution;
 import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.Order;
@@ -60,13 +64,17 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 
 public class FIXimulatorFrame extends JFrame {
+    private static String XIGNITE_SECRET = "58B1D084A26D49BABEECBDA4F557FDF9";
+
     private static FIXimulator fiximulator;
     private Execution dialogExecution = null;
+    private QuoteService quoteService;
 
     /**
      * Creates new form FIXimulatorFrame
      */
     public FIXimulatorFrame() {
+        quoteService = new QuoteService(XIGNITE_SECRET, QuoteEndpoint.GLOBAL_DELAYED, Timeout.CrossRegion);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -1192,7 +1200,7 @@ private void startExecutorButtonActionPerformed(ActionEvent evt) { // GEN - FIRS
         delay = 5000;
     int partials = (int)partialsSlider.getValue();
     if (partials == 0) partials = 1;
-    FIXimulator.getApplication().startExecutor(delay, partials);
+    FIXimulator.getApplication().startExecutor(delay, partials, quoteService);
 } // GEN - LAST:event_startExecutorButtonActionPerformed
 
 private void stopExecutorButtonActionPerformed(ActionEvent evt) { // GEN - FIRST:event_stopExecutorButtonActionPerformed

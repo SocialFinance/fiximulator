@@ -10,6 +10,8 @@ repositories {
     mavenCentral()
     // For QuickfixJ
     maven { url = uri('https://repo.marketcetera.org/maven') }
+    // SoFi
+    maven { url = uri('https://build.sofi.com/artifactory/repo/') }
 }
 
 mainClassName = 'org.fiximulator.ui.FIXimulatorFrame'
@@ -24,6 +26,9 @@ dependencies {
     compile 'quickfixj:quickfixj-msg-fix44:1.3.1'
     compile 'org.apache.mina:mina-core:1.1.7'
     compile 'org.apache.mina:mina-filter-ssl:1.1.7'
+
+    compile 'com.sofi:quotes:release-14'
+
     compile 'org.jdesktop:beansbinding:1.2.1'
     compile 'com.cloudhopper.proxool:proxool:0.9.1'
     compile 'com.cloudhopper.proxool:proxool-cglib:0.9.1'

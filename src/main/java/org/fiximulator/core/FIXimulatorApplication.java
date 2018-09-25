@@ -10,6 +10,9 @@
 
 package org.fiximulator.core;
 
+import com.sofi.quotes.Quote;
+import com.sofi.quotes.QuoteService;
+
 import quickfix.Application;
 import quickfix.DataDictionary;
 import quickfix.DoNotSend;
@@ -27,18 +30,12 @@ import quickfix.UnsupportedMessageType;
 import quickfix.field.AvgPx;
 import quickfix.field.ClOrdID;
 import quickfix.field.CumQty;
-import quickfix.field.Currency;
 import quickfix.field.CxlRejResponseTo;
 import quickfix.field.ExecID;
 import quickfix.field.ExecRefID;
 import quickfix.field.ExecTransType;
 import quickfix.field.ExecType;
 import quickfix.field.IDSource;
-import quickfix.field.IOINaturalFlag;
-import quickfix.field.IOIRefID;
-import quickfix.field.IOIShares;
-import quickfix.field.IOITransType;
-import quickfix.field.IOIid;
 import quickfix.field.LastPx;
 import quickfix.field.LastShares;
 import quickfix.field.LeavesQty;
@@ -48,12 +45,9 @@ import quickfix.field.OrdStatus;
 import quickfix.field.OrderID;
 import quickfix.field.OrderQty;
 import quickfix.field.OrigClOrdID;
-import quickfix.field.Price;
-import quickfix.field.SecurityDesc;
 import quickfix.field.SecurityID;
 import quickfix.field.Side;
 import quickfix.field.Symbol;
-import quickfix.field.ValidUntilTime;
 import quickfix.fix42.Message.Header;
 
 import java.io.BufferedOutputStream;
@@ -61,13 +55,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.util.Date;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class FIXimulatorApplication extends MessageCracker
-                                    implements Application {
+public class FIXimulatorApplication extends MessageCracker implements Application {
+
     private boolean connected;
     private JLabel connectedStatus;
     private JLabel executorStatus;
@@ -82,12 +76,16 @@ public class FIXimulatorApplication extends MessageCracker
     private OrderSet orders = null;
     private ExecutionSet executions = null;
 
-    public FIXimulatorApplication(SessionSettings settings,
-            LogMessageSet messages) {
-            this.settings = settings;
-            this.messages = messages;
-            orders = new OrderSet();
-            executions = new ExecutionSet();
+    private final ImageIcon greenIcon;
+    private final ImageIcon redIcon;
+
+    public FIXimulatorApplication(SessionSettings settings, LogMessageSet messages) {
+        this.settings = settings;
+        this.messages = messages;
+        orders = new OrderSet();
+        executions = new ExecutionSet();
+        greenIcon = new ImageIcon(getClass().getResource("/org/fiximulator/ui/green.gif"));
+        redIcon = new ImageIcon(getClass().getResource("/org/fiximulator/ui/red.gif"));
     }
 
     public void onCreate(SessionID sessionID) {}
@@ -97,15 +95,13 @@ public class FIXimulatorApplication extends MessageCracker
         currentSession = sessionID;
         dictionary = Session.lookupSession(currentSession).getDataDictionary();
         if (connectedStatus != null)
-            connectedStatus.setIcon(new javax.swing.ImageIcon(getClass()
-            .getResource("/org/fiximulator/ui/green.gif")));
+            connectedStatus.setIcon(greenIcon);
     }
 
     public void onLogout(SessionID sessionID) {
         connected = false;
         currentSession = null;
-        connectedStatus.setIcon(new javax.swing.ImageIcon(getClass()
-            .getResource("/org/fiximulator/ui/red.gif")));
+        connectedStatus.setIcon(redIcon);
     }
 
     // NewOrderSingle handling
@@ -583,15 +579,14 @@ public class FIXimulatorApplication extends MessageCracker
     }
 
     // Executor methods
-    public void startExecutor(Integer delay, Integer partials) {
+    public void startExecutor(Integer delay, Integer partials, QuoteService quoteService) {
         try {
-            executor = new Executor(delay, partials);
+            executor = new Executor(delay, partials, quoteService);
             executorThread = new Thread(executor);
             executorThread.start();
-        } catch (Exception e) {e.printStackTrace(); }
-        if (connected && executorStarted)
-            executorStatus.setIcon(new javax.swing.ImageIcon(getClass()
-            .getResource("/org/fiximulator/ui/green.gif")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void stopExecutor() {
@@ -599,45 +594,54 @@ public class FIXimulatorApplication extends MessageCracker
         executorThread.interrupt();
         try {
             executorThread.join();
-        } catch (InterruptedException e) {e.printStackTrace(); }
-        executorStatus.setIcon(new javax.swing.ImageIcon(getClass()
-            .getResource("/org/fiximulator/ui/red.gif")));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setNewExecutorDelay(Integer delay) {
-        if (executorStarted) executor.setDelay(delay);
+        if (executorStarted) {
+            executor.setDelay(delay);
+        }
     }
 
     public void setNewExecutorPartials(Integer partials) {
-        if (executorStarted) executor.setPartials(partials);
+        if (executorStarted) {
+            executor.setPartials(partials);
+        }
     }
 
     public class Executor implements Runnable {
         InstrumentSet instruments;
         private Integer delay;
         private Integer partials;
+        private QuoteService quoteService;
 
-        public Executor(Integer delay, Integer partials) {
+        public Executor(Integer delay, Integer partials, QuoteService quoteService) {
             instruments = FIXimulator.getInstruments();
             executorStarted = true;
             this.partials = partials;
             this.delay = delay;
+            this.quoteService = quoteService;
         }
 
         public void run() {
-            while (connected && executorStarted) {
-                while (orders.haveOrdersToFill()) {
-                    Order order = orders.getOrderToFill();
-                    acknowledge(order);
-                    fill(order);
+            executorStatus.setIcon(greenIcon);
+            while (executorStarted) {
+                if (connected) {
+                    while (orders.haveOrdersToFill()) {
+                        Order order = orders.getOrderToFill();
+                        acknowledge(order);
+                        fill(order);
+                    }
                 }
                 // No orders to fill, check again in 5 seconds
                 try {
                     Thread.sleep(5000);
-                } catch (InterruptedException e) {}
+                } catch (InterruptedException e) {
+                }
             }
-            executorStatus.setIcon(new javax.swing.ImageIcon(getClass()
-            .getResource("/org/fiximulator/ui/red.gif")));
+            executorStatus.setIcon(redIcon);
         }
 
         public void stopExecutor() {
@@ -653,109 +657,89 @@ public class FIXimulatorApplication extends MessageCracker
         }
 
         public void fill(Order order) {
+            int pricePrecision = getSettingLong("FIXimulatorPricePrecision", 4);
+
             double fillQty = Math.floor(order.getQuantity() / partials);
-            double fillPrice = 0.0;
-            // try to look the price up from the instruments
-            Instrument instrument =
-                    instruments.getInstrument(order.getSymbol());
-            if (instrument != null) {
-                fillPrice = Double.valueOf(instrument.getPrice());
-            // use a random price
-            } else {
-                int pricePrecision = 4;
-                try {
-                    pricePrecision =
-                            (int)settings.getLong("FIXimulatorPricePrecision");
-                } catch (Exception e) {}
-                double factor = Math.pow(10, pricePrecision);
-                fillPrice = Math.round(
-                    random.nextDouble() * 100 * factor) / factor;
+            double fillPrice;
+            try {
+                Quote quote = quoteService.getQuote(order.getSymbol());
+                fillPrice = quote.getLast().getValue().doubleValue();
+            } catch (Exception ignored) {
+                // Random price
+                final double factor = Math.pow(10, pricePrecision);
+                fillPrice = Math.round(random.nextDouble() * 100 * factor) / factor;
             }
 
-            if (fillQty == 0) fillQty = 1;
+            char ordStatus;
+            char execType;
+
+            if (fillQty == 0) {
+                fillQty = 1;
+            }
             for (int i = 0; i < partials; i++) {
                 double open = order.getOpen();
                 if (open > 0) {
+                    double priorQty = order.getExecuted();
+                    double priorAvg = order.getAvgPx();
+                    double thisAvg = ((fillQty * fillPrice)
+                                      + (priorQty * priorAvg))
+                                     / (priorQty + fillQty);
+
+                    double factor = Math.pow(10, pricePrecision);
+                    thisAvg = Math.round(thisAvg * factor) / factor;
+
                     if (fillQty < open && i != partials - 1) {
                         // send partial
-                        // calculate fields
-                        double priorQty = order.getExecuted();
-                        double priorAvg = order.getAvgPx();
-                        if (random.nextBoolean())
-                            fillPrice += 0.01;
-                        else
-                            fillPrice -= 0.01;
-                        double thisAvg = ((fillQty * fillPrice)
-                                + (priorQty * priorAvg))
-                                / (priorQty + fillQty);
-                        int pricePrecision = 4;
-                        try {
-                            pricePrecision =
-                            (int)settings.getLong("FIXimulatorPricePrecision");
-                        } catch (Exception e) {}
-                        double factor = Math.pow(10, pricePrecision);
-                        fillPrice = Math.round(fillPrice * factor) / factor;
-                        thisAvg = Math.round(thisAvg * factor) / factor;
-                       // update order
-                        order.setOpen(open - fillQty);
-                        order.setStatus(OrdStatus.PARTIALLY_FILLED);
-                        order.setExecuted(order.getExecuted() + fillQty);
-                        order.setAvgPx(thisAvg);
-                        orders.update();
-                        // create execution
-                        Execution partial = new Execution(order);
-                        partial.setExecType(ExecType.PARTIAL_FILL);
-                        partial.setExecTranType(ExecTransType.NEW);
-                        partial.setLeavesQty(order.getOpen());
-                        partial.setCumQty(order.getQuantity() - order.getOpen());
-                        partial.setAvgPx(thisAvg);
-                        partial.setLastShares(fillQty);
-                        partial.setLastPx(fillPrice);
-                        sendExecution(partial);
+                        ordStatus = OrdStatus.PARTIALLY_FILLED;
+                        execType = ExecType.PARTIAL_FILL;
                     } else {
                         // send full
                         fillQty = open;
-                        // calculate fields
-                        double priorQty = order.getExecuted();
-                        double priorAvg = order.getAvgPx();
-                        if (random.nextBoolean())
-                            fillPrice += 0.01;
-                        else
-                            fillPrice -= 0.01;
-                        double thisAvg = ((fillQty * fillPrice)
-                                + (priorQty * priorAvg))
-                                / (priorQty + fillQty);
-                        int pricePrecision = 4;
-                        try {
-                            pricePrecision =
-                            (int)settings.getLong("FIXimulatorPricePrecision");
-                        } catch (Exception e) {}
-                        double factor = Math.pow(10, pricePrecision);
-                        fillPrice = Math.round(fillPrice * factor) / factor;
-                        thisAvg = Math.round(thisAvg * factor) / factor;
-                        //update order
-                        order.setOpen(open - fillQty);
-                        order.setStatus(OrdStatus.FILLED);
-                        order.setExecuted(order.getExecuted() + fillQty);
-                        order.setAvgPx(thisAvg);
-                        orders.update();
-                        // create execution
-                        Execution partial = new Execution(order);
-                        partial.setExecType(ExecType.FILL);
-                        partial.setExecTranType(ExecTransType.NEW);
-                        partial.setLeavesQty(order.getOpen());
-                        partial.setCumQty(order.getQuantity() - order.getOpen());
-                        partial.setAvgPx(thisAvg);
-                        partial.setLastShares(fillQty);
-                        partial.setLastPx(fillPrice);
-                        sendExecution(partial);
-                        break;
+                        ordStatus = OrdStatus.FILLED;
+                        execType = ExecType.FILL;
                     }
+
+                    // update order
+                    updateOrder(order, open - fillQty, order.getExecuted() + fillQty, thisAvg, ordStatus);
+
+                    // create execution
+                    Execution execution = createExecution(order, execType, thisAvg, fillQty, fillPrice);
+
+                    sendExecution(execution);
                 }
                 try {
                     Thread.sleep(delay.longValue());
-                } catch (InterruptedException e) {}
+                } catch (InterruptedException e) {
+                }
             }
+        }
+
+        private Execution createExecution(Order order, char execType, double thisAvg, double fillQty, double fillPrice) {
+            Execution execution = new Execution(order);
+            execution.setExecType(execType);
+            execution.setExecTranType(ExecTransType.NEW);
+            execution.setLeavesQty(order.getOpen());
+            execution.setCumQty(order.getQuantity() - order.getOpen());
+            execution.setAvgPx(thisAvg);
+            execution.setLastShares(fillQty);
+            execution.setLastPx(fillPrice);
+            return execution;
+        }
+
+        private void updateOrder(Order order, double open, double executed, double thisAvg, char status) {
+            order.setOpen(open);
+            order.setExecuted(executed);
+            order.setAvgPx(thisAvg);
+            order.setStatus(status);
+            orders.update();
+        }
+
+        private int getSettingLong(String key, int defaultValue) {
+            try {
+                return (int)settings.getLong(key);
+            } catch (Exception e) {
+            }
+            return defaultValue;
         }
     }
 }
