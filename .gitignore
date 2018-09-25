@@ -1,10 +1,14 @@
 .classpath
+.gradle*
+.idea
 .project
 .settings/
+!gradle/wrapper/gradle-wrapper.jar
+gradle.properties
 bin/
 build/
 data/
 dist/
 logs/
-project/project/
+project/
 target/

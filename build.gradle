@@ -1,0 +1,32 @@
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    // For QuickfixJ
+    maven { url = uri('https://repo.marketcetera.org/maven') }
+}
+
+mainClassName = 'edu.harvard.fas.zfeledy.fiximulator.ui.FIXimulatorFrame'
+group = 'org.fiximulator'
+
+dependencies {
+    compile 'quickfixj:quickfixj-core:1.3.1'
+    compile 'quickfixj:quickfixj-msg-fix40:1.3.1'
+    compile 'quickfixj:quickfixj-msg-fix41:1.3.1'
+    compile 'quickfixj:quickfixj-msg-fix42:1.3.1'
+    compile 'quickfixj:quickfixj-msg-fix43:1.3.1'
+    compile 'quickfixj:quickfixj-msg-fix44:1.3.1'
+    compile 'org.apache.mina:mina-core:1.1.7'
+    compile 'org.apache.mina:mina-filter-ssl:1.1.7'
+    compile 'org.jdesktop:beansbinding:1.2.1'
+    compile 'com.cloudhopper.proxool:proxool:0.9.1'
+    compile 'com.cloudhopper.proxool:proxool-cglib:0.9.1'
+    compile 'org.slf4j:slf4j-api:1.6.3'
+    compile 'org.slf4j:slf4j-simple:1.6.3'
+}
