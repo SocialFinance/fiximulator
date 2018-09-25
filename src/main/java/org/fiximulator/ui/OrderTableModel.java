@@ -9,10 +9,11 @@
 
 package org.fiximulator.ui;
 
-import javax.swing.table.AbstractTableModel;
 import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.Order;
 import org.fiximulator.core.OrderSet;
+
+import javax.swing.table.AbstractTableModel;
 
 public class OrderTableModel extends AbstractTableModel {
     private static OrderSet orders = FIXimulator.getApplication().getOrders();

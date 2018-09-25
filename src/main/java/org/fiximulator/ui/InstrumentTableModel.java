@@ -9,10 +9,11 @@
 
 package org.fiximulator.ui;
 
-import javax.swing.table.AbstractTableModel;
 import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.Instrument;
 import org.fiximulator.core.InstrumentSet;
+
+import javax.swing.table.AbstractTableModel;
 
 public class InstrumentTableModel extends AbstractTableModel {
     private static InstrumentSet instruments = FIXimulator.getInstruments();

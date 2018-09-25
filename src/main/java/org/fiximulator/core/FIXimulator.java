@@ -9,12 +9,6 @@
 
 package org.fiximulator.core;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-
 import quickfix.Acceptor;
 import quickfix.CompositeLogFactory;
 import quickfix.ConfigError;
@@ -29,6 +23,12 @@ import quickfix.MessageStoreFactory;
 import quickfix.ScreenLogFactory;
 import quickfix.SessionSettings;
 import quickfix.SocketAcceptor;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class FIXimulator {
     private static final long serialVersionUID = 1L;

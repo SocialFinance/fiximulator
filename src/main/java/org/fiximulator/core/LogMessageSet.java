@@ -9,11 +9,12 @@
 
 package org.fiximulator.core;
 
-import java.util.ArrayList;
 import org.fiximulator.ui.MessageTableModel;
 import quickfix.DataDictionary;
 import quickfix.Message;
 import quickfix.SessionID;
+
+import java.util.ArrayList;
 
 public class LogMessageSet {
     private static final long serialVersionUID = 1L;

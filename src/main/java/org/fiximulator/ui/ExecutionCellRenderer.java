@@ -13,6 +13,7 @@ package org.fiximulator.ui;
 
 import java.awt.Color;
 import java.awt.Component;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 

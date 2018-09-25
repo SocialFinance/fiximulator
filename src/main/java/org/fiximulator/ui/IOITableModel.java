@@ -9,10 +9,11 @@
 
 package org.fiximulator.ui;
 
-import javax.swing.table.AbstractTableModel;
 import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.IOI;
 import org.fiximulator.core.IOIset;
+
+import javax.swing.table.AbstractTableModel;
 
 public class IOITableModel extends AbstractTableModel {
     private static IOIset iois = FIXimulator.getApplication().getIOIs();

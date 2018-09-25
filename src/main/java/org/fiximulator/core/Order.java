@@ -12,12 +12,12 @@ package org.fiximulator.core;
 
 import quickfix.FieldNotFound;
 import quickfix.field.ClOrdID;
+import quickfix.field.IDSource;
 import quickfix.field.OrdType;
 import quickfix.field.OrderQty;
 import quickfix.field.OrigClOrdID;
 import quickfix.field.Price;
 import quickfix.field.SecurityID;
-import quickfix.field.IDSource;
 import quickfix.field.Side;
 import quickfix.field.Symbol;
 import quickfix.field.TimeInForce;

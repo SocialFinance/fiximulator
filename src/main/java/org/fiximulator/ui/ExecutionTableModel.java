@@ -9,11 +9,12 @@
 
 package org.fiximulator.ui;
 
-import javax.swing.table.AbstractTableModel;
-import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.Execution;
 import org.fiximulator.core.ExecutionSet;
+import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.Order;
+
+import javax.swing.table.AbstractTableModel;
 
 public class ExecutionTableModel extends AbstractTableModel {
     private static ExecutionSet executions =

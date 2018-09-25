@@ -9,11 +9,12 @@
 
 package org.fiximulator.ui;
 
-import javax.swing.table.AbstractTableModel;
 import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.LogMessage;
 import org.fiximulator.core.LogMessageSet;
 import quickfix.field.converter.UtcTimestampConverter;
+
+import javax.swing.table.AbstractTableModel;
 
 public class MessageTableModel extends AbstractTableModel {
     private static LogMessageSet messages = FIXimulator.getMessageSet();

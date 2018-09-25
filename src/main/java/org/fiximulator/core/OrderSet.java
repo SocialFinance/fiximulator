@@ -9,9 +9,10 @@
 
 package org.fiximulator.core;
 
+import org.fiximulator.ui.OrderTableModel;
+
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.fiximulator.ui.OrderTableModel;
 
 public class OrderSet {
     private ArrayList<Order> orders = new ArrayList<Order>();

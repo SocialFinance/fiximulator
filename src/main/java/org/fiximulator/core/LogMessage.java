@@ -46,17 +46,9 @@ package org.fiximulator.core;
  * SUCH DAMAGE.
  */
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.fiximulator.util.FIXMessageHelper;
 import org.fiximulator.util.LogField;
 import org.fiximulator.util.LogGroup;
-
 import quickfix.DataDictionary;
 import quickfix.Field;
 import quickfix.FieldConvertError;
@@ -66,6 +58,13 @@ import quickfix.InvalidMessage;
 import quickfix.Message;
 import quickfix.SessionID;
 import quickfix.field.MsgType;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Brian M. Coyner

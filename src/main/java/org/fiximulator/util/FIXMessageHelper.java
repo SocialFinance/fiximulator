@@ -44,10 +44,10 @@ package org.fiximulator.util;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-import java.util.Date;
-
 import quickfix.FieldConvertError;
 import quickfix.field.converter.UtcTimestampConverter;
+
+import java.util.Date;
 
 /**
  * @author Brian M. Coyner

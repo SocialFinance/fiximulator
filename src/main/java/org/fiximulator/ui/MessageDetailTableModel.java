@@ -10,16 +10,18 @@
 
 package org.fiximulator.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.AbstractTableModel;
 import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.LogMessage;
 import org.fiximulator.core.LogMessageSet;
 import org.fiximulator.util.LogField;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.AbstractTableModel;
 
 public class MessageDetailTableModel extends AbstractTableModel
         implements ListSelectionListener {

@@ -10,9 +10,10 @@
 
 package org.fiximulator.core;
 
+import org.fiximulator.ui.ExecutionTableModel;
+
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.fiximulator.ui.ExecutionTableModel;
 
 public class ExecutionSet {
     private ArrayList<Execution> executions = new ArrayList<Execution>();

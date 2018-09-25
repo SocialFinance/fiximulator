@@ -10,15 +10,6 @@
 
 package org.fiximulator.core;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.Date;
-import java.util.Random;
-
-import javax.swing.JLabel;
 import quickfix.Application;
 import quickfix.DataDictionary;
 import quickfix.DoNotSend;
@@ -64,6 +55,16 @@ import quickfix.field.Side;
 import quickfix.field.Symbol;
 import quickfix.field.ValidUntilTime;
 import quickfix.fix42.Message.Header;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Date;
+import java.util.Random;
+
+import javax.swing.JLabel;
 
 public class FIXimulatorApplication extends MessageCracker
                                     implements Application {

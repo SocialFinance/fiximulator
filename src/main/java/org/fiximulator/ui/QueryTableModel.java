@@ -10,9 +10,15 @@
 
 package org.fiximulator.ui;
 
-import java.sql.*;
 import org.fiximulator.core.FIXimulator;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.util.Vector;
+
 import javax.swing.table.AbstractTableModel;
 
 class QueryTableModel extends AbstractTableModel {

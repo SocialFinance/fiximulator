@@ -10,9 +10,10 @@
 
 package org.fiximulator.core;
 
+import org.fiximulator.ui.IOITableModel;
+
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.fiximulator.ui.IOITableModel;
 
 public class IOIset {
     private ArrayList<IOI> iois = new ArrayList<IOI>();

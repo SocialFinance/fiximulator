@@ -45,12 +45,12 @@ package org.fiximulator.util;
  * SUCH DAMAGE.
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
 import quickfix.DataDictionary;
 import quickfix.Field;
 import quickfix.field.MsgType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Brian M. Coyner

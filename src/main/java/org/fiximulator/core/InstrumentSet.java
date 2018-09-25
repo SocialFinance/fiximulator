@@ -10,6 +10,10 @@
 
 package org.fiximulator.core;
 
+import org.fiximulator.ui.InstrumentTableModel;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -23,10 +27,6 @@ import java.util.Random;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import org.fiximulator.ui.InstrumentTableModel;
-import org.xml.sax.Attributes;
-import org.xml.sax.helpers.DefaultHandler;
 
 public class InstrumentSet extends DefaultHandler {
     private ArrayList<Instrument> instruments = new ArrayList<Instrument>();

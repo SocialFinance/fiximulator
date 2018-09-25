@@ -12,11 +12,13 @@
 package org.fiximulator.ui;
 
 import org.fiximulator.core.Execution;
-import java.io.File;
-import javax.swing.UIManager;
 import org.fiximulator.core.FIXimulator;
 import org.fiximulator.core.IOI;
 import org.fiximulator.core.Order;
+
+import java.io.File;
+
+import javax.swing.UIManager;
 
 public class FIXimulatorFrame extends javax.swing.JFrame {
     private static FIXimulator fiximulator;
