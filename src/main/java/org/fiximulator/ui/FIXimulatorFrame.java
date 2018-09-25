@@ -88,7 +88,6 @@ public class FIXimulatorFrame extends JFrame {
         aboutPanel = new JPanel();
         okButton = new JButton();
         aboutDialogLabel = new JLabel();
-        instrumentFileChooser = new JFileChooser();
         executionDialog = new JDialog();
         executionDialogOK = new JButton();
         executionDialogCancel = new JButton();
@@ -136,9 +135,6 @@ public class FIXimulatorFrame extends JFrame {
         executionCorrectButton = new JButton();
         executionScrollPane = new JScrollPane();
         executionTable = new JTable();
-        instrumentPanel = new JPanel();
-        instrumentScrollPane = new JScrollPane();
-        instrumentTable = new JTable();
         settingsPanel = new JPanel();
         autoResponsePanel = new JPanel();
         autoAcknowledge = new JCheckBox();
@@ -165,8 +161,6 @@ public class FIXimulatorFrame extends JFrame {
         mainMenuBar = new JMenuBar();
         fileMenu = new JMenu();
         exitMenuItem = new JMenuItem();
-        instrumentMenu = new JMenu();
-        loadInstrumentMenuItem = new JMenuItem();
         helpMenu = new JMenu();
         aboutMenuItem = new JMenuItem();
 
@@ -495,7 +489,7 @@ public class FIXimulatorFrame extends JFrame {
                 .addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(autoExecutePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            );
+        );
         loadPanelLayout.setVerticalGroup(
             loadPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(loadPanelLayout.createSequentialGroup()
@@ -813,36 +807,6 @@ public class FIXimulatorFrame extends JFrame {
         );
 
         mainTabbedPane.addTab("Executions", executionPanel);
-
-        instrumentTable.setAutoCreateRowSorter(true);
-        instrumentTable.setModel(new org.fiximulator.ui.InstrumentTableModel());
-        instrumentTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        //Set initial column widths
-        for (int i = 0; i < instrumentTable.getColumnCount(); i++) {
-            if (i ==0)
-            instrumentTable.getColumnModel().
-            getColumn(i).setPreferredWidth(50);
-            if (i ==1)
-            instrumentTable.getColumnModel().
-            getColumn(i).setPreferredWidth(200);
-        }
-        instrumentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        instrumentScrollPane.setViewportView(instrumentTable);
-
-        GroupLayout instrumentPanelLayout = new GroupLayout(instrumentPanel);
-        instrumentPanel.setLayout(instrumentPanelLayout);
-        instrumentPanelLayout.setHorizontalGroup(
-            instrumentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(instrumentScrollPane, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-        );
-        instrumentPanelLayout.setVerticalGroup(
-            instrumentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(instrumentPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(instrumentScrollPane, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
-        );
-
-        mainTabbedPane.addTab("Instruments", instrumentPanel);
 
         executionTable.setDefaultRenderer(Object.class, new ExecutionCellRenderer());
 
@@ -1166,16 +1130,6 @@ public class FIXimulatorFrame extends JFrame {
 
         mainMenuBar.add(fileMenu);
 
-        loadInstrumentMenuItem.setText("Load Instruments...");
-        loadInstrumentMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                loadInstrumentMenuItemActionPerformed(evt);
-            }
-        });
-        instrumentMenu.add(loadInstrumentMenuItem);
-
-        mainMenuBar.add(instrumentMenu);
-
         aboutMenuItem.setText("About...");
         aboutMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -1336,17 +1290,6 @@ private void saveSettingsButtonActionPerformed(ActionEvent evt) { // GEN - FIRST
 private void exitMenuItemActionPerformed(ActionEvent evt) { // GEN - FIRST:event_exitMenuItemActionPerformed
 System.exit(0);
 } // GEN - LAST:event_exitMenuItemActionPerformed
-
-    @SuppressWarnings("static-access")
-private void loadInstrumentMenuItemActionPerformed(ActionEvent evt) { // GEN - FIRST:event_loadInstrumentMenuItemActionPerformed
-int result = instrumentFileChooser.showOpenDialog(this);
-    if (result == instrumentFileChooser.APPROVE_OPTION) {
-        File file = instrumentFileChooser.getSelectedFile();
-        FIXimulator.getInstruments().reloadInstrumentSet(file);
-    } else {
-        System.out.println("User cancelled loading file...");
-    }
-} // GEN - LAST:event_loadInstrumentMenuItemActionPerformed
 
 private void aboutMenuItemActionPerformed(ActionEvent evt) { // GEN - FIRST:event_aboutMenuItemActionPerformed
 aboutDialog.pack();
@@ -1627,12 +1570,6 @@ private void logToDBActionPerformed(ActionEvent evt) { // GEN - FIRST:event_logT
     private JMenuItem exitMenuItem;
     private JMenu fileMenu;
     private JMenu helpMenu;
-    private JFileChooser instrumentFileChooser;
-    private JMenu instrumentMenu;
-    private JPanel instrumentPanel;
-    private JScrollPane instrumentScrollPane;
-    private JTable instrumentTable;
-    private JMenuItem loadInstrumentMenuItem;
     private JPanel loadPanel;
     private JCheckBox logToDB;
     private JCheckBox logToFile;
