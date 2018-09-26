@@ -30,7 +30,7 @@ import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.util.Properties;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -40,7 +40,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -64,17 +63,49 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 
 public class FIXimulatorFrame extends JFrame {
-    private static String XIGNITE_SECRET = "58B1D084A26D49BABEECBDA4F557FDF9";
+    private static String XIGNITE_SECRET = "xignite.secret";
+    private static String[] requiredProperties = { XIGNITE_SECRET };
 
-    private static FIXimulator fiximulator;
+    public static void main(String args[]) {
+        final Properties props = new Properties();
+        // Check first if any java Properties are set
+        for (String key : requiredProperties) {
+            String val = System.getProperty(key);
+            if (val != null && !val.isEmpty()) {
+                props.setProperty(key, val);
+            }
+            // Allow environment variables to over-ride system properties
+            // Change all . (periods) to _ (underscores, and all caps to convert
+            // a property-name to an environment variable name.
+            String envKey = key.replaceAll("\\.", "_").toUpperCase();
+            val = System.getenv(envKey);
+            if (val != null && !val.isEmpty()) {
+                props.setProperty(key, val);
+            }
+            val = props.getProperty(key);
+            if (val == null || val.isEmpty()) {
+                System.err.println("ERROR: Failed to find value for " + key + ", exiting");
+                System.exit(-1);
+            }
+        }
+
+        final QuoteService quoteService = new QuoteService(props.getProperty(XIGNITE_SECRET), QuoteEndpoint.GLOBAL_DELAYED, Timeout.CrossRegion);
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FIXimulator().start();
+                new FIXimulatorFrame(quoteService).setVisible(true);
+            }
+        });
+    }
+
     private Execution dialogExecution = null;
-    private QuoteService quoteService;
+    private final QuoteService quoteService;
 
     /**
      * Creates new form FIXimulatorFrame
      */
-    public FIXimulatorFrame() {
-        quoteService = new QuoteService(XIGNITE_SECRET, QuoteEndpoint.GLOBAL_DELAYED, Timeout.CrossRegion);
+    public FIXimulatorFrame(QuoteService quoteService) {
+        this.quoteService = quoteService;
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -1524,16 +1555,6 @@ private void logToDBActionPerformed(ActionEvent evt) { // GEN - FIRST:event_logT
         .setBool("FIXimulatorLogToDB",
         sendOnBehalfOfSubID.isSelected());
 } // GEN - LAST:event_logToDBActionPerformed
-
-    public static void main(String args[]) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                fiximulator = new FIXimulator();
-                fiximulator.start();
-                new FIXimulatorFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JDialog aboutDialog;

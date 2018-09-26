@@ -16,6 +16,10 @@ repositories {
 
 mainClassName = 'org.fiximulator.ui.FIXimulatorFrame'
 group = 'org.fiximulator'
+run {    
+    // Can be over-ridden by setting the environment variable XIGNITE_SECRET
+    systemProperty "xignite.secret", "58B1D084A26D49BABEECBDA4F557FDF9"
+}
 
 dependencies {
     compile 'quickfixj:quickfixj-core:1.3.1'
