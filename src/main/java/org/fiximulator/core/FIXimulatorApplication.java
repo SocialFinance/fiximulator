@@ -612,13 +612,11 @@ public class FIXimulatorApplication extends MessageCracker implements Applicatio
     }
 
     public class Executor implements Runnable {
-        InstrumentSet instruments;
         private Integer delay;
         private Integer partials;
         private QuoteService quoteService;
 
         public Executor(Integer delay, Integer partials, QuoteService quoteService) {
-            instruments = FIXimulator.getInstruments();
             executorStarted = true;
             this.partials = partials;
             this.delay = delay;

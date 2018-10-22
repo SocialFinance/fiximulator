@@ -34,7 +34,6 @@ public class FIXimulator {
     private static final long serialVersionUID = 1L;
     private Acceptor acceptor = null;
     private static FIXimulatorApplication application = null;
-    private static InstrumentSet instruments = null;
     private static LogMessageSet messages = null;
 
     public FIXimulator() {
@@ -47,7 +46,6 @@ public class FIXimulator {
             exception.printStackTrace();
             System.exit(0);
         }
-        instruments = new InstrumentSet(new File("config/instruments.xml"));
         messages = new LogMessageSet();
         try {
             SessionSettings settings = new SessionSettings(inputStream);
@@ -84,10 +82,6 @@ public class FIXimulator {
         } catch (ConfigError e) {
             e.printStackTrace();
         }
-    }
-
-    public static InstrumentSet getInstruments() {
-        return instruments;
     }
 
     public static FIXimulatorApplication getApplication() {
