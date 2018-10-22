@@ -22,8 +22,6 @@ CMD ["/data/sofi/bin/start"]
 # Document the Volumes that get mounted in the container
 VOLUME ["/shared"]
 VOLUME ["/data/newrelic"]
-VOLUME ["/data/sofi/logs"]
-VOLUME ["/config"]
 
 # Play applications run on Port 9000
 EXPOSE 9000
