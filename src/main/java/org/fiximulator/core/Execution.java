@@ -42,8 +42,8 @@ public class Execution implements Cloneable {
     }
 
     public String generateID() {
-        return "E" + Long.valueOf(
-                System.currentTimeMillis() + (nextID++)).toString();
+        return "9" + Long.valueOf(
+            System.currentTimeMillis() + (nextID++)).toString();
     }
 
     public String getID() {
