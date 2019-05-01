@@ -10,6 +10,8 @@
  */
 package org.fiximulator.ui;
 
+import static org.fiximulator.core.FIXimulatorApplication.LIQUIDITY_FLAG_SETTINGS_KEY;
+
 import com.sofi.quotes.QuoteEndpoint;
 import com.sofi.quotes.QuoteService;
 import com.sofi.quotes.Timeout;
@@ -1036,7 +1038,7 @@ public class FIXimulatorFrame extends JFrame {
         try {
             sendLiquidityFlag.setSelected(
                             FIXimulator.getApplication().getSettings()
-                                       .getBool("FIXimulatorSendLiquidityFlag"));
+                                       .getBool(LIQUIDITY_FLAG_SETTINGS_KEY));
         } catch (Exception e) {}
         sendLiquidityFlag.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -1371,7 +1373,7 @@ private void sendOnBehalfOfSubIDActionPerformed(ActionEvent evt) { // GEN - FIRS
 
 private void sendLiquidityFlagActionPerformed(ActionEvent evt) { // GEN - FIRST:event_sendLiquidityFlagActionPerformed
     FIXimulator.getApplication().getSettings()
-               .setBool("FIXimulatorSendLiquidityFlag",
+               .setBool(LIQUIDITY_FLAG_SETTINGS_KEY,
                         sendLiquidityFlag.isSelected());
 } // GEN - LAST:event_sendLiquidityFlagActionPerformed
 

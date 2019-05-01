@@ -14,8 +14,10 @@ import com.sofi.quotes.Quote;
 import com.sofi.quotes.QuoteService;
 
 import quickfix.Application;
+import quickfix.ConfigError;
 import quickfix.DataDictionary;
 import quickfix.DoNotSend;
+import quickfix.FieldConvertError;
 import quickfix.FieldNotFound;
 import quickfix.IncorrectDataFormat;
 import quickfix.IncorrectTagValue;
@@ -61,6 +63,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class FIXimulatorApplication extends MessageCracker implements Application {
+    public static final String LIQUIDITY_FLAG_SETTINGS_KEY = "FIXimulatorSendLiquidityFlag";
+    private static final int LIQUIDITY_FLAG_FIELD = 9882;
+    private static final String LIQUIDITY_FLAG_VALUE = "5/1";
 
     private boolean connected;
     private JLabel connectedStatus;
@@ -575,11 +580,13 @@ public class FIXimulatorApplication extends MessageCracker implements Applicatio
         System.out.println("LiqudityFlag");
         boolean sendLiquidityFlag = false;
         try {
-            sendLiquidityFlag = settings.getBool("FIXimulatorSendLiquidityFlag");
-        } catch (Exception ex) {}
+            sendLiquidityFlag = settings.getBool(LIQUIDITY_FLAG_SETTINGS_KEY);
+        } catch (ConfigError | FieldConvertError ignore) {
+            // ignore
+        }
 
         if (sendLiquidityFlag) {
-            executionReport.setString(9882, "5/1"); // Add optional User Defined LiquidityFlag
+            executionReport.setString(LIQUIDITY_FLAG_FIELD, LIQUIDITY_FLAG_VALUE); // Add optional User Defined LiquidityFlag
         }
 
         // *** Send message ***
