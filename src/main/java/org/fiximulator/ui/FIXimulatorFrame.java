@@ -192,6 +192,7 @@ public class FIXimulatorFrame extends JFrame {
         oboCompIDSeparator = new JSeparator();
         sendOnBehalfOfCompID = new JCheckBox();
         sendOnBehalfOfSubID = new JCheckBox();
+        sendLiquidityFlag = new JCheckBox();
         oboCompIDSeparator1 = new JSeparator();
         logToFileLabel = new JLabel();
         logToFile = new JCheckBox();
@@ -1031,6 +1032,18 @@ public class FIXimulatorFrame extends JFrame {
             }
         });
 
+        sendLiquidityFlag.setText("Send LiquidityFlag (9882)");
+        try {
+            sendLiquidityFlag.setSelected(
+                            FIXimulator.getApplication().getSettings()
+                                       .getBool("FIXimulatorSendLiquidityFlag"));
+        } catch (Exception e) {}
+        sendLiquidityFlag.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                sendLiquidityFlagActionPerformed(evt);
+            }
+        });
+
         logToFileLabel.setText("<html>Changing the logging requires saving the settings and restarting the application...</htm;>");
 
         logToFile.setText("Log to file");
@@ -1071,6 +1084,7 @@ public class FIXimulatorFrame extends JFrame {
                         .addComponent(logToDB))
                     .addComponent(oboCompIDSeparator1)
                     .addComponent(sendOnBehalfOfSubID)
+                    .addComponent(sendLiquidityFlag)
                     .addGroup(appSettingsPanelLayout.createSequentialGroup()
                         .addGroup(appSettingsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(cachedObjectsLabel)
@@ -1103,6 +1117,8 @@ public class FIXimulatorFrame extends JFrame {
                 .addComponent(sendOnBehalfOfCompID)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sendOnBehalfOfSubID)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sendLiquidityFlag)
                 .addGap(12, 12, 12)
                 .addComponent(oboCompIDSeparator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -1352,6 +1368,12 @@ private void sendOnBehalfOfSubIDActionPerformed(ActionEvent evt) { // GEN - FIRS
         .setBool("FIXimulatorSendOnBehalfOfSubID",
         sendOnBehalfOfSubID.isSelected());
 } // GEN - LAST:event_sendOnBehalfOfSubIDActionPerformed
+
+private void sendLiquidityFlagActionPerformed(ActionEvent evt) { // GEN - FIRST:event_sendLiquidityFlagActionPerformed
+    FIXimulator.getApplication().getSettings()
+               .setBool("FIXimulatorSendLiquidityFlag",
+                        sendLiquidityFlag.isSelected());
+} // GEN - LAST:event_sendLiquidityFlagActionPerformed
 
 private void cachedObjectsComboActionPerformed(ActionEvent evt) { // GEN - FIRST:event_cachedObjectsComboActionPerformed
     FIXimulator.getApplication().getSettings()
@@ -1631,6 +1653,7 @@ private void logToDBActionPerformed(ActionEvent evt) { // GEN - FIRST:event_logT
     private JButton saveSettingsButton;
     private JCheckBox sendOnBehalfOfCompID;
     private JCheckBox sendOnBehalfOfSubID;
+    private JCheckBox sendLiquidityFlag;
     private JPanel settingsPanel;
     private JButton showSettingsButton;
     private JButton startExecutorButton;

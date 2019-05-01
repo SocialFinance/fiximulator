@@ -572,6 +572,15 @@ public class FIXimulatorApplication extends MessageCracker implements Applicatio
             executionReport.set(new SecurityID(order.getSecurityID()));
             executionReport.set(new IDSource(order.getIdSource()));
         }
+        System.out.println("LiqudityFlag");
+        boolean sendLiquidityFlag = false;
+        try {
+            sendLiquidityFlag = settings.getBool("FIXimulatorSendLiquidityFlag");
+        } catch (Exception ex) {}
+
+        if (sendLiquidityFlag) {
+            executionReport.setString(9882, "5/1"); // Add optional User Defined LiquidityFlag
+        }
 
         // *** Send message ***
         sendMessage(executionReport);
